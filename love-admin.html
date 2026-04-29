@@ -34,8 +34,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .btn-pink:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(236,72,153,.35)}
 .btn-outline{background:#fff;border:1.5px solid var(--bd2);color:var(--text2)}
 .btn-outline:hover{background:var(--pink3)}
-.btn-sm{padding:7px 14px;font-size:.78rem}
-.btn-full{width:100%}
+.btn-danger{background:#fff1f2;border:1.5px solid #fecdd3;color:var(--red);font-size:.75rem;padding:5px 11px}
+.btn-danger:hover{background:#fef2f2;border-color:var(--red)}
+.del-user-btn{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:#fff1f2;border:1px solid #fecdd3;color:var(--red);font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s}
+.user-card{position:relative}
+.user-card:hover .del-user-btn{opacity:1}
+.danger-zone{background:#fff1f2;border:1px solid #fecdd3;border-radius:12px;padding:14px;margin-top:14px}
+.danger-zone-title{font-size:.8rem;font-weight:600;color:var(--red);margin-bottom:8px}
 
 /* Import area */
 .import-area{border:1.5px dashed var(--pink2);border-radius:14px;padding:16px;background:var(--pink4);margin-bottom:14px}
@@ -129,8 +134,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <div class="import-area">
       <textarea class="import-ta" id="import-ta" placeholder="診断サイトの「データをエクスポート」で取得したJSONをここに貼り付けてください..."></textarea>
       <div style="display:flex;gap:8px">
-        <button class="btn btn-pink btn-sm" onclick="importData()">インポート</button>
-        <button class="btn btn-outline btn-sm" onclick="document.getElementById('import-ta').value=''">クリア</button>
+        <button id="btn-import" class="btn btn-pink btn-sm">インポート</button>
+        <button id="btn-clear" class="btn btn-outline btn-sm">クリア</button>
       </div>
     </div>
   </div>
@@ -143,6 +148,20 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
 
 <script>
+/* ============================
+   STORAGE POLYFILL
+   ============================ */
+const stor = (function() {
+  const ws = stor;
+  if (ws) return ws;
+  return {
+    get:    async (k)    => { const v=localStorage.getItem(k); return v?{value:v}:null; },
+    set:    async (k,v)  => { localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v)); return {key:k,value:v}; },
+    delete: async (k)    => { localStorage.removeItem(k); return {deleted:true}; },
+    list:   async (pfx)  => { const keys=Object.keys(localStorage).filter(k=>k.startsWith(pfx)); return {keys}; },
+  };
+})();
+
 /* ============================
    DATA
    ============================ */
@@ -163,7 +182,7 @@ let currentUser = null;
    ============================ */
 async function loadFromStorage() {
   try {
-    const ur = await window.storage.get('userlist', true).catch(()=>null);
+    const ur = await stor.get('userlist', true).catch(()=>null);
     if (!ur) return false;
     const users = JSON.parse(ur.value);
     if (!users.length) return false;
@@ -171,18 +190,18 @@ async function loadFromStorage() {
       allData[subject] = { self: null, others: [] };
       // Self eval
       try {
-        const sr = await window.storage.get(`eval:${subject}:${subject}`, true);
+        const sr = await stor.get(`eval:${subject}:${subject}`, true);
         if (sr) allData[subject].self = JSON.parse(sr.value);
       } catch(e){}
       // Others' evals: scan by listing keys
       try {
-        const kr = await window.storage.list(`eval:${subject}:`, true);
+        const kr = await stor.list(`eval:${subject}:`, true);
         if (kr && kr.keys) {
           for (const key of kr.keys) {
             const evalKey = key; // e.g., "eval:Alice:Bob"
             const parts = evalKey.split(':');
             if (parts.length >= 3 && parts[2] !== subject) {
-              const evr = await window.storage.get(evalKey, true).catch(()=>null);
+              const evr = await stor.get(evalKey, true).catch(()=>null);
               if (evr) allData[subject].others.push(JSON.parse(evr.value));
             }
           }
@@ -321,10 +340,7 @@ function renderList() {
     lv.innerHTML = `<div class="empty"><span class="empty-icon">📭</span><p class="empty-text">まだデータがありません。<br>診断サイトで診断を実施してください。</p></div>`;
     return;
   }
-  // Stats
-  const totalEvals = users.reduce((s,u)=>{
-    const d=allData[u]; return s+(d.self?1:0)+d.others.length;
-  },0);
+  const totalEvals = users.reduce((s,u)=>{ const d=allData[u]; return s+(d.self?1:0)+d.others.length; },0);
   let html = `<div class="stats-row">
     <div class="stat-card"><div class="stat-num">${users.length}</div><div class="stat-label">登録ユーザー</div></div>
     <div class="stat-card"><div class="stat-num">${totalEvals}</div><div class="stat-label">総診断数</div></div>
@@ -335,16 +351,24 @@ function renderList() {
     const d = allData[u];
     const selfRank = d.self?.rank || '—';
     const othersCount = d.others.length;
-    const rClass = selfRank !== '—' ? rankClass(selfRank) : '';
-    html += `<div class="user-card" onclick="showDetail('${u}')">
+    html += `<div class="user-card" data-user="${u}">
+      <button class="del-user-btn" data-del-user="${u}" title="${u}を削除">✕</button>
       <div class="user-avatar">${getInitial(u)}</div>
       <div class="user-name">${u}</div>
       <div class="user-meta">自己評価：<strong>${selfRank !== '—' ? rankBadge(selfRank) : '未診断'}</strong></div>
       <div class="user-meta">他者評価：${othersCount}件</div>
     </div>`;
   });
-  html += '</div></div>';
+  html += '</div>';
+  // Danger zone
+  html += `<div class="danger-zone">
+    <div class="danger-zone-title">⚠️ 全データ削除</div>
+    <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">全ユーザーのデータをストレージから完全に削除します。</p>
+    <button class="btn btn-danger btn-sm" id="btn-delete-all">全員のデータを削除する</button>
+  </div></div>`;
   lv.innerHTML = html;
+  // Attach delete-all listener
+  document.getElementById('btn-delete-all').addEventListener('click', deleteAllData);
 }
 
 /* ============================
@@ -366,7 +390,7 @@ function showDetail(username) {
     if (v !== null) othersAvgAxes[ax.name] = v;
   });
   const hasOthers = others.length > 0;
-  let html = `<button class="back-btn" onclick="backToList()">← 一覧に戻る</button>`;
+  let html = `<button id="btn-back" class="back-btn">← 一覧に戻る</button>`;
   html += `<div class="detail-view">`;
   // Header
   html += `<div class="card" style="text-align:center;background:linear-gradient(160deg,#fff0f8,#f5e8ff)">
@@ -449,6 +473,7 @@ function showDetail(username) {
           <div class="eval-meta">${dt} ｜ タイプ判定：${ev.type||'—'} ｜ ランク：${ev.rank||'—'} ｜ スコア：${parseFloat(ev.overall||0).toFixed(1)}</div>
         </div>
         ${rankBadge(ev.rank)}
+        <button class="btn btn-danger btn-sm" data-del-eval-sub="${username}" data-del-eval-ev="${ev.evaluator}" style="margin-left:6px">削除</button>
       </div>`;
     });
     html += '</div></div>';
@@ -457,9 +482,20 @@ function showDetail(username) {
       <p style="color:var(--mu);font-size:.85rem">まだ他者評価がありません。<br>友達に診断サイトで「他のユーザーを評価する」を選び、${username}さんを選択してもらいましょう。</p>
     </div>`;
   }
+  html += `<div class="danger-zone">
+    <div class="danger-zone-title">⚠️ このユーザーのデータを削除</div>
+    <p style="font-size:.78rem;color:var(--text2);margin-bottom:8px">${username}さんの全診断データ（自己評価・他者評価すべて）を削除します。</p>
+    <button class="btn btn-danger btn-sm" id="btn-del-this-user">このユーザーを削除する</button>
+  </div>`;
   html += '</div>';
   dv.innerHTML = html;
   dv.style.display = '';
+  // Attach listeners
+  document.getElementById('btn-back').addEventListener('click', backToList);
+  document.getElementById('btn-del-this-user').addEventListener('click', () => deleteUser(username));
+  dv.querySelectorAll('[data-del-eval-sub]').forEach(btn => {
+    btn.addEventListener('click', () => deleteEval(btn.dataset.delEvalSub, btn.dataset.delEvalEv));
+  });
 }
 
 function backToList() {
@@ -469,23 +505,86 @@ function backToList() {
 }
 
 /* ============================
-   INIT
+   DELETE FUNCTIONS
    ============================ */
-async function init() {
-  const loaded = await loadFromStorage();
-  renderList();
-  if (!loaded) {
-    // Show demo hint
-    document.getElementById('list-view').innerHTML = `<div class="card"><div class="sec-title">サンプルデータで確認</div>
-      <p style="font-size:.84rem;color:var(--text2);margin-bottom:12px">データがまだありません。下のボタンでサンプルデータを読み込んで画面の確認ができます。</p>
-      <button class="btn btn-outline btn-sm" onclick="loadSample()">サンプルデータを読み込む</button>
-    </div>`;
+async function deleteUser(username) {
+  if (!confirm(`「${username}」さんのデータをすべて削除しますか？\nこの操作は取り消せません。`)) return;
+  const d = allData[username];
+  if (d) {
+    // Delete self eval
+    try { await stor.delete(`eval:${username}:${username}`, true); } catch(e){}
+    // Delete others' evals
+    for (const ev of (d.others||[])) {
+      try { await stor.delete(`eval:${username}:${ev.evaluator}`, true); } catch(e){}
+    }
   }
+  // Remove from userlist
+  try {
+    const ur = await stor.get('userlist', true);
+    if (ur) {
+      const users = JSON.parse(ur.value).filter(u => u !== username);
+      await stor.set('userlist', JSON.stringify(users), true);
+    }
+  } catch(e){}
+  delete allData[username];
+  backToList();
+  renderList();
+}
+
+async function deleteEval(subject, evaluator) {
+  if (!confirm(`「${evaluator}」さんによる評価を削除しますか？`)) return;
+  try { await stor.delete(`eval:${subject}:${evaluator}`, true); } catch(e){}
+  if (allData[subject]) {
+    allData[subject].others = allData[subject].others.filter(o => o.evaluator !== evaluator);
+  }
+  showDetail(subject); // re-render detail view
+}
+
+async function deleteAllData() {
+  if (!confirm('全ユーザーのデータをすべて削除しますか？\nこの操作は取り消せません。')) return;
+  const users = Object.keys(allData);
+  for (const u of users) {
+    const d = allData[u];
+    try { await stor.delete(`eval:${u}:${u}`, true); } catch(e){}
+    for (const ev of (d.others||[])) {
+      try { await stor.delete(`eval:${u}:${ev.evaluator}`, true); } catch(e){}
+    }
+  }
+  try { await stor.set('userlist', JSON.stringify([]), true); } catch(e){}
+  allData = {};
+  renderList();
 }
 
 /* ============================
-   SAMPLE DATA
+   INIT + EVENT DELEGATION
    ============================ */
+async function init() {
+  // Static button listeners
+  document.getElementById('btn-import').addEventListener('click', importData);
+  document.getElementById('btn-clear').addEventListener('click', () => {
+    document.getElementById('import-ta').value = '';
+  });
+
+  // Event delegation for dynamically rendered list
+  document.getElementById('list-view').addEventListener('click', function(e) {
+    // Delete user button
+    const delBtn = e.target.closest('[data-del-user]');
+    if (delBtn) { e.stopPropagation(); deleteUser(delBtn.dataset.delUser); return; }
+    // User card click → detail
+    const card = e.target.closest('[data-user]');
+    if (card) showDetail(card.dataset.user);
+  });
+
+  const loaded = await loadFromStorage();
+  renderList();
+  if (!loaded) {
+    document.getElementById('list-view').innerHTML = `<div class="card"><div class="sec-title">サンプルデータで確認</div>
+      <p style="font-size:.84rem;color:var(--text2);margin-bottom:12px">データがまだありません。下のボタンでサンプルデータを読み込んで画面の確認ができます。</p>
+      <button id="btn-sample" class="btn btn-outline btn-sm">サンプルデータを読み込む</button>
+    </div>`;
+    document.getElementById('btn-sample').addEventListener('click', loadSample);
+  }
+}
 function loadSample() {
   const sample = {
     users: ['田中さくら', '山田たろう', '鈴木はな'],
@@ -508,7 +607,11 @@ function loadSample() {
   importData();
 }
 
-init();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 </script>
 </body>
 </html>
