@@ -346,6 +346,22 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div><!-- /wrap -->
 <script>
 /* ============================
+   STORAGE POLYFILL
+   GitHub Pages では window.storage が存在しないため localStorage で代替
+   ============================ */
+const stor = (function() {
+  const ws = window.storage;
+  if (ws) return ws;
+  // localStorage fallback for GitHub Pages
+  return {
+    get:    async (k)    => { const v=localStorage.getItem(k); return v?{value:v}:null; },
+    set:    async (k,v)  => { localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v)); return {key:k,value:v}; },
+    delete: async (k)    => { localStorage.removeItem(k); return {deleted:true}; },
+    list:   async (pfx)  => { const keys=Object.keys(localStorage).filter(k=>k.startsWith(pfx)); return {keys}; },
+  };
+})();
+
+/* ============================
    QUESTIONS DATA
    ============================ */
 const QS = [
@@ -601,11 +617,10 @@ function show(id) {
    ============================ */
 async function initStart() {
   try {
-    const r = await window.storage.get('userlist', true);
+    const r = await stor.get('userlist', true);
     if (!r) return;
     const users = JSON.parse(r.value);
     if (!users.length) return;
-    // Show existing user dropdown
     document.getElementById('existing-row').style.display = '';
     const selUser = document.getElementById('sel-user');
     const selTarget = document.getElementById('sel-target');
@@ -807,11 +822,11 @@ async function runDiagnosis(){
   // Save to storage
   try {
     const resultData={subject:subjectName,evaluator:userName,type,rank,overall:overall.toFixed(2),axisScores,timestamp:new Date().toISOString()};
-    await window.storage.set(`eval:${subjectName}:${userName}`,JSON.stringify(resultData),true);
-    const ur=await window.storage.get('userlist',true).catch(()=>null);
+    await stor.set(`eval:${subjectName}:${userName}`,JSON.stringify(resultData),true);
+    const ur=await stor.get('userlist',true).catch(()=>null);
     const users=ur?JSON.parse(ur.value):[];
     [subjectName,userName].forEach(u=>{if(u&&!users.includes(u))users.push(u);});
-    await window.storage.set('userlist',JSON.stringify(users),true);
+    await stor.set('userlist',JSON.stringify(users),true);
   } catch(e){console.log('Storage:',e);}
   clearInterval(lp);
   renderResult({axisScores,overall,rank,type,weakAxes,strAxes});
@@ -920,7 +935,7 @@ function setupListeners() {
   // Quiz nav
   document.getElementById('btn-prev').addEventListener('click', goPrev);
   document.getElementById('btn-next').addEventListener('click', goNext);
-  // Option delegation — opts container is re-rendered each question, use capture on parent
+  // Option delegation
   document.getElementById('scr-quiz').addEventListener('click', function(e) {
     const btn = e.target.closest('.opt');
     if (btn) { const s = parseInt(btn.dataset.score, 10); if (s) selectOpt(s); }
@@ -933,8 +948,15 @@ function setupListeners() {
 /* ============================
    INIT
    ============================ */
-setupListeners();
-initStart();
+function boot() {
+  try { setupListeners(); } catch(e) { console.error('setupListeners error:', e); }
+  try { initStart(); } catch(e) { console.error('initStart error:', e); }
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
 </script>
 </body>
 </html>
