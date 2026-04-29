@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🌸 診断管理ダッシュボード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff5f9;--bg2:#fdf0f5;--card:#ffffff;
+  --bd:rgba(240,150,175,.28);--bd2:rgba(240,150,175,.55);
+  --pink:#ec4899;--pink2:#f9a8d4;--pink3:#fce7f3;--pink4:#fdf2f8;
+  --rose:#e11d48;--purple:#a855f7;--pu2:#f3e8ff;
+  --text:#3d1c2c;--text2:#7b5468;--mu:#b08090;--mu2:rgba(176,128,144,.5);
+  --green:#16a34a;--amber:#d97706;--red:#dc2626;
+  --serif:'Shippori Mincho B1',serif;--sans:'Noto Sans JP',sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;min-height:100vh;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(250,200,220,.35) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 80% 90%,rgba(220,180,255,.25) 0%,transparent 55%);pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:20px 16px 60px}
+
+.page-header{text-align:center;padding:32px 0 24px}
+.page-icon{font-size:42px;display:block;margin-bottom:12px}
+.page-title{font-family:var(--serif);font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#f472b6,#ec4899,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.page-sub{color:var(--mu);font-size:.82rem}
+
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 2px 16px rgba(236,72,153,.06)}
+.sec-title{font-family:var(--serif);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.sec-title::before{content:'';width:3px;height:13px;background:linear-gradient(to bottom,var(--pink),var(--purple));border-radius:99px;flex-shrink:0}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:10px;border:none;cursor:pointer;font-family:var(--sans);font-size:.85rem;font-weight:500;transition:all .18s ease}
+.btn-pink{background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;font-weight:600;box-shadow:0 3px 14px rgba(236,72,153,.25)}
+.btn-pink:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(236,72,153,.35)}
+.btn-outline{background:#fff;border:1.5px solid var(--bd2);color:var(--text2)}
+.btn-outline:hover{background:var(--pink3)}
+.btn-sm{padding:7px 14px;font-size:.78rem}
+.btn-full{width:100%}
+
+/* Import area */
+.import-area{border:1.5px dashed var(--pink2);border-radius:14px;padding:16px;background:var(--pink4);margin-bottom:14px}
+.import-ta{width:100%;height:80px;border:1.5px solid var(--bd);border-radius:8px;padding:10px;font-family:var(--sans);font-size:.8rem;color:var(--text2);resize:none;background:#fff;margin-bottom:10px}
+.import-ta:focus{outline:none;border-color:var(--pink)}
+
+/* User grid */
+.user-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:14px}
+.user-card{background:#fff;border:1.5px solid var(--bd);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;text-align:center}
+.user-card:hover{border-color:var(--pink);box-shadow:0 4px 16px rgba(236,72,153,.15);transform:translateY(-2px)}
+.user-card.active{border-color:var(--pink);background:var(--pink3)}
+.user-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f9a8d4,#ec4899);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:#fff;margin:0 auto 8px;font-family:var(--serif)}
+.user-name{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.user-meta{font-size:.72rem;color:var(--mu)}
+
+/* Detail view */
+.detail-view{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--pink);font-size:.83rem;cursor:pointer;margin-bottom:16px;background:none;border:none;font-family:var(--sans)}
+.back-btn:hover{text-decoration:underline}
+
+/* Comparison table */
+.comp-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.comp-table th{background:var(--pink3);color:var(--pink);padding:8px 10px;text-align:left;font-weight:600}
+.comp-table th.r{text-align:right}
+.comp-table td{padding:9px 10px;border-bottom:1px solid var(--pink4);color:var(--text2)}
+.comp-table td.name-col{font-weight:600;color:var(--text)}
+.comp-table td.r{text-align:right}
+.score-val{font-weight:600}
+.gap-pos{color:var(--green);font-weight:700}
+.gap-neg{color:var(--red);font-weight:700}
+.gap-neu{color:var(--mu)}
+
+/* Rank badge */
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;font-family:var(--serif);font-size:1.1rem;font-weight:800}
+.rank-s{background:#fef3c7;color:#d97706}
+.rank-a{background:var(--pink3);color:var(--pink)}
+.rank-b{background:var(--pu2);color:var(--purple)}
+.rank-c{background:#e0f2fe;color:#0891b2}
+.rank-f{background:#f1f5f9;color:#94a3b8}
+
+/* Radar */
+.radar-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.radar-item{text-align:center;flex:1;min-width:220px}
+.radar-label{font-size:.78rem;color:var(--mu);margin-bottom:6px}
+
+/* Legend */
+.radar-legend{display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:.76rem}
+.leg-item{display:flex;align-items:center;gap:5px;color:var(--text2)}
+.leg-line{width:20px;height:2.5px;border-radius:99px}
+
+/* Evaluator list */
+.eval-list{display:flex;flex-direction:column;gap:8px}
+.eval-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--pink4);border-radius:10px;border:1px solid var(--bd)}
+.eval-name{flex:1;font-size:.85rem;font-weight:600}
+.eval-meta{font-size:.76rem;color:var(--mu)}
+
+/* Empty state */
+.empty{text-align:center;padding:48px 20px}
+.empty-icon{font-size:48px;display:block;margin-bottom:12px;opacity:.5}
+.empty-text{color:var(--mu);font-size:.9rem}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat-card{background:var(--pink4);border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:center}
+.stat-num{font-family:var(--serif);font-size:1.6rem;font-weight:800;color:var(--pink)}
+.stat-label{font-size:.73rem;color:var(--mu)}
+
+/* notice */
+.notice{background:var(--pu2);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:12px 14px;font-size:.78rem;color:#7c3aed;margin-bottom:14px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-header">
+    <span class="page-icon">👥</span>
+    <h1 class="page-title">診断管理ダッシュボード</h1>
+    <p class="page-sub">ユーザーの自己評価と他者評価を比較できます</p>
+  </div>
+
+  <!-- Notice -->
+  <div class="notice">
+    💡 このページは診断サイト（love-diagnosis-v3.html）と同じ共有ストレージを使用します。<br>
+    同じ環境で両ファイルを開いた場合は自動でデータが読み込まれます。<br>
+    別の環境の場合は、診断サイトの「データをエクスポート」からJSONをコピーして下記に貼り付けてください。
+  </div>
+
+  <!-- Import section -->
+  <div id="import-section" class="card">
+    <div class="sec-title">データのインポート（手動）</div>
+    <div class="import-area">
+      <textarea class="import-ta" id="import-ta" placeholder="診断サイトの「データをエクスポート」で取得したJSONをここに貼り付けてください..."></textarea>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-pink btn-sm" onclick="importData()">インポート</button>
+        <button class="btn btn-outline btn-sm" onclick="document.getElementById('import-ta').value=''">クリア</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div id="main-view">
+    <div id="list-view"></div>
+    <div id="detail-view" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+/* ============================
+   DATA
+   ============================ */
+const AXES_INFO = [
+  {name:'コミュニケーション',label:'コミュ力'},
+  {name:'性格',             label:'性格'},
+  {name:'価値観',           label:'価値観'},
+  {name:'生活力',           label:'生活力'},
+  {name:'外見・清潔感',     label:'清潔感'},
+  {name:'価値観ズレ耐性',   label:'適応力'},
+];
+const TYPE_LIST=['依存型','安定型','自立型','回避型','情熱型','慎重型'];
+let allData = {}; // { [subject]: { self: resultObj, others: [resultObj, ...] } }
+let currentUser = null;
+
+/* ============================
+   STORAGE LOAD
+   ============================ */
+async function loadFromStorage() {
+  try {
+    const ur = await window.storage.get('userlist', true).catch(()=>null);
+    if (!ur) return false;
+    const users = JSON.parse(ur.value);
+    if (!users.length) return false;
+    for (const subject of users) {
+      allData[subject] = { self: null, others: [] };
+      // Self eval
+      try {
+        const sr = await window.storage.get(`eval:${subject}:${subject}`, true);
+        if (sr) allData[subject].self = JSON.parse(sr.value);
+      } catch(e){}
+      // Others' evals: scan by listing keys
+      try {
+        const kr = await window.storage.list(`eval:${subject}:`, true);
+        if (kr && kr.keys) {
+          for (const key of kr.keys) {
+            const evalKey = key; // e.g., "eval:Alice:Bob"
+            const parts = evalKey.split(':');
+            if (parts.length >= 3 && parts[2] !== subject) {
+              const evr = await window.storage.get(evalKey, true).catch(()=>null);
+              if (evr) allData[subject].others.push(JSON.parse(evr.value));
+            }
+          }
+        }
+      } catch(e){}
+    }
+    return true;
+  } catch(e) { return false; }
+}
+
+/* ============================
+   IMPORT
+   ============================ */
+function importData() {
+  const raw = document.getElementById('import-ta').value.trim();
+  if (!raw) return;
+  try {
+    const parsed = JSON.parse(raw);
+    // Expect format: { users: [...], evals: { "eval:X:Y": {...}, ... } }
+    if (parsed.users && parsed.evals) {
+      parsed.users.forEach(u => {
+        if (!allData[u]) allData[u] = { self: null, others: [] };
+      });
+      Object.entries(parsed.evals).forEach(([key, val]) => {
+        const parts = key.split(':');
+        if (parts.length >= 3) {
+          const subject = parts[1], evaluator = parts[2];
+          if (!allData[subject]) allData[subject] = { self: null, others: [] };
+          if (evaluator === subject) {
+            allData[subject].self = val;
+          } else {
+            allData[subject].others = allData[subject].others.filter(o=>o.evaluator!==evaluator);
+            allData[subject].others.push(val);
+          }
+        }
+      });
+      renderList();
+      document.getElementById('import-ta').value = '';
+      alert(`インポート完了！${parsed.users.length}人のデータを読み込みました。`);
+    } else {
+      // Try single result format
+      if (parsed.subject && parsed.evaluator) {
+        const {subject, evaluator} = parsed;
+        if (!allData[subject]) allData[subject] = { self: null, others: [] };
+        if (evaluator === subject) {
+          allData[subject].self = parsed;
+        } else {
+          allData[subject].others = allData[subject].others.filter(o=>o.evaluator!==evaluator);
+          allData[subject].others.push(parsed);
+        }
+        renderList();
+        document.getElementById('import-ta').value = '';
+        alert('インポート完了！');
+      }
+    }
+  } catch(e) { alert('JSONの形式が正しくありません: ' + e.message); }
+}
+
+/* ============================
+   HELPERS
+   ============================ */
+function rankClass(r) { return 'rank-'+(r||'?').toLowerCase(); }
+function rankBadge(r) {
+  const cls=rankClass(r);
+  return `<span class="rank-badge ${cls}">${r||'?'}</span>`;
+}
+function avgScore(list, key) {
+  const vs = list.map(r => parseFloat(r.axisScores?.[key])||0).filter(v=>v>0);
+  return vs.length ? (vs.reduce((a,b)=>a+b,0)/vs.length) : null;
+}
+function overallAvg(list) {
+  const vs = list.map(r => parseFloat(r.overall)||0).filter(v=>v>0);
+  return vs.length ? (vs.reduce((a,b)=>a+b,0)/vs.length) : null;
+}
+function gapClass(gap) {
+  if (gap === null) return 'gap-neu';
+  if (gap > 0.1) return 'gap-pos';
+  if (gap < -0.1) return 'gap-neg';
+  return 'gap-neu';
+}
+function gapText(gap) {
+  if (gap === null) return '—';
+  const sign = gap > 0 ? '+' : '';
+  return sign + gap.toFixed(1);
+}
+function getInitial(name) {
+  return name ? name.charAt(0).toUpperCase() : '?';
+}
+function typeMode(list) {
+  if (!list.length) return '—';
+  const counts = {};
+  list.forEach(r => { counts[r.type] = (counts[r.type]||0)+1; });
+  return Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
+}
+
+/* ============================
+   RADAR SVG
+   ============================ */
+function makeRadar(scoreMap1, scoreMap2, id) {
+  const W=220,H=220,cx=110,cy=110,R=75;
+  const n=AXES_INFO.length;
+  const angles=AXES_INFO.map((_,i)=>-Math.PI/2+i*2*Math.PI/n);
+  const px=(r,i)=>(cx+r*Math.cos(angles[i])).toFixed(1);
+  const py=(r,i)=>(cy+r*Math.sin(angles[i])).toFixed(1);
+  let g='';
+  [.25,.5,.75,1].forEach(f=>{
+    const pts=angles.map((_,i)=>`${px(R*f,i)},${py(R*f,i)}`).join(' ');
+    g+=`<polygon points="${pts}" fill="none" stroke="#f9a8d4" stroke-width="${f===1?1.2:.6}"/>`;
+  });
+  let al='';
+  AXES_INFO.forEach((ax,i)=>{
+    const lR=R+16,cos=Math.cos(angles[i]),sin=Math.sin(angles[i]);
+    const anchor=cos>0.25?'start':cos<-0.25?'end':'middle';
+    al+=`<line x1="${cx}" y1="${cy}" x2="${px(R,i)}" y2="${py(R,i)}" stroke="#f9a8d4" stroke-width=".8"/>`;
+    al+=`<text x="${(cx+lR*cos).toFixed(1)}" y="${(cy+lR*sin).toFixed(1)}" text-anchor="${anchor}" dominant-baseline="middle" font-size="9" fill="#b08090" font-family="'Noto Sans JP',sans-serif">${ax.label}</text>`;
+  });
+  let poly2='';
+  if (scoreMap2) {
+    const pts=AXES_INFO.map((ax,i)=>`${px(R*(scoreMap2[ax.name]||3)/5,i)},${py(R*(scoreMap2[ax.name]||3)/5,i)}`).join(' ');
+    poly2=`<polygon points="${pts}" fill="rgba(168,85,247,.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="4 2.5"/>`;
+    AXES_INFO.forEach((ax,i)=>{const r=R*(scoreMap2[ax.name]||3)/5;poly2+=`<circle cx="${px(r,i)}" cy="${py(r,i)}" r="3.5" fill="#a855f7" stroke="white" stroke-width="1.2"/>`;});
+  }
+  const pts1=AXES_INFO.map((ax,i)=>`${px(R*(scoreMap1[ax.name]||3)/5,i)},${py(R*(scoreMap1[ax.name]||3)/5,i)}`).join(' ');
+  const poly1=`<polygon points="${pts1}" fill="rgba(236,72,153,.15)" stroke="#ec4899" stroke-width="2.2"/>`;
+  const dots1=AXES_INFO.map((ax,i)=>{const r=R*(scoreMap1[ax.name]||3)/5;return `<circle cx="${px(r,i)}" cy="${py(r,i)}" r="3.5" fill="#ec4899" stroke="white" stroke-width="1.2"/>`;}).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:220px" id="${id}">${g}${al}${poly2}${poly1}${dots1}</svg>`;
+}
+
+/* ============================
+   RENDER LIST
+   ============================ */
+function renderList() {
+  const users = Object.keys(allData);
+  const lv = document.getElementById('list-view');
+  if (!users.length) {
+    lv.innerHTML = `<div class="empty"><span class="empty-icon">📭</span><p class="empty-text">まだデータがありません。<br>診断サイトで診断を実施してください。</p></div>`;
+    return;
+  }
+  // Stats
+  const totalEvals = users.reduce((s,u)=>{
+    const d=allData[u]; return s+(d.self?1:0)+d.others.length;
+  },0);
+  let html = `<div class="stats-row">
+    <div class="stat-card"><div class="stat-num">${users.length}</div><div class="stat-label">登録ユーザー</div></div>
+    <div class="stat-card"><div class="stat-num">${totalEvals}</div><div class="stat-label">総診断数</div></div>
+    <div class="stat-card"><div class="stat-num">${users.filter(u=>allData[u].others.length>0).length}</div><div class="stat-label">他者評価あり</div></div>
+  </div>`;
+  html += `<div class="card"><div class="sec-title">ユーザー一覧</div><div class="user-grid">`;
+  users.forEach(u => {
+    const d = allData[u];
+    const selfRank = d.self?.rank || '—';
+    const othersCount = d.others.length;
+    const rClass = selfRank !== '—' ? rankClass(selfRank) : '';
+    html += `<div class="user-card" onclick="showDetail('${u}')">
+      <div class="user-avatar">${getInitial(u)}</div>
+      <div class="user-name">${u}</div>
+      <div class="user-meta">自己評価：<strong>${selfRank !== '—' ? rankBadge(selfRank) : '未診断'}</strong></div>
+      <div class="user-meta">他者評価：${othersCount}件</div>
+    </div>`;
+  });
+  html += '</div></div>';
+  lv.innerHTML = html;
+}
+
+/* ============================
+   RENDER DETAIL
+   ============================ */
+function showDetail(username) {
+  currentUser = username;
+  const d = allData[username];
+  if (!d) return;
+  const dv = document.getElementById('detail-view');
+  document.getElementById('list-view').style.display = 'none';
+  dv.style.display = '';
+  const self = d.self;
+  const others = d.others;
+  // Average axis scores from others
+  const othersAvgAxes = {};
+  AXES_INFO.forEach(ax => {
+    const v = avgScore(others, ax.name);
+    if (v !== null) othersAvgAxes[ax.name] = v;
+  });
+  const hasOthers = others.length > 0;
+  let html = `<button class="back-btn" onclick="backToList()">← 一覧に戻る</button>`;
+  html += `<div class="detail-view">`;
+  // Header
+  html += `<div class="card" style="text-align:center;background:linear-gradient(160deg,#fff0f8,#f5e8ff)">
+    <div class="user-avatar" style="margin:0 auto 10px;width:60px;height:60px;font-size:1.6rem">${getInitial(username)}</div>
+    <div style="font-family:var(--serif);font-size:1.3rem;font-weight:700;margin-bottom:6px">${username}</div>
+    <div style="display:flex;gap:16px;justify-content:center;font-size:.82rem;color:var(--mu)">
+      <span>自己評価：${self ? rankBadge(self.rank) : '<span style="color:var(--mu)">未診断</span>'}</span>
+      <span>他者評価：${others.length}件</span>
+      ${self ? `<span>タイプ：${self.type}</span>` : ''}
+    </div>
+  </div>`;
+  // Radar chart section
+  if (self) {
+    html += `<div class="card"><div class="sec-title">レーダーチャート比較</div>
+      <div class="radar-row">`;
+    if (hasOthers) {
+      html += `<div class="radar-item"><div class="radar-label">自己評価 vs 他者評価（平均）</div>
+        ${makeRadar(self.axisScores, othersAvgAxes, 'radar-comp')}</div>`;
+    } else {
+      html += `<div class="radar-item"><div class="radar-label">自己評価</div>
+        ${makeRadar(self.axisScores, null, 'radar-self')}</div>`;
+    }
+    html += `</div>`;
+    if (hasOthers) {
+      html += `<div class="radar-legend">
+        <div class="leg-item"><div class="leg-line" style="background:#ec4899"></div>自己評価</div>
+        <div class="leg-item"><div class="leg-line" style="background:#a855f7;border-top:2px dashed #a855f7;height:0"></div>他者評価平均</div>
+      </div>`;
+    }
+    html += `</div>`;
+    // Axis comparison table
+    html += `<div class="card"><div class="sec-title">軸別スコア比較</div>
+      <table class="comp-table">
+      <thead><tr>
+        <th>評価軸</th>
+        <th class="r">自己評価</th>
+        ${hasOthers?`<th class="r">他者平均</th><th class="r">ギャップ</th>`:''}
+      </tr></thead><tbody>`;
+    AXES_INFO.forEach(ax => {
+      const selfScore = parseFloat(self.axisScores?.[ax.name])||0;
+      const othersAvg = avgScore(others, ax.name);
+      const gap = othersAvg !== null ? othersAvg - selfScore : null;
+      const gClass = gapClass(gap);
+      html += `<tr>
+        <td class="name-col">${ax.name}</td>
+        <td class="r score-val">${selfScore.toFixed(1)}</td>
+        ${hasOthers?`<td class="r score-val">${othersAvg !== null ? othersAvg.toFixed(1) : '—'}</td>
+          <td class="r ${gClass}">${gapText(gap)}</td>`:''}
+      </tr>`;
+    });
+    const selfOverall = parseFloat(self.overall)||0;
+    const othersOverall = overallAvg(others);
+    const overallGap = othersOverall !== null ? othersOverall - selfOverall : null;
+    html += `<tr style="background:var(--pink4);font-weight:600">
+      <td class="name-col">総合スコア</td>
+      <td class="r score-val">${selfOverall.toFixed(1)}</td>
+      ${hasOthers?`<td class="r score-val">${othersOverall !== null ? othersOverall.toFixed(1) : '—'}</td>
+        <td class="r ${gapClass(overallGap)}">${gapText(overallGap)}</td>`:''}
+    </tr>`;
+    html += '</tbody></table>';
+    if (hasOthers) {
+      html += `<div style="margin-top:10px;font-size:.75rem;color:var(--mu)">
+        ギャップ＝他者評価 − 自己評価 ｜ 
+        <span class="gap-pos">プラス：他者が高く評価</span> ／ 
+        <span class="gap-neg">マイナス：自己評価が高め</span>
+      </div>`;
+    }
+    html += '</div>';
+  }
+  // Evaluators list
+  if (others.length) {
+    html += `<div class="card"><div class="sec-title">評価者一覧（他者評価）</div>
+      <div class="eval-list">`;
+    others.forEach(ev => {
+      const dt = ev.timestamp ? new Date(ev.timestamp).toLocaleDateString('ja-JP') : '—';
+      html += `<div class="eval-item">
+        <div class="user-avatar" style="width:34px;height:34px;font-size:.9rem;flex-shrink:0">${getInitial(ev.evaluator)}</div>
+        <div style="flex:1">
+          <div class="eval-name">${ev.evaluator}</div>
+          <div class="eval-meta">${dt} ｜ タイプ判定：${ev.type||'—'} ｜ ランク：${ev.rank||'—'} ｜ スコア：${parseFloat(ev.overall||0).toFixed(1)}</div>
+        </div>
+        ${rankBadge(ev.rank)}
+      </div>`;
+    });
+    html += '</div></div>';
+  } else {
+    html += `<div class="card"><div class="sec-title">他者評価</div>
+      <p style="color:var(--mu);font-size:.85rem">まだ他者評価がありません。<br>友達に診断サイトで「他のユーザーを評価する」を選び、${username}さんを選択してもらいましょう。</p>
+    </div>`;
+  }
+  html += '</div>';
+  dv.innerHTML = html;
+  dv.style.display = '';
+}
+
+function backToList() {
+  currentUser = null;
+  document.getElementById('detail-view').style.display = 'none';
+  document.getElementById('list-view').style.display = '';
+}
+
+/* ============================
+   INIT
+   ============================ */
+async function init() {
+  const loaded = await loadFromStorage();
+  renderList();
+  if (!loaded) {
+    // Show demo hint
+    document.getElementById('list-view').innerHTML = `<div class="card"><div class="sec-title">サンプルデータで確認</div>
+      <p style="font-size:.84rem;color:var(--text2);margin-bottom:12px">データがまだありません。下のボタンでサンプルデータを読み込んで画面の確認ができます。</p>
+      <button class="btn btn-outline btn-sm" onclick="loadSample()">サンプルデータを読み込む</button>
+    </div>`;
+  }
+}
+
+/* ============================
+   SAMPLE DATA
+   ============================ */
+function loadSample() {
+  const sample = {
+    users: ['田中さくら', '山田たろう', '鈴木はな'],
+    evals: {
+      'eval:田中さくら:田中さくら': {subject:'田中さくら',evaluator:'田中さくら',type:'安定型',rank:'A',overall:'3.9',timestamp:'2025-01-15T10:00:00Z',
+        axisScores:{'コミュニケーション':4.2,'性格':4.0,'価値観':3.8,'生活力':3.5,'外見・清潔感':4.1,'価値観ズレ耐性':3.7}},
+      'eval:田中さくら:山田たろう': {subject:'田中さくら',evaluator:'山田たろう',type:'安定型',rank:'A',overall:'4.2',timestamp:'2025-01-16T14:00:00Z',
+        axisScores:{'コミュニケーション':4.5,'性格':4.2,'価値観':4.0,'生活力':3.8,'外見・清潔感':4.5,'価値観ズレ耐性':4.0}},
+      'eval:田中さくら:鈴木はな': {subject:'田中さくら',evaluator:'鈴木はな',type:'安定型',rank:'B',overall:'3.5',timestamp:'2025-01-17T09:00:00Z',
+        axisScores:{'コミュニケーション':3.8,'性格':3.5,'価値観':3.5,'生活力':3.2,'外見・清潔感':3.8,'価値観ズレ耐性':3.3}},
+      'eval:山田たろう:山田たろう': {subject:'山田たろう',evaluator:'山田たろう',type:'自立型',rank:'B',overall:'3.2',timestamp:'2025-01-15T11:00:00Z',
+        axisScores:{'コミュニケーション':3.0,'性格':3.5,'価値観':3.2,'生活力':3.8,'外見・清潔感':2.8,'価値観ズレ耐性':3.0}},
+      'eval:山田たろう:田中さくら': {subject:'山田たろう',evaluator:'田中さくら',type:'自立型',rank:'C',overall:'2.8',timestamp:'2025-01-18T15:00:00Z',
+        axisScores:{'コミュニケーション':2.5,'性格':3.0,'価値観':3.0,'生活力':3.5,'外見・清潔感':2.2,'価値観ズレ耐性':2.8}},
+      'eval:鈴木はな:鈴木はな': {subject:'鈴木はな',evaluator:'鈴木はな',type:'情熱型',rank:'A',overall:'4.0',timestamp:'2025-01-14T12:00:00Z',
+        axisScores:{'コミュニケーション':4.5,'性格':3.8,'価値観':3.5,'生活力':3.8,'外見・清潔感':4.2,'価値観ズレ耐性':3.8}},
+    }
+  };
+  document.getElementById('import-ta').value = JSON.stringify(sample);
+  importData();
+}
+
+init();
+</script>
+</body>
+</html>
