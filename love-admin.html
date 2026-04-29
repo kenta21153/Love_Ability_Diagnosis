@@ -119,6 +119,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <span class="page-icon">👥</span>
     <h1 class="page-title">診断管理ダッシュボード</h1>
     <p class="page-sub">ユーザーの自己評価と他者評価を比較できます</p>
+    <button id="btn-refresh" class="btn btn-outline btn-sm" style="margin-top:10px">🔄 データを再読み込み</button>
   </div>
 
   <!-- Notice -->
@@ -152,13 +153,13 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
    STORAGE POLYFILL
    ============================ */
 const stor = (function() {
-  const ws = stor;
-  if (ws) return ws;
+  const ws = window.storage;
+  if (ws && typeof ws.get === 'function' && typeof ws.set === 'function') return ws;
   return {
-    get:    async (k)    => { const v=localStorage.getItem(k); return v?{value:v}:null; },
-    set:    async (k,v)  => { localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v)); return {key:k,value:v}; },
-    delete: async (k)    => { localStorage.removeItem(k); return {deleted:true}; },
-    list:   async (pfx)  => { const keys=Object.keys(localStorage).filter(k=>k.startsWith(pfx)); return {keys}; },
+    get:    async (k)    => { try { const v=localStorage.getItem(k); return v?{value:v}:null; } catch(e){return null;} },
+    set:    async (k,v)  => { try { localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v)); return {key:k,value:v}; } catch(e){return null;} },
+    delete: async (k)    => { try { localStorage.removeItem(k); return {deleted:true}; } catch(e){return null;} },
+    list:   async (pfx)  => { try { const keys=Object.keys(localStorage).filter(k=>k.startsWith(pfx)); return {keys}; } catch(e){return {keys:[]};} },
   };
 })();
 
@@ -563,6 +564,11 @@ async function init() {
   document.getElementById('btn-import').addEventListener('click', importData);
   document.getElementById('btn-clear').addEventListener('click', () => {
     document.getElementById('import-ta').value = '';
+  });
+  document.getElementById('btn-refresh').addEventListener('click', async () => {
+    allData = {};
+    await loadFromStorage();
+    renderList();
   });
 
   // Event delegation for dynamically rendered list
