@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="color-scheme" content="light">
 <title>🌸 診断管理ダッシュボード</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
+  color-scheme:light;
   --bg:#fff5f9;--bg2:#fdf0f5;--card:#ffffff;
   --bd:rgba(240,150,175,.28);--bd2:rgba(240,150,175,.55);
   --pink:#ec4899;--pink2:#f9a8d4;--pink3:#fce7f3;--pink4:#fdf2f8;
@@ -16,102 +18,113 @@
   --serif:'Shippori Mincho B1',serif;--sans:'Noto Sans JP',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;min-height:100vh;line-height:1.6}
+html{scroll-behavior:smooth;background:#fff5f9}
+body{background:#fff5f9;color:var(--text);font-family:var(--sans);font-size:14px;min-height:100vh;line-height:1.6}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(250,200,220,.35) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 80% 90%,rgba(220,180,255,.25) 0%,transparent 55%);pointer-events:none;z-index:0}
 .wrap{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:20px 16px 60px}
 
 .page-header{text-align:center;padding:32px 0 24px}
 .page-icon{font-size:42px;display:block;margin-bottom:12px}
-.page-title{font-family:var(--serif);font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#f472b6,#ec4899,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
-.page-sub{color:var(--mu);font-size:.82rem}
+.page-title{font-family:var(–serif);font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,#f472b6,#ec4899,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.page-sub{color:var(–mu);font-size:.82rem}
 
-.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 2px 16px rgba(236,72,153,.06)}
-.sec-title{font-family:var(--serif);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:7px}
-.sec-title::before{content:'';width:3px;height:13px;background:linear-gradient(to bottom,var(--pink),var(--purple));border-radius:99px;flex-shrink:0}
+.card{background:var(–card);border:1px solid var(–bd);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 2px 16px rgba(236,72,153,.06)}
+.sec-title{font-family:var(–serif);font-size:.9rem;font-weight:700;color:var(–text);margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.sec-title::before{content:’’;width:3px;height:13px;background:linear-gradient(to bottom,var(–pink),var(–purple));border-radius:99px;flex-shrink:0}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:10px;border:none;cursor:pointer;font-family:var(--sans);font-size:.85rem;font-weight:500;transition:all .18s ease}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;border-radius:10px;border:none;cursor:pointer;font-family:var(–sans);font-size:.85rem;font-weight:500;transition:all .18s ease}
 .btn-pink{background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;font-weight:600;box-shadow:0 3px 14px rgba(236,72,153,.25)}
 .btn-pink:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(236,72,153,.35)}
-.btn-outline{background:#fff;border:1.5px solid var(--bd2);color:var(--text2)}
-.btn-outline:hover{background:var(--pink3)}
-.btn-danger{background:#fff1f2;border:1.5px solid #fecdd3;color:var(--red);font-size:.75rem;padding:5px 11px}
-.btn-danger:hover{background:#fef2f2;border-color:var(--red)}
-.del-user-btn{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:#fff1f2;border:1px solid #fecdd3;color:var(--red);font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s}
+.btn-outline{background:#fff;border:1.5px solid var(–bd2);color:var(–text2)}
+.btn-outline:hover{background:var(–pink3)}
+.btn-danger{background:#fff1f2;border:1.5px solid #fecdd3;color:var(–red);font-size:.75rem;padding:5px 11px}
+.btn-danger:hover{background:#fef2f2;border-color:var(–red)}
+.del-user-btn{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:#fff1f2;border:1px solid #fecdd3;color:var(–red);font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .15s}
 .user-card{position:relative}
 .user-card:hover .del-user-btn{opacity:1}
 .danger-zone{background:#fff1f2;border:1px solid #fecdd3;border-radius:12px;padding:14px;margin-top:14px}
-.danger-zone-title{font-size:.8rem;font-weight:600;color:var(--red);margin-bottom:8px}
+.danger-zone-title{font-size:.8rem;font-weight:600;color:var(–red);margin-bottom:8px}
 
 /* Import area */
-.import-area{border:1.5px dashed var(--pink2);border-radius:14px;padding:16px;background:var(--pink4);margin-bottom:14px}
-.import-ta{width:100%;height:80px;border:1.5px solid var(--bd);border-radius:8px;padding:10px;font-family:var(--sans);font-size:.8rem;color:var(--text2);resize:none;background:#fff;margin-bottom:10px}
-.import-ta:focus{outline:none;border-color:var(--pink)}
+.import-area{border:1.5px dashed var(–pink2);border-radius:14px;padding:16px;background:var(–pink4);margin-bottom:14px}
+.import-ta{width:100%;height:80px;border:1.5px solid var(–bd);border-radius:8px;padding:10px;font-family:var(–sans);font-size:.8rem;color:var(–text2);resize:none;background:#fff;margin-bottom:10px}
+.import-ta:focus{outline:none;border-color:var(–pink)}
 
 /* User grid */
 .user-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:14px}
-.user-card{background:#fff;border:1.5px solid var(--bd);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;text-align:center}
-.user-card:hover{border-color:var(--pink);box-shadow:0 4px 16px rgba(236,72,153,.15);transform:translateY(-2px)}
-.user-card.active{border-color:var(--pink);background:var(--pink3)}
-.user-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f9a8d4,#ec4899);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:#fff;margin:0 auto 8px;font-family:var(--serif)}
-.user-name{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:4px}
-.user-meta{font-size:.72rem;color:var(--mu)}
+.user-card{background:#fff;border:1.5px solid var(–bd);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;text-align:center}
+.user-card:hover{border-color:var(–pink);box-shadow:0 4px 16px rgba(236,72,153,.15);transform:translateY(-2px)}
+.user-card.active{border-color:var(–pink);background:var(–pink3)}
+.user-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#f9a8d4,#ec4899);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:#fff;margin:0 auto 8px;font-family:var(–serif)}
+.user-name{font-size:.85rem;font-weight:600;color:var(–text);margin-bottom:4px}
+.user-meta{font-size:.72rem;color:var(–mu)}
 
 /* Detail view */
 .detail-view{animation:fadeIn .35s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.back-btn{display:flex;align-items:center;gap:6px;color:var(--pink);font-size:.83rem;cursor:pointer;margin-bottom:16px;background:none;border:none;font-family:var(--sans)}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(–pink);font-size:.83rem;cursor:pointer;margin-bottom:16px;background:none;border:none;font-family:var(–sans)}
 .back-btn:hover{text-decoration:underline}
 
 /* Comparison table */
 .comp-table{width:100%;border-collapse:collapse;font-size:.8rem}
-.comp-table th{background:var(--pink3);color:var(--pink);padding:8px 10px;text-align:left;font-weight:600}
+.comp-table th{background:var(–pink3);color:var(–pink);padding:8px 10px;text-align:left;font-weight:600}
 .comp-table th.r{text-align:right}
-.comp-table td{padding:9px 10px;border-bottom:1px solid var(--pink4);color:var(--text2)}
-.comp-table td.name-col{font-weight:600;color:var(--text)}
+.comp-table td{padding:9px 10px;border-bottom:1px solid var(–pink4);color:var(–text2)}
+.comp-table td.name-col{font-weight:600;color:var(–text)}
 .comp-table td.r{text-align:right}
 .score-val{font-weight:600}
-.gap-pos{color:var(--green);font-weight:700}
-.gap-neg{color:var(--red);font-weight:700}
-.gap-neu{color:var(--mu)}
+.gap-pos{color:var(–green);font-weight:700}
+.gap-neg{color:var(–red);font-weight:700}
+.gap-neu{color:var(–mu)}
 
 /* Rank badge */
-.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;font-family:var(--serif);font-size:1.1rem;font-weight:800}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;font-family:var(–serif);font-size:1.1rem;font-weight:800}
 .rank-s{background:#fef3c7;color:#d97706}
-.rank-a{background:var(--pink3);color:var(--pink)}
-.rank-b{background:var(--pu2);color:var(--purple)}
+.rank-a{background:var(–pink3);color:var(–pink)}
+.rank-b{background:var(–pu2);color:var(–purple)}
 .rank-c{background:#e0f2fe;color:#0891b2}
 .rank-f{background:#f1f5f9;color:#94a3b8}
 
 /* Radar */
 .radar-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
 .radar-item{text-align:center;flex:1;min-width:220px}
-.radar-label{font-size:.78rem;color:var(--mu);margin-bottom:6px}
+.radar-label{font-size:.78rem;color:var(–mu);margin-bottom:6px}
 
 /* Legend */
 .radar-legend{display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:.76rem}
-.leg-item{display:flex;align-items:center;gap:5px;color:var(--text2)}
+.leg-item{display:flex;align-items:center;gap:5px;color:var(–text2)}
 .leg-line{width:20px;height:2.5px;border-radius:99px}
 
 /* Evaluator list */
 .eval-list{display:flex;flex-direction:column;gap:8px}
-.eval-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--pink4);border-radius:10px;border:1px solid var(--bd)}
+.eval-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(–pink4);border-radius:10px;border:1px solid var(–bd)}
 .eval-name{flex:1;font-size:.85rem;font-weight:600}
-.eval-meta{font-size:.76rem;color:var(--mu)}
+.eval-meta{font-size:.76rem;color:var(–mu)}
 
 /* Empty state */
 .empty{text-align:center;padding:48px 20px}
 .empty-icon{font-size:48px;display:block;margin-bottom:12px;opacity:.5}
-.empty-text{color:var(--mu);font-size:.9rem}
+.empty-text{color:var(–mu);font-size:.9rem}
 
 /* Stats */
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.stat-card{background:var(--pink4);border:1px solid var(--bd);border-radius:12px;padding:12px;text-align:center}
-.stat-num{font-family:var(--serif);font-size:1.6rem;font-weight:800;color:var(--pink)}
-.stat-label{font-size:.73rem;color:var(--mu)}
+.stat-card{background:var(–pink4);border:1px solid var(–bd);border-radius:12px;padding:12px;text-align:center}
+.stat-num{font-family:var(–serif);font-size:1.6rem;font-weight:800;color:var(–pink)}
+.stat-label{font-size:.73rem;color:var(–mu)}
 
 /* notice */
-.notice{background:var(--pu2);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:12px 14px;font-size:.78rem;color:#7c3aed;margin-bottom:14px;line-height:1.7}
+.notice{background:var(–pu2);border:1px solid rgba(168,85,247,.25);border-radius:10px;padding:12px 14px;font-size:.78rem;color:#7c3aed;margin-bottom:14px;line-height:1.7}
+/* gap messages */
+.gap-msg-card{background:var(–pink4);border:1.5px solid var(–bd);border-radius:14px;padding:16px;margin-bottom:10px}
+.gap-msg-header{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:9px}
+.gap-msg-axis{font-size:.76rem;font-weight:600;color:var(–pink);background:var(–pink3);padding:3px 10px;border-radius:99px}
+.gap-msg-badge{font-size:.73rem;font-weight:600;padding:3px 9px;border-radius:99px}
+.badge-pos{background:#dcfce7;color:#16a34a}
+.badge-neg{background:#fff1f2;color:#dc2626}
+.badge-lg{background:#fef9c3;color:#ca8a04}
+.gap-msg-body{font-family:var(–serif);font-size:.86rem;line-height:1.9;color:var(–text2)}
 </style>
+
 </head>
 <body>
 <div class="wrap">
@@ -122,14 +135,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
     <button id="btn-refresh" class="btn btn-outline btn-sm" style="margin-top:10px">🔄 データを再読み込み</button>
   </div>
 
-  <!-- Notice -->
-  <div class="notice">
-    💡 このページは診断サイト（love-diagnosis-v3.html）と同じ共有ストレージを使用します。<br>
-    同じ環境で両ファイルを開いた場合は自動でデータが読み込まれます。<br>
-    別の環境の場合は、診断サイトの「データをエクスポート」からJSONをコピーして下記に貼り付けてください。
-  </div>
-
   <!-- Import section -->
+
   <div id="import-section" class="card">
     <div class="sec-title">データのインポート（手動）</div>
     <div class="import-area">
@@ -142,6 +149,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   </div>
 
   <!-- Main content -->
+
   <div id="main-view">
     <div id="list-view"></div>
     <div id="detail-view" style="display:none"></div>
@@ -150,18 +158,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 
 <script>
 /* ============================
-   STORAGE POLYFILL
+   STORAGE — localStorage のみ使用
    ============================ */
-const stor = (function() {
-  const ws = window.storage;
-  if (ws && typeof ws.get === 'function' && typeof ws.set === 'function') return ws;
-  return {
-    get:    async (k)    => { try { const v=localStorage.getItem(k); return v?{value:v}:null; } catch(e){return null;} },
-    set:    async (k,v)  => { try { localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v)); return {key:k,value:v}; } catch(e){return null;} },
-    delete: async (k)    => { try { localStorage.removeItem(k); return {deleted:true}; } catch(e){return null;} },
-    list:   async (pfx)  => { try { const keys=Object.keys(localStorage).filter(k=>k.startsWith(pfx)); return {keys}; } catch(e){return {keys:[]};} },
-  };
-})();
+const stor = {
+  get:    async (k)   => { try { const v=localStorage.getItem(k); return v!=null?{value:v}:null; } catch(e){return null;} },
+  set:    async (k,v) => { try { localStorage.setItem(k, typeof v==='string'?v:JSON.stringify(v)); return {key:k,value:v}; } catch(e){return null;} },
+  delete: async (k)   => { try { localStorage.removeItem(k); return {deleted:true}; } catch(e){return null;} },
+  list:   async (pfx) => { try { const keys=Object.keys(localStorage).filter(k=>k.startsWith(pfx)); return {keys}; } catch(e){return {keys:[]};} },
+};
 
 /* ============================
    DATA
@@ -171,8 +175,8 @@ const AXES_INFO = [
   {name:'性格',             label:'性格'},
   {name:'価値観',           label:'価値観'},
   {name:'生活力',           label:'生活力'},
-  {name:'外見・清潔感',     label:'清潔感'},
-  {name:'価値観ズレ耐性',   label:'適応力'},
+  {name:'清潔感',     label:'清潔感'},
+  {name:'適応力',   label:'適応力'},
 ];
 const TYPE_LIST=['依存型','安定型','自立型','回避型','情熱型','慎重型'];
 let allData = {}; // { [subject]: { self: resultObj, others: [resultObj, ...] } }
@@ -183,31 +187,25 @@ let currentUser = null;
    ============================ */
 async function loadFromStorage() {
   try {
-    const ur = await stor.get('userlist', true).catch(()=>null);
+    const ur = await stor.get('userlist').catch(()=>null);
     if (!ur) return false;
     const users = JSON.parse(ur.value);
     if (!users.length) return false;
     for (const subject of users) {
       allData[subject] = { self: null, others: [] };
-      // Self eval
+      // 自己評価
       try {
-        const sr = await stor.get(`eval:${subject}:${subject}`, true);
+        const sr = await stor.get(`eval-${subject}-${subject}`);
         if (sr) allData[subject].self = JSON.parse(sr.value);
       } catch(e){}
-      // Others' evals: scan by listing keys
-      try {
-        const kr = await stor.list(`eval:${subject}:`, true);
-        if (kr && kr.keys) {
-          for (const key of kr.keys) {
-            const evalKey = key; // e.g., "eval:Alice:Bob"
-            const parts = evalKey.split(':');
-            if (parts.length >= 3 && parts[2] !== subject) {
-              const evr = await stor.get(evalKey, true).catch(()=>null);
-              if (evr) allData[subject].others.push(JSON.parse(evr.value));
-            }
-          }
-        }
-      } catch(e){}
+      // 他者評価：userlistの全ユーザーから探す
+      for (const evaluator of users) {
+        if (evaluator === subject) continue;
+        try {
+          const er = await stor.get(`eval-${subject}-${evaluator}`);
+          if (er) allData[subject].others.push(JSON.parse(er.value));
+        } catch(e){}
+      }
     }
     return true;
   } catch(e) { return false; }
@@ -221,15 +219,19 @@ function importData() {
   if (!raw) return;
   try {
     const parsed = JSON.parse(raw);
-    // Expect format: { users: [...], evals: { "eval:X:Y": {...}, ... } }
+    // Expect format: { users: [...], evals: { "eval-X-Y": {...}, ... } }
     if (parsed.users && parsed.evals) {
       parsed.users.forEach(u => {
         if (!allData[u]) allData[u] = { self: null, others: [] };
       });
       Object.entries(parsed.evals).forEach(([key, val]) => {
-        const parts = key.split(':');
+        // key format: "eval-subject-evaluator" or "eval:subject:evaluator" (legacy)
+        const sep = key.includes(':') ? ':' : '-';
+        const parts = key.split(sep);
+        // parts[0]="eval", parts[1]=subject, parts[2..]=evaluator (name may contain sep)
         if (parts.length >= 3) {
-          const subject = parts[1], evaluator = parts[2];
+          const subject = parts[1];
+          const evaluator = parts.slice(2).join(sep);
           if (!allData[subject]) allData[subject] = { self: null, others: [] };
           if (evaluator === subject) {
             allData[subject].self = val;
@@ -329,6 +331,83 @@ function makeRadar(scoreMap1, scoreMap2, id) {
   const poly1=`<polygon points="${pts1}" fill="rgba(236,72,153,.15)" stroke="#ec4899" stroke-width="2.2"/>`;
   const dots1=AXES_INFO.map((ax,i)=>{const r=R*(scoreMap1[ax.name]||3)/5;return `<circle cx="${px(r,i)}" cy="${py(r,i)}" r="3.5" fill="#ec4899" stroke="white" stroke-width="1.2"/>`;}).join('');
   return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:220px" id="${id}">${g}${al}${poly2}${poly1}${dots1}</svg>`;
+}
+
+/* ============================
+   GAP MESSAGES (6軸 × 大小 × 過小過大 = 24通り)
+   ============================ */
+const GAP_MSGS = {
+  'コミュニケーション':{
+    small_plus:'あなたの会話力は、自分が思っている以上に相手にちゃんと届いています。「うまく話せていないかも」と感じる場面でも、聞き上手さや温かみはしっかり伝わっています。その自然なスタイルに、もう少し自信を乗せてみましょう。',
+    large_plus:'コミュニケーション力について、自分の評価と周囲の評価にかなり大きなズレがあります。「自分はうまく話せない」という思い込みが強くなっているかもしれません。実際には相手はあなたの言葉をずっとポジティブに受け取っています。その思い込みを少しずつ手放すと、さらに自然体で関われるようになりますよ。',
+    small_minus:'「伝わっている」と感じていても、相手はもう少し深みや反応を求めていることがあるかもしれません。相手の表情や言葉のトーンを、もう一段階丁寧に観察してみると新しい気づきが生まれそうです。',
+    large_minus:'会話力についての自己認識と他者の印象にかなりのズレがあります。「伝えた」と感じていることが、相手には届ききっていない場合があるかもしれません。「相手はどう受け取ったかな」と振り返る習慣を少し取り入れてみましょう。',
+  },
+  '性格':{
+    small_plus:'「ちゃんとできているかな」と不安になることがあっても、あなたの誠実さや思いやりは相手にきちんと届いています。その姿勢は自分が思っている以上にちゃんと評価されていますよ。',
+    large_plus:'性格面で、あなたが「普通にやっているだけ」と思っていることが、周りには誠実さや責任感として映っています。謙虚さは大切ですが、自分のその素直な姿勢をもう少し認めてあげてください。',
+    small_minus:'自分ではしっかりできているつもりでも、相手が「もう少し…」と感じている場面があるかもしれません。身近な人の反応を、少し丁寧に観察してみると新しい気づきがありそうです。',
+    large_minus:'良かれと思ってしていることが、相手には少し違った印象として伝わっていることがあるかもしれません。「相手がどう感じているか」をもう少し意識して行動してみると、関係がさらに深まっていくはずです。',
+  },
+  '価値観':{
+    small_plus:'「うまく合わせられているかな」と思っていても、相手にはしっかり共通点が見えています。自然体でいることが、むしろ相手にとって心地よかったりします。そのままで大丈夫ですよ。',
+    large_plus:'「ズレがあるかも」と感じていても、周囲はあなたの考え方に共鳴していることが多いようです。自分の価値観や見方に、もう少し自信を持っていいですよ。',
+    small_minus:'「わかり合えている」と感じていても、相手の中にはまだ少し違和感が残っていることがあるかもしれません。「相手はどう考えているんだろう」と聞いてみる機会を意識的につくってみましょう。',
+    large_minus:'「当然こうだよね」と思っている場面で、相手は実は違う受け取り方をしていることがあるかもしれません。ひとこと確認する習慣を取り入れてみると、すれ違いが減っていきそうです。',
+  },
+  '生活力':{
+    small_plus:'「できているかどうか不安」と感じることがあっても、日常の姿勢や行動はちゃんと相手に映っています。その積み重ねをもう少し自分で認めてあげましょう。',
+    large_plus:'「まだまだだな」と思っているかもしれませんが、周囲にはあなたのことをかなり頼りになる存在として見ています。謙虚さの裏側に、しっかりした基盤が育っていますよ。',
+    small_minus:'「ちゃんとやれている」と感じていても、相手から見ると「もう少し…」という部分があるかもしれません。日常のちょっとしたことを、少し丁寧に振り返ってみると良さそうです。',
+    large_minus:'自分では整っていると感じていても、周囲にはまだ改善の余地があると映っているかもしれません。「客観的に見たらどうかな」と視点を変えて、日常の基盤を見直すチャンスにしてみましょう。',
+  },
+  '清潔感':{
+    small_plus:'「気にしすぎかな」と思うくらいの丁寧さが、相手にはしっかり好印象として伝わっています。あなたの清潔感はちゃんと評価されていますよ。',
+    large_plus:'「自分なりに頑張っているけど…」と思っている以上に、あなたの見た目の印象は周囲にとってポジティブに映っています。毎日の積み重ねが相手にしっかり届いていますよ。',
+    small_minus:'自分では「整っている」と感じていても、相手はもう一歩の丁寧さを期待しているかもしれません。細かい部分（爪・靴・匂いなど）に改めて目を向けてみましょう。',
+    large_minus:'「十分に整えている」という認識が、周囲の印象とズレている可能性があります。「相手の目にはどう映っているか」という視点を少し取り入れてみると、印象が変わるきっかけになりそうです。',
+  },
+  '適応力':{
+    small_plus:'「ちゃんと合わせられているかな」と感じることがあっても、周りにはあなたの柔軟さがちゃんと評価されています。その素直さが関係の安定につながっていますよ。',
+    large_plus:'「うまく対応できていない」と思っている場面でも、相手からするとあなたの受容力は十分に感じられています。「もっとうまくやらなければ」という焦りより、今のあなたのペースを信じてみましょう。',
+    small_minus:'「相手のことを理解できている」と思っていても、相手にはまだ少し違和感が残っていることがあるかもしれません。「相手の立場ならどう感じるかな」と一度想像してみましょう。',
+    large_minus:'自分では柔軟に対応できていると感じていますが、周囲にはまだ「自分の考え方に寄っている」と映っている場面があるかもしれません。価値観の違う人と話すとき、まず「そういう考え方もあるんだね」と受け取ることから始めてみましょう。',
+  },
+};
+
+function buildGapMessages(self, othersAvgAxes) {
+  if (!self || Object.keys(othersAvgAxes).length === 0) {
+    return `<div class="card"><p style="color:var(--mu);font-size:.85rem;text-align:center;padding:8px 0">自己評価と他者評価の両方がそろうと、乖離メッセージが表示されます。</p></div>`;
+  }
+  let html = `<div class="card"><div class="sec-title">乖離分析メッセージ</div>`;
+  let count = 0;
+  AXES_INFO.forEach(ax => {
+    const sv = parseFloat(self.axisScores?.[ax.name]) || 3;
+    const ov = othersAvgAxes[ax.name];
+    if (ov == null) return;
+    const gap = ov - sv;
+    const absGap = Math.abs(gap);
+    if (absGap < 0.3) return;
+    const msgs = GAP_MSGS[ax.name];
+    if (!msgs) return;
+    const isLarge = absGap >= 1.5;
+    const isPlus = gap > 0;
+    const key = (isLarge ? 'large' : 'small') + '_' + (isPlus ? 'plus' : 'minus');
+    const msg = msgs[key];
+    const dirLabel = isPlus ? '過小評価の可能性' : '過大評価の可能性';
+    html += `<div class="gap-msg-card">
+      <div class="gap-msg-header">
+        <span class="gap-msg-axis">${ax.name}</span>
+        <span class="gap-msg-badge ${isPlus?'badge-pos':'badge-neg'}">${isPlus?'＋':'−'}${absGap.toFixed(1)} ${dirLabel}</span>
+        ${isLarge?`<span class="gap-msg-badge badge-lg">大きなズレ</span>`:''}
+      </div>
+      <p class="gap-msg-body">${msg}</p>
+    </div>`;
+    count++;
+  });
+  if (count === 0) html += `<p style="color:var(--mu);font-size:.85rem;text-align:center;padding:8px 0">各軸の乖離が0.3未満のため、特筆すべきズレは見られませんでした。</p>`;
+  html += '</div>';
+  return html;
 }
 
 /* ============================
@@ -460,6 +539,10 @@ function showDetail(username) {
       </div>`;
     }
     html += '</div>';
+    // 乖離分析メッセージ
+    if (hasOthers) {
+      html += buildGapMessages(self, othersAvgAxes);
+    }
   }
   // Evaluators list
   if (others.length) {
@@ -513,18 +596,18 @@ async function deleteUser(username) {
   const d = allData[username];
   if (d) {
     // Delete self eval
-    try { await stor.delete(`eval:${username}:${username}`, true); } catch(e){}
+    try { await stor.delete(`eval-${username}-${username}`); } catch(e){}
     // Delete others' evals
     for (const ev of (d.others||[])) {
-      try { await stor.delete(`eval:${username}:${ev.evaluator}`, true); } catch(e){}
+      try { await stor.delete(`eval-${username}-${ev.evaluator}`); } catch(e){}
     }
   }
   // Remove from userlist
   try {
-    const ur = await stor.get('userlist', true);
+    const ur = await stor.get('userlist');
     if (ur) {
       const users = JSON.parse(ur.value).filter(u => u !== username);
-      await stor.set('userlist', JSON.stringify(users), true);
+      await stor.set('userlist', JSON.stringify(users));
     }
   } catch(e){}
   delete allData[username];
@@ -534,7 +617,7 @@ async function deleteUser(username) {
 
 async function deleteEval(subject, evaluator) {
   if (!confirm(`「${evaluator}」さんによる評価を削除しますか？`)) return;
-  try { await stor.delete(`eval:${subject}:${evaluator}`, true); } catch(e){}
+  try { await stor.delete(`eval-${subject}-${evaluator}`); } catch(e){}
   if (allData[subject]) {
     allData[subject].others = allData[subject].others.filter(o => o.evaluator !== evaluator);
   }
@@ -546,12 +629,12 @@ async function deleteAllData() {
   const users = Object.keys(allData);
   for (const u of users) {
     const d = allData[u];
-    try { await stor.delete(`eval:${u}:${u}`, true); } catch(e){}
+    try { await stor.delete(`eval-${u}-${u}`); } catch(e){}
     for (const ev of (d.others||[])) {
-      try { await stor.delete(`eval:${u}:${ev.evaluator}`, true); } catch(e){}
+      try { await stor.delete(`eval-${u}-${ev.evaluator}`); } catch(e){}
     }
   }
-  try { await stor.set('userlist', JSON.stringify([]), true); } catch(e){}
+  try { await stor.set('userlist', JSON.stringify([])); } catch(e){}
   allData = {};
   renderList();
 }
@@ -595,18 +678,18 @@ function loadSample() {
   const sample = {
     users: ['田中さくら', '山田たろう', '鈴木はな'],
     evals: {
-      'eval:田中さくら:田中さくら': {subject:'田中さくら',evaluator:'田中さくら',type:'安定型',rank:'A',overall:'3.9',timestamp:'2025-01-15T10:00:00Z',
-        axisScores:{'コミュニケーション':4.2,'性格':4.0,'価値観':3.8,'生活力':3.5,'外見・清潔感':4.1,'価値観ズレ耐性':3.7}},
-      'eval:田中さくら:山田たろう': {subject:'田中さくら',evaluator:'山田たろう',type:'安定型',rank:'A',overall:'4.2',timestamp:'2025-01-16T14:00:00Z',
-        axisScores:{'コミュニケーション':4.5,'性格':4.2,'価値観':4.0,'生活力':3.8,'外見・清潔感':4.5,'価値観ズレ耐性':4.0}},
-      'eval:田中さくら:鈴木はな': {subject:'田中さくら',evaluator:'鈴木はな',type:'安定型',rank:'B',overall:'3.5',timestamp:'2025-01-17T09:00:00Z',
-        axisScores:{'コミュニケーション':3.8,'性格':3.5,'価値観':3.5,'生活力':3.2,'外見・清潔感':3.8,'価値観ズレ耐性':3.3}},
-      'eval:山田たろう:山田たろう': {subject:'山田たろう',evaluator:'山田たろう',type:'自立型',rank:'B',overall:'3.2',timestamp:'2025-01-15T11:00:00Z',
-        axisScores:{'コミュニケーション':3.0,'性格':3.5,'価値観':3.2,'生活力':3.8,'外見・清潔感':2.8,'価値観ズレ耐性':3.0}},
-      'eval:山田たろう:田中さくら': {subject:'山田たろう',evaluator:'田中さくら',type:'自立型',rank:'C',overall:'2.8',timestamp:'2025-01-18T15:00:00Z',
-        axisScores:{'コミュニケーション':2.5,'性格':3.0,'価値観':3.0,'生活力':3.5,'外見・清潔感':2.2,'価値観ズレ耐性':2.8}},
-      'eval:鈴木はな:鈴木はな': {subject:'鈴木はな',evaluator:'鈴木はな',type:'情熱型',rank:'A',overall:'4.0',timestamp:'2025-01-14T12:00:00Z',
-        axisScores:{'コミュニケーション':4.5,'性格':3.8,'価値観':3.5,'生活力':3.8,'外見・清潔感':4.2,'価値観ズレ耐性':3.8}},
+      'eval-田中さくら-田中さくら': {subject:'田中さくら',evaluator:'田中さくら',type:'安定型',rank:'A',overall:'3.9',timestamp:'2025-01-15T10:00:00Z',
+        axisScores:{'コミュニケーション':4.2,'性格':4.0,'価値観':3.8,'生活力':3.5,'清潔感':4.1,'適応力':3.7}},
+      'eval-田中さくら-山田たろう': {subject:'田中さくら',evaluator:'山田たろう',type:'安定型',rank:'A',overall:'4.2',timestamp:'2025-01-16T14:00:00Z',
+        axisScores:{'コミュニケーション':4.5,'性格':4.2,'価値観':4.0,'生活力':3.8,'清潔感':4.5,'適応力':4.0}},
+      'eval-田中さくら-鈴木はな': {subject:'田中さくら',evaluator:'鈴木はな',type:'安定型',rank:'B',overall:'3.5',timestamp:'2025-01-17T09:00:00Z',
+        axisScores:{'コミュニケーション':3.8,'性格':3.5,'価値観':3.5,'生活力':3.2,'清潔感':3.8,'適応力':3.3}},
+      'eval-山田たろう-山田たろう': {subject:'山田たろう',evaluator:'山田たろう',type:'自立型',rank:'B',overall:'3.2',timestamp:'2025-01-15T11:00:00Z',
+        axisScores:{'コミュニケーション':3.0,'性格':3.5,'価値観':3.2,'生活力':3.8,'清潔感':2.8,'適応力':3.0}},
+      'eval-山田たろう-田中さくら': {subject:'山田たろう',evaluator:'田中さくら',type:'自立型',rank:'C',overall:'2.8',timestamp:'2025-01-18T15:00:00Z',
+        axisScores:{'コミュニケーション':2.5,'性格':3.0,'価値観':3.0,'生活力':3.5,'清潔感':2.2,'適応力':2.8}},
+      'eval-鈴木はな-鈴木はな': {subject:'鈴木はな',evaluator:'鈴木はな',type:'情熱型',rank:'A',overall:'4.0',timestamp:'2025-01-14T12:00:00Z',
+        axisScores:{'コミュニケーション':4.5,'性格':3.8,'価値観':3.5,'生活力':3.8,'清潔感':4.2,'適応力':3.8}},
     }
   };
   document.getElementById('import-ta').value = JSON.stringify(sample);
@@ -619,5 +702,6 @@ if (document.readyState === 'loading') {
   init();
 }
 </script>
+
 </body>
 </html>
