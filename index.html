@@ -1,12 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>🌸 恋愛・婚活総合診断</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
+  color-scheme: light;
   --bg:#fff5f9;--bg2:#fdf0f5;--card:#ffffff;
   --bd:rgba(240,150,175,.28);--bd2:rgba(240,150,175,.55);
   --pink:#ec4899;--pink2:#f9a8d4;--pink3:#fce7f3;--pink4:#fdf2f8;
@@ -16,7 +19,8 @@
   --serif:'Shippori Mincho B1',serif;--sans:'Noto Sans JP',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;min-height:100vh;line-height:1.6}
+html{scroll-behavior:smooth;background:#fff5f9}
+body{background:#fff5f9;color:var(--text);font-family:var(--sans);font-size:15px;min-height:100vh;line-height:1.6}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(250,200,220,.4) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 80% 90%,rgba(220,180,255,.3) 0%,transparent 55%);pointer-events:none;z-index:0}
 .wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:20px 16px 80px}
 .screen{display:none;animation:fadeUp .4s ease both}
@@ -24,87 +28,87 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
 /* CARDS */
-.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px;margin-bottom:14px;box-shadow:0 2px 16px rgba(236,72,153,.07)}
+.card{background:var(–card);border:1px solid var(–bd);border-radius:18px;padding:22px;margin-bottom:14px;box-shadow:0 2px 16px rgba(236,72,153,.07)}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:13px 24px;border-radius:12px;border:none;cursor:pointer;font-family:var(--sans);font-size:.9rem;font-weight:500;transition:all .18s ease;-webkit-tap-highlight-color:transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:13px 24px;border-radius:12px;border:none;cursor:pointer;font-family:var(–sans);font-size:.9rem;font-weight:500;transition:all .18s ease;-webkit-tap-highlight-color:transparent}
 .btn-pink{background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;font-weight:600;box-shadow:0 4px 18px rgba(236,72,153,.3)}
 .btn-pink:hover{transform:translateY(-2px);box-shadow:0 7px 24px rgba(236,72,153,.4)}
 .btn-pink:active{transform:translateY(0)}
-.btn-outline{background:#fff;border:1.5px solid var(--bd2);color:var(--text2)}
-.btn-outline:hover{background:var(--pink3);border-color:var(--pink)}
+.btn-outline{background:#fff;border:1.5px solid var(–bd2);color:var(–text2)}
+.btn-outline:hover{background:var(–pink3);border-color:var(–pink)}
 .btn-full{width:100%}
 
 /* START */
 .s-hero{text-align:center;padding:44px 0 32px}
 .s-icon{font-size:54px;display:block;margin-bottom:16px;animation:bob 3s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.s-title{font-family:var(--serif);font-size:clamp(1.7rem,6vw,2.1rem);font-weight:800;background:linear-gradient(135deg,#f472b6,#ec4899,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.35;margin-bottom:8px}
-.s-sub{color:var(--mu);font-size:.84rem;letter-spacing:.04em}
+.s-title{font-family:var(–serif);font-size:clamp(1.7rem,6vw,2.1rem);font-weight:800;background:linear-gradient(135deg,#f472b6,#ec4899,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.35;margin-bottom:8px}
+.s-sub{color:var(–mu);font-size:.84rem;letter-spacing:.04em}
 .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;margin-bottom:24px}
-.feat-item{display:flex;align-items:flex-start;gap:6px;font-size:.8rem;color:var(--text2);line-height:1.5}
-.feat-dot{width:6px;height:6px;border-radius:50%;background:var(--pink);flex-shrink:0;margin-top:6px}
-.form-label{display:block;font-size:.82rem;font-weight:500;color:var(--text2);margin-bottom:8px}
-.form-input{width:100%;padding:11px 14px;border:1.5px solid var(--bd);border-radius:10px;font-family:var(--sans);font-size:.9rem;color:var(--text);background:#fff;outline:none;transition:border-color .15s}
-.form-input:focus{border-color:var(--pink)}
-.form-select{width:100%;padding:11px 14px;border:1.5px solid var(--bd);border-radius:10px;font-family:var(--sans);font-size:.9rem;color:var(--text);background:#fff;cursor:pointer}
+.feat-item{display:flex;align-items:flex-start;gap:6px;font-size:.8rem;color:var(–text2);line-height:1.5}
+.feat-dot{width:6px;height:6px;border-radius:50%;background:var(–pink);flex-shrink:0;margin-top:6px}
+.form-label{display:block;font-size:.82rem;font-weight:500;color:var(–text2);margin-bottom:8px}
+.form-input{width:100%;padding:11px 14px;border:1.5px solid var(–bd);border-radius:10px;font-family:var(–sans);font-size:.9rem;color:var(–text);background:#fff;outline:none;transition:border-color .15s}
+.form-input:focus{border-color:var(–pink)}
+.form-select{width:100%;padding:11px 14px;border:1.5px solid var(–bd);border-radius:10px;font-family:var(–sans);font-size:.9rem;color:var(–text);background:#fff;cursor:pointer}
 .form-row{margin-bottom:16px}
 .radio-group{display:flex;flex-direction:column;gap:8px}
-.radio-label{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:.88rem;color:var(--text2);padding:10px 14px;border:1.5px solid var(--bd);border-radius:10px;transition:all .15s}
-.radio-label:has(input:checked){border-color:var(--pink);background:var(--pink3);color:var(--text)}
-.radio-label input{accent-color:var(--pink)}
-.hint{text-align:center;font-size:.74rem;color:var(--mu2);margin-top:8px}
-.divider{height:1px;background:var(--bd);margin:18px 0}
+.radio-label{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:.88rem;color:var(–text2);padding:10px 14px;border:1.5px solid var(–bd);border-radius:10px;transition:all .15s}
+.radio-label:has(input:checked){border-color:var(–pink);background:var(–pink3);color:var(–text)}
+.radio-label input{accent-color:var(–pink)}
+.hint{text-align:center;font-size:.74rem;color:var(–mu2);margin-top:8px}
+.divider{height:1px;background:var(–bd);margin:18px 0}
 
 /* QUIZ */
 .q-head{margin-bottom:20px}
 .prog-bar{height:5px;background:rgba(236,72,153,.12);border-radius:99px;overflow:hidden;margin-bottom:10px}
 .prog-fill{height:100%;background:linear-gradient(90deg,#f9a8d4,#ec4899,#a855f7);border-radius:99px;transition:width .4s ease}
 .prog-meta{display:flex;justify-content:space-between;align-items:center;font-size:.78rem}
-.cat-pill{background:var(--pink3);border:1px solid var(--bd);color:var(--pink);padding:3px 12px;border-radius:99px;font-size:.73rem;font-weight:500}
-.prog-num{color:var(--pink);font-weight:600}
-.q-card{background:var(--card);border:1.5px solid var(--bd);border-radius:18px;padding:26px 22px;margin-bottom:16px;box-shadow:0 2px 18px rgba(236,72,153,.08)}
-.q-card.shake{border-color:var(--rose)!important;animation:shake .35s ease}
+.cat-pill{background:var(–pink3);border:1px solid var(–bd);color:var(–pink);padding:3px 12px;border-radius:99px;font-size:.73rem;font-weight:500}
+.prog-num{color:var(–pink);font-weight:600}
+.q-card{background:var(–card);border:1.5px solid var(–bd);border-radius:18px;padding:26px 22px;margin-bottom:16px;box-shadow:0 2px 18px rgba(236,72,153,.08)}
+.q-card.shake{border-color:var(–rose)!important;animation:shake .35s ease}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-.q-num{font-size:.8rem;font-weight:500;color:var(--pink);letter-spacing:.1em;margin-bottom:9px}
-.q-text{font-family:var(--serif);font-size:1.05rem;font-weight:600;line-height:1.75;margin-bottom:20px;color:var(--text)}
+.q-num{font-size:.8rem;font-weight:500;color:var(–pink);letter-spacing:.1em;margin-bottom:9px}
+.q-text{font-family:var(–serif);font-size:1.05rem;font-weight:600;line-height:1.75;margin-bottom:20px;color:var(–text)}
 .opts{display:flex;flex-direction:column;gap:8px}
-.opt{display:flex;align-items:center;gap:10px;padding:12px 15px;background:#fff;border:1.5px solid rgba(240,150,175,.25);border-radius:11px;cursor:pointer;transition:all .15s;width:100%;color:var(--text2);font-family:var(--sans);font-size:.85rem;text-align:left;-webkit-tap-highlight-color:transparent}
-.opt:hover{border-color:var(--pink2);background:var(--pink4);color:var(--text)}
-.opt.sel{border-color:var(--pink);background:var(--pink3);color:var(--text)}
-.opt-n{width:24px;height:24px;border-radius:50%;background:rgba(236,72,153,.1);display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:600;flex-shrink:0;color:var(--mu);transition:all .15s}
-.opt.sel .opt-n{background:var(--pink);color:#fff}
+.opt{display:flex;align-items:center;gap:10px;padding:12px 15px;background:#fff;border:1.5px solid rgba(240,150,175,.25);border-radius:11px;cursor:pointer;transition:all .15s;width:100%;color:var(–text2);font-family:var(–sans);font-size:.85rem;text-align:left;-webkit-tap-highlight-color:transparent}
+.opt:hover{border-color:var(–pink2);background:var(–pink4);color:var(–text)}
+.opt.sel{border-color:var(–pink);background:var(–pink3);color:var(–text)}
+.opt-n{width:24px;height:24px;border-radius:50%;background:rgba(236,72,153,.1);display:flex;align-items:center;justify-content:center;font-size:.74rem;font-weight:600;flex-shrink:0;color:var(–mu);transition:all .15s}
+.opt.sel .opt-n{background:var(–pink);color:#fff}
 .q-nav{display:flex;gap:10px}
 .q-nav .btn-outline{flex-shrink:0}
 .q-nav .btn-pink{flex:1}
 
 /* LOADING */
 .load-wrap{text-align:center;padding:80px 20px}
-.load-spin{width:56px;height:56px;border-radius:50%;border:3px solid var(--pink3);border-top-color:var(--pink);border-right-color:var(--purple);margin:0 auto 22px;animation:spin 1.1s linear infinite}
+.load-spin{width:56px;height:56px;border-radius:50%;border:3px solid var(–pink3);border-top-color:var(–pink);border-right-color:var(–purple);margin:0 auto 22px;animation:spin 1.1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.load-msg{font-family:var(--serif);font-size:.95rem;color:var(--mu)}
+.load-msg{font-family:var(–serif);font-size:.95rem;color:var(–mu)}
 
 /* RESULT */
 /* Score header */
-.score-header{text-align:center;padding:36px 16px 28px;background:linear-gradient(160deg,#fff0f8 0%,#f5e8ff 100%);border:1.5px solid var(--bd);border-radius:20px;margin-bottom:14px;box-shadow:0 2px 20px rgba(236,72,153,.1)}
-.score-label{font-size:.8rem;font-weight:500;color:var(--mu);letter-spacing:.12em;margin-bottom:8px}
-.score-badge{font-family:var(--serif);font-size:5rem;font-weight:800;line-height:1;margin-bottom:10px}
+.score-header{text-align:center;padding:36px 16px 28px;background:linear-gradient(160deg,#fff0f8 0%,#f5e8ff 100%);border:1.5px solid var(–bd);border-radius:20px;margin-bottom:14px;box-shadow:0 2px 20px rgba(236,72,153,.1)}
+.score-label{font-size:.8rem;font-weight:500;color:var(–mu);letter-spacing:.12em;margin-bottom:8px}
+.score-badge{font-family:var(–serif);font-size:5rem;font-weight:800;line-height:1;margin-bottom:10px}
 .score-s{color:#e0a030;text-shadow:0 0 20px rgba(224,160,48,.4)}
 .score-a{color:#ec4899;text-shadow:0 0 20px rgba(236,72,153,.35)}
 .score-b{color:#a855f7;text-shadow:0 0 20px rgba(168,85,247,.3)}
 .score-c{color:#0891b2}
 .score-f{color:#94a3b8}
-.type-name{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:4px}
-.type-sub{font-size:.82rem;color:var(--pink);font-weight:500;margin-bottom:3px}
-.type-catch{font-size:.8rem;color:var(--mu)}
+.type-name{font-family:var(–serif);font-size:1.5rem;font-weight:700;color:var(–text);margin-bottom:4px}
+.type-sub{font-size:.82rem;color:var(–pink);font-weight:500;margin-bottom:3px}
+.type-catch{font-size:.8rem;color:var(–mu)}
 
 /* Section titles */
-.sec-title{font-family:var(--serif);font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:13px;display:flex;align-items:center;gap:8px}
-.sec-title::before{content:'';width:3px;height:14px;background:linear-gradient(to bottom,var(--pink),var(--purple));border-radius:99px;flex-shrink:0}
-.summary-text{font-family:var(--serif);font-size:.92rem;line-height:1.95;color:var(--text2)}
+.sec-title{font-family:var(–serif);font-size:.92rem;font-weight:700;color:var(–text);margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.sec-title::before{content:’’;width:3px;height:14px;background:linear-gradient(to bottom,var(–pink),var(–purple));border-radius:99px;flex-shrink:0}
+.summary-text{font-family:var(–serif);font-size:.92rem;line-height:1.95;color:var(–text2)}
 .tags{display:flex;flex-wrap:wrap;gap:7px}
 .tag{padding:5px 13px;border-radius:99px;font-size:.79rem;font-weight:500}
-.tag-n{background:var(--pink4);border:1px solid var(--bd);color:var(--text2)}
+.tag-n{background:var(–pink4);border:1px solid var(–bd);color:var(–text2)}
 .tag-g{background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a}
 .tag-b{background:#fff1f2;border:1px solid #fecdd3;color:#e11d48}
 
@@ -112,35 +116,35 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .radar-wrap{display:flex;justify-content:center;padding:8px 0}
 
 /* Advice */
-.adv-item{padding:14px 0;border-bottom:1px solid var(--pink3)}
+.adv-item{padding:14px 0;border-bottom:1px solid var(–pink3)}
 .adv-item:last-child{border-bottom:none}
 .adv-header{display:flex;align-items:center;gap:8px;margin-bottom:7px}
-.adv-num{width:20px;height:20px;background:var(--pink);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
-.adv-title{font-size:.88rem;font-weight:600;color:var(--text)}
-.adv-weak{font-size:.82rem;color:var(--mu);margin-bottom:5px;padding-left:28px;font-style:italic}
-.adv-body{font-size:.84rem;line-height:1.8;color:var(--text2);padding-left:28px}
+.adv-num{width:20px;height:20px;background:var(–pink);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
+.adv-title{font-size:.88rem;font-weight:600;color:var(–text)}
+.adv-weak{font-size:.82rem;color:var(–mu);margin-bottom:5px;padding-left:28px;font-style:italic}
+.adv-body{font-size:.84rem;line-height:1.8;color:var(–text2);padding-left:28px}
 .adv-points{display:flex;flex-wrap:wrap;gap:5px;padding-left:28px;margin-top:7px}
-.adv-point{padding:3px 10px;background:var(--pink3);border-radius:99px;font-size:.74rem;color:var(--pink)}
+.adv-point{padding:3px 10px;background:var(–pink3);border-radius:99px;font-size:.74rem;color:var(–pink)}
 
 /* Type description */
-.type-desc-box{background:linear-gradient(135deg,#fff5f9 0%,#f5e8ff 100%);border:1.5px solid var(--bd2);border-radius:14px;padding:18px;margin-bottom:12px}
-.type-desc-text{font-family:var(--serif);font-size:.88rem;line-height:1.9;color:var(--text2);margin-bottom:12px}
+.type-desc-box{background:linear-gradient(135deg,#fff5f9 0%,#f5e8ff 100%);border:1.5px solid var(–bd2);border-radius:14px;padding:18px;margin-bottom:12px}
+.type-desc-text{font-family:var(–serif);font-size:.88rem;line-height:1.9;color:var(–text2);margin-bottom:12px}
 .type-trait-row{display:flex;gap:10px;flex-wrap:wrap}
 .type-trait{flex:1;min-width:140px}
 .type-trait-label{font-size:.76rem;font-weight:600;margin-bottom:6px}
-.type-trait-label.g{color:var(--green)}
-.type-trait-label.r{color:var(--red)}
+.type-trait-label.g{color:var(–green)}
+.type-trait-label.r{color:var(–red)}
 .type-trait-items{display:flex;flex-direction:column;gap:4px}
-.type-trait-item{font-size:.8rem;color:var(--text2);display:flex;align-items:center;gap:5px}
-.type-trait-item::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.type-trait-items.g .type-trait-item::before{background:var(--green)}
-.type-trait-items.r .type-trait-item::before{background:var(--red)}
+.type-trait-item{font-size:.8rem;color:var(–text2);display:flex;align-items:center;gap:5px}
+.type-trait-item::before{content:’’;width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.type-trait-items.g .type-trait-item::before{background:var(–green)}
+.type-trait-items.r .type-trait-item::before{background:var(–red)}
 
 /* Compat table */
 .compat-table-wrap{overflow-x:auto}
 .compat-table{width:100%;border-collapse:collapse;font-size:.78rem}
-.compat-table th{background:var(--pink3);color:var(--pink);padding:7px 5px;text-align:center;font-weight:600;white-space:nowrap}
-.compat-table td{padding:7px 5px;text-align:center;border:1px solid var(--bd);font-weight:600;font-size:.82rem}
+.compat-table th{background:var(–pink3);color:var(–pink);padding:7px 5px;text-align:center;font-weight:600;white-space:nowrap}
+.compat-table td{padding:7px 5px;text-align:center;border:1px solid var(–bd);font-weight:600;font-size:.82rem}
 .compat-table tr.highlight td{background:rgba(236,72,153,.05)}
 .compat-table td.me{font-weight:800;font-size:.85rem}
 .c-maru2{background:#dcfce7;color:#16a34a}
@@ -149,17 +153,37 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .c-batu {background:#fff1f2;color:#dc2626}
 
 /* Match rows */
-.match-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--pink3)}
+.match-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(–pink3)}
 .match-item:last-child{border-bottom:none}
 .match-badge{font-size:.75rem;font-weight:700;padding:2px 9px;border-radius:99px;flex-shrink:0;margin-top:2px}
 .match-badge.g{background:#dcfce7;color:#16a34a}
 .match-badge.b{background:#fff1f2;color:#dc2626}
-.match-name{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:2px}
-.match-desc{font-size:.8rem;color:var(--mu)}
+.match-name{font-size:.9rem;font-weight:600;color:var(–text);margin-bottom:2px}
+.match-desc{font-size:.8rem;color:var(–mu)}
 
 /* Actions */
 .result-actions{display:flex;gap:10px;margin-top:20px}
 .result-actions .btn{flex:1}
+.back-btn-gap{display:flex;align-items:center;gap:6px;color:var(–pink);font-size:.83rem;cursor:pointer;margin-bottom:16px;background:none;border:none;font-family:var(–sans);padding:0}
+.back-btn-gap:hover{text-decoration:underline}
+.gap-table-wrap{overflow-x:auto}
+.gtable{width:100%;border-collapse:collapse;font-size:.8rem}
+.gtable th{background:var(–pink3);color:var(–pink);padding:8px 10px;text-align:left;font-weight:600}
+.gtable th.r{text-align:right}
+.gtable td{padding:9px 10px;border-bottom:1px solid var(–pink4);color:var(–text2)}
+.gtable td.name-col{font-weight:600;color:var(–text)}
+.gtable td.r{text-align:right;font-weight:600}
+.gap-pos{color:#16a34a;font-weight:700}
+.gap-neg{color:#dc2626;font-weight:700}
+.gap-neu{color:var(–mu)}
+.gap-msg-card{background:var(–card);border:1.5px solid var(–bd);border-radius:16px;padding:18px;margin-bottom:12px}
+.gap-msg-header{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.gap-msg-axis{font-size:.78rem;font-weight:600;color:var(–pink);background:var(–pink3);padding:3px 10px;border-radius:99px}
+.gap-msg-badge{font-size:.74rem;font-weight:600;padding:3px 9px;border-radius:99px}
+.badge-pos{background:#dcfce7;color:#16a34a}
+.badge-neg{background:#fff1f2;color:#dc2626}
+.badge-lg{background:#fef9c3;color:#ca8a04}
+.gap-msg-body{font-family:var(–serif);font-size:.88rem;line-height:1.9;color:var(–text2)}
 
 /* Legend */
 .legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:.76rem}
@@ -167,18 +191,20 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .legend-dot{width:12px;height:12px;border-radius:2px}
 
 @media(max-width:440px){
-  .s-title{font-size:1.55rem}
-  .feat-grid{grid-template-columns:1fr}
-  .q-text{font-size:.98rem}
-  .score-badge{font-size:4rem}
-  .type-trait-row{flex-direction:column}
+.s-title{font-size:1.55rem}
+.feat-grid{grid-template-columns:1fr}
+.q-text{font-size:.98rem}
+.score-badge{font-size:4rem}
+.type-trait-row{flex-direction:column}
 }
 </style>
+
 </head>
 <body>
 <div class="wrap">
 
 <!-- ===== START ===== -->
+
 <div id="scr-start" class="screen on">
   <div class="s-hero">
     <h1 class="s-title">恋愛・婚活<br>総合診断</h1>
@@ -230,6 +256,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
 
 <!-- ===== QUIZ ===== -->
+
 <div id="scr-quiz" class="screen">
   <div class="q-head">
     <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
@@ -250,6 +277,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
 
 <!-- ===== LOADING ===== -->
+
 <div id="scr-load" class="screen">
   <div class="load-wrap">
     <div class="load-spin"></div>
@@ -258,6 +286,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </div>
 
 <!-- ===== RESULT ===== -->
+
 <div id="scr-result" class="screen">
   <!-- Score header -->
   <div class="score-header">
@@ -298,6 +327,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   </div>
 
   <!-- Type description -->
+
   <div class="card">
     <div class="sec-title" id="r-type-detail-title">タイプ詳細：安定型</div>
     <div class="type-desc-box">
@@ -325,6 +355,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   </div>
 
   <!-- Compat table -->
+
   <div class="card">
     <div class="sec-title">全タイプ相性一覧表</div>
     <div class="legend">
@@ -343,633 +374,944 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
   </div>
 </div>
 
+<!-- ===== GAP SCREEN ===== -->
+
+<div id="scr-gap" class="screen">
+  <button id="btn-gap-back" class="back-btn-gap">← 診断結果に戻る</button>
+  <div style="text-align:center;padding:28px 0 20px">
+    <h2 style="font-family:var(--serif);font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,#f472b6,#ec4899,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">自己 vs 他者 乖離分析</h2>
+    <p style="font-size:.8rem;color:var(--mu);margin-top:4px">自分の評価と周囲の評価のズレを確認できます</p>
+  </div>
+
+  <!-- User selector -->
+
+  <div class="card" id="gap-user-selector">
+    <div class="sec-title">確認するユーザーを選択</div>
+    <select class="form-select" id="gap-sel-user">
+      <option value="">── 選択してください ──</option>
+    </select>
+    <button id="btn-gap-load" class="btn btn-pink btn-full" style="margin-top:12px">分析を表示する</button>
+  </div>
+
+  <div id="gap-result-area" style="display:none">
+    <div class="card" style="background:linear-gradient(160deg,#fff0f8,#f5e8ff)">
+      <div style="text-align:center">
+        <div style="font-size:.78rem;color:var(--mu);margin-bottom:4px">分析対象</div>
+        <div style="font-family:var(--serif);font-size:1.2rem;font-weight:700" id="gap-subject-name">—</div>
+        <div style="font-size:.78rem;color:var(--mu);margin-top:4px" id="gap-eval-count">他者評価：0件</div>
+      </div>
+    </div>
+
+```
+<!-- Radar -->
+<div class="card">
+  <div class="sec-title">レーダーチャート比較</div>
+  <div style="display:flex;justify-content:center" id="gap-radar"></div>
+  <div style="display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:.75rem">
+    <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:16px;height:3px;background:#ec4899;border-radius:2px"></span>自己評価</span>
+    <span style="display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:16px;height:3px;background:#a855f7;border-radius:2px;border-top:2px dashed #a855f7"></span>他者平均</span>
+  </div>
+</div>
+
+<!-- Score table -->
+<div class="card">
+  <div class="sec-title">軸別スコア比較</div>
+  <div id="gap-table"></div>
+</div>
+
+<!-- Gap messages -->
+<div id="gap-messages"></div>
+```
+
+  </div>
+</div>
+
+<!-- Floating button -->
+
+<button id="btn-open-gap" style="display:none;position:fixed;bottom:24px;right:20px;z-index:100;background:linear-gradient(135deg,#f472b6,#ec4899);color:#fff;border:none;border-radius:14px;padding:12px 18px;font-family:var(--sans);font-size:.82rem;font-weight:600;cursor:pointer;box-shadow:0 4px 18px rgba(236,72,153,.4)">📊 診断結果の確認</button>
+
 </div><!-- /wrap -->
 <script>
 /* ============================
-   STORAGE POLYFILL
-   GitHub Pages では window.storage が存在しないため localStorage で代替
+   STORAGE — localStorage のみ使用（GitHub Pages対応）
+   window.storage は使わない（Invalid response format エラー回避）
    ============================ */
-const stor = (function() {
-  // window.storage はAnthropicのArtifact環境でのみ存在する専用API
-  // GitHub Pages では localStorage にフォールバック
-  const ws = window.storage;
-  if (ws && typeof ws.get === 'function' && typeof ws.set === 'function') return ws;
-  return {
-    get:    async (k)    => { try { const v=localStorage.getItem(k); return v?{value:v}:null; } catch(e){return null;} },
-    set:    async (k,v)  => { try { localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v)); return {key:k,value:v}; } catch(e){return null;} },
-    delete: async (k)    => { try { localStorage.removeItem(k); return {deleted:true}; } catch(e){return null;} },
-    list:   async (pfx)  => { try { const keys=Object.keys(localStorage).filter(k=>k.startsWith(pfx)); return {keys}; } catch(e){return {keys:[]};} },
-  };
-})();
+const stor = {
+  get:    async (k)   => { try { const v=localStorage.getItem(k); return v!=null?{value:v}:null; } catch(e){return null;} },
+  set:    async (k,v) => { try { localStorage.setItem(k, typeof v==='string'?v:JSON.stringify(v)); return {key:k,value:v}; } catch(e){console.warn('Storage set error:',e);return null;} },
+  delete: async (k)   => { try { localStorage.removeItem(k); return {deleted:true}; } catch(e){return null;} },
+  list:   async (pfx) => { try { const keys=Object.keys(localStorage).filter(k=>k.startsWith(pfx)); return {keys}; } catch(e){return {keys:[]};} },
+};
 
 /* ============================
-   QUESTIONS DATA
-   ============================ */
+QUESTIONS DATA
+============================ */
 const QS = [
-  {id:1,cat:'スペック',txt:'現在の年収として最も近いものを選んでください',
-   opts:['〜399万円','400〜499万円','500〜599万円','600〜799万円','800万円〜']},
-  {id:2,cat:'スペック',txt:'ご自身の年齢に最も近いものを選んでください',
-   opts:['38〜39歳','35〜37歳','32〜34歳','28〜31歳','20〜27歳']},
-  {id:3,cat:'スペック',txt:'これまでの学歴として当てはまるものを選んでください',
-   opts:['高卒','専門・短大','大卒（一般）','上位大学','旧帝大・早慶・院卒']},
-  {id:4,cat:'スペック',txt:'現在の働き方として最も近いものは？',
-   opts:['無職・不安定','非正規','正社員','大手・専門職','公務員・士業']},
-  {id:5,cat:'スペック',txt:'ご自身の身長を選んでください',
-   opts:['〜164cm','165〜169cm','170〜174cm','175〜179cm','180cm〜']},
-  {id:6,cat:'コミュ力',txt:'初対面の人と話している場面をイメージしてください。そのときの自分に一番近いのは？',
-   opts:['何を話せばいいか分からず止まりがち','話題は出すが広がらない','無難には会話できる','自然と話が続く','気づいたら盛り上がっている']},
-  {id:7,cat:'コミュ力',txt:'誰かが悩みを話してきたときの自分の反応に近いのは？',
-   opts:['解決策や間違いを指摘する','「そうなんだ」で終わる','一通りは聞く','気持ちに寄り添う','相手の立場で深く考える']},
-  {id:8,cat:'コミュ力',txt:'周りから言われることが多い印象はどれに近い？',
-   opts:['何を考えているか分からない','少し気を使う','普通','落ち着く','一緒にいると安心する']},
-  {id:9,cat:'コミュ力',txt:'誰かと長時間一緒に過ごしたあとの自分の感覚は？',
-   opts:['早く一人になりたい','かなり疲れる','普通','そこまで疲れない','むしろ心地いい']},
-  {id:10,cat:'性格',txt:'小さな約束（時間・連絡など）への向き合い方で近いのは？',
-   opts:['状況次第で変わる','忘れることもある','特に意識していない','守るようにしている','自然と守っている']},
-  {id:11,cat:'性格',txt:'誰かが困っていそうな場面での自分の動きに近いのは？',
-   opts:['基本的に自分のことを優先する','余裕があれば気にする','状況によっては対応する','声をかけたり行動することが多い','自然と手助けしている']},
-  {id:12,cat:'性格',txt:'予想外のトラブルが起きたときの反応に近いのは？',
-   opts:['感情的になりやすい','動揺しやすい','一度落ち着こうとする','冷静に対処できる','ほとんど動じない']},
-  {id:13,cat:'性格',txt:'自分がミスをしたときの対応に近いのは？',
-   opts:['できれば避けたい','状況次第で対応','必要なら対応する','自分で責任を持つ','先回りしてリカバーする']},
-  {id:14,cat:'価値観',txt:'買い物や出費の判断に一番近いのは？',
-   opts:['欲しいと思ったらすぐ使う','あまり深く考えない','その時々で判断する','バランスを考えて使う','将来を考えて管理する']},
-  {id:15,cat:'価値観',txt:'将来の家庭像についての考えに近いのは？',
-   opts:['あまり具体的に考えていない','人によって違うと思う','なんとなくイメージはある','自分なりの形がある','はっきりした理想がある']},
-  {id:16,cat:'価値観',txt:'仕事とプライベートのバランス感覚として近いのは？',
-   opts:['状況で大きく変わる','偏りがある','普通','バランスを意識している','将来も見据えて選んでいる']},
-  {id:17,cat:'価値観',txt:'生活リズムや過ごし方について近いのは？',
-   opts:['人と合わせるのが難しい','ズレることが多い','調整はできる','比較的合わせやすい','自然と馴染む']},
-  {id:18,cat:'生活力',txt:'料理・掃除・洗濯などの家事を日常的にやっていますか？',
-   opts:['ほとんどやらない','必要な時だけ','一通りはできる','普段からやっている','自分から積極的にやる']},
-  {id:19,cat:'生活力',txt:'お金の管理の仕方に近いのは？',
-   opts:['あまり把握していない','なんとなく管理','特に問題はない','計画的に管理','将来を見据えて運用']},
-  {id:20,cat:'生活力',txt:'自分の力で日常生活を自立してこなせていますか？',
-   opts:['周りに頼ることが多い','一部頼っている','普通','基本自分で回せる','余裕をもって自立している']},
-  {id:21,cat:'生活力',txt:'将来について考えるタイミングとして近いのは？',
-   opts:['ほとんど考えない','気が向いたときだけ','必要に応じて考える','現実的に考えている','具体的に計画・行動している']},
-  {id:22,cat:'清潔感',txt:'外出前の身だしなみとして一番近いのは？',
-   opts:['特に気にせず出る','軽く整える程度','一応チェックする','清潔感は意識して整える','全体の印象まで意識して整える']},
-  {id:23,cat:'清潔感',txt:'顔まわりのケアに対する意識は？',
-   opts:['特に何もしていない','気になった時だけ','最低限は整える','定期的に整えている','日常的にしっかりケア']},
-  {id:24,cat:'清潔感',txt:'人と会う日の服選びに近いのは？',
-   opts:['深く考えず選ぶ','とりあえず無難','普通','清潔感を意識','相手や場に合わせる']},
-  {id:25,cat:'清潔感',txt:'ふと足元や持ち物を見られたときの状態は？',
-   opts:['気にしたことがない','多少気になる','普通','清潔に保っている','細部まで整えている']},
-  {id:26,cat:'清潔感',txt:'自分の体型や姿勢への向き合い方は？',
-   opts:['特に意識していない','気にはしている','普通','ある程度意識している','しっかり管理している']},
-  {id:27,cat:'清潔感',txt:'匂い（体臭・口臭など）への意識として近いのは？',
-   opts:['特に気にしていない','気になる時だけ','普通','日常的に気をつけている','常に強く意識している']},
-  {id:28,cat:'適応力',txt:'家族との関わり方として近いのは？',
-   opts:['生活の多くを共有している','頻繁に関わる','適度な距離','必要な時だけ','かなり独立している']},
-  {id:29,cat:'適応力',txt:'今の価値観として近いのは？（仕事と家庭の優先度）',
-   opts:['家庭が最優先','やや家庭寄り','バランス','仕事寄り','自己実現・仕事重視']},
-  {id:30,cat:'適応力',txt:'結婚についての感覚に近いのは？',
-   opts:['できるだけ早くしたい','ある程度の期限は考えている','流れに任せたい','恋愛を重視したい','特にこだわりはない']},
-  {id:31,cat:'関係価値観',txt:'パートナーとの関係に対する向き合い方として近いのは？',
-   opts:['状況が変われば関係も変わると思う','無理のない範囲で続けたい','相手次第で変わる','基本的には長く続けたい','覚悟を持って関係を築きたい']},
-  {id:32,cat:'関係価値観',txt:'一緒に生活する場合の食事スタイルとして近いのは？',
-   opts:['完全に合わせたい','できるだけ一緒にしたい','柔軟に対応','基本は別でもOK','それぞれ自由でいい']},
-  {id:33,cat:'関係価値観',txt:'休日の過ごし方として理想に近いのは？',
-   opts:['常に一緒に過ごしたい','基本一緒がいい','半々くらい','別々でもいい','お互い自由がいい']},
-  {id:34,cat:'関係価値観',txt:'生活時間や習慣の合わせ方として近いのは？',
-   opts:['完全に合わせたい','できるだけ合わせたい','調整しながら','無理に合わせなくていい','それぞれ自由でいい']},
-  {id:35,cat:'関係価値観',txt:'パートナーと自分の親との関係について近いのは？',
-   opts:['深く関わってほしい','ある程度関わる','状況に応じて','必要最低限','あまり関わらせたくない']},
-  {id:36,cat:'関係価値観',txt:'問題が起きたときのスタンスに近いのは？',
-   opts:['すべて共有して一緒に考えたい','基本は相談したい','内容によって変える','自分で処理したい','あまり共有したくない']},
-  {id:37,cat:'恋愛スタイル',txt:'恋人との連絡や関わり方として近いのは？',
-   opts:['常に繋がっていたい','こまめに連絡したい','適度でいい','必要な時だけ','あまり連絡しない']},
-  {id:38,cat:'恋愛スタイル',txt:'愛情の伝え方として近いのは？',
-   opts:['言葉や行動でかなり表現する','行動で示すことが多い','バランスよく','控えめ','あまり表現しない']},
-  {id:39,cat:'恋愛スタイル',txt:'意見がぶつかったときの対応として近いのは？',
-   opts:['その場で解決したい','話し合って決めたい','一度時間を置く','できれば避けたい','放置することが多い']},
-  {id:40,cat:'恋愛スタイル',txt:'結婚後の関係性として理想に近いのは？',
-   opts:['常に一緒に行動','協力しながら生活','対等な関係','ある程度別々','それぞれ独立']},
-  {id:41,cat:'恋愛スタイル',txt:'結婚後のお金の管理として近いのは？',
-   opts:['完全に一つにまとめたい','共同で管理','分担','基本別','完全に別']},
-  {id:42,cat:'恋愛スタイル',txt:'大きな問題が起きたときの考え方に近いのは？',
-   opts:['必ず一緒に解決したい','話し合って決めたい','分担して対応','それぞれ対応','干渉しない']},
-  {id:43,cat:'恋愛心理',txt:'連絡の返信が遅いときの自分の反応に近いのは？',
-   opts:['かなり不安になる','少し気になる','状況による','あまり気にしない','全く気にしない']},
-  {id:44,cat:'恋愛心理',txt:'恋人の行動や予定についての考えに近いのは？',
-   opts:['常に把握していたい','ある程度知りたい','普通','あまり気にしない','基本気にしない']},
-  {id:45,cat:'恋愛心理',txt:'恋人からの愛情を感じる瞬間として近いのは？',
-   opts:['頻繁な連絡や言葉','一緒にいる時間','バランスよく','行動でのサポート','放っておいてくれる']},
-  {id:46,cat:'恋愛心理',txt:'恋人がいる状態での一人の時間について近いのは？',
-   opts:['ほぼいらない','少しでいい','普通','ある程度必要','かなり重要']},
-  {id:47,cat:'恋愛心理',txt:'恋人とケンカした後の自分の感情に近いのは？',
-   opts:['すぐ不安になる','引きずる','普通','切り替える','あまり気にしない']},
-  {id:48,cat:'恋愛心理',txt:'生活の中で恋人をどのくらい優先しますか？',
-   opts:['最優先','かなり高い','バランス','やや低め','自分優先']},
-  {id:49,cat:'恋愛心理',txt:'恋人が異性と親しくしているときの反応に近いのは？',
-   opts:['強く嫉妬して制限したくなる','嫉妬するが表には出さない','少し気になる程度','あまり気にならない','全く気にならない']},
-  {id:50,cat:'恋愛心理',txt:'恋愛関係の進み方として理想に近いのは？',
-   opts:['すぐに深い関係になりたい','比較的早く距離を縮めたい','自然な流れで進めたい','ゆっくり関係を築きたい','慎重に時間をかけたい']},
+{id:1,cat:‘スペック’,txt:‘現在の年収として最も近いものを選んでください’,
+opts:[’〜399万円’,‘400〜499万円’,‘500〜599万円’,‘600〜799万円’,‘800万円〜’]},
+{id:2,cat:‘スペック’,txt:‘ご自身の年齢に最も近いものを選んでください’,
+opts:[‘38〜39歳’,‘35〜37歳’,‘32〜34歳’,‘28〜31歳’,‘20〜27歳’]},
+{id:3,cat:‘スペック’,txt:‘これまでの学歴として当てはまるものを選んでください’,
+opts:[‘高卒’,‘専門・短大’,‘大卒（一般）’,‘上位大学’,‘旧帝大・早慶・院卒’]},
+{id:4,cat:‘スペック’,txt:‘現在の働き方として最も近いものは？’,
+opts:[‘無職・不安定’,‘非正規’,‘正社員’,‘大手・専門職’,‘公務員・士業’]},
+{id:5,cat:‘スペック’,txt:‘ご自身の身長を選んでください’,
+opts:[’〜164cm’,‘165〜169cm’,‘170〜174cm’,‘175〜179cm’,‘180cm〜’]},
+{id:6,cat:‘コミュ力’,txt:‘初対面の人と話している場面をイメージしてください。そのときの自分に一番近いのは？’,
+opts:[‘何を話せばいいか分からず止まりがち’,‘話題は出すが広がらない’,‘無難には会話できる’,‘自然と話が続く’,‘気づいたら盛り上がっている’]},
+{id:7,cat:‘コミュ力’,txt:‘誰かが悩みを話してきたときの自分の反応に近いのは？’,
+opts:[‘解決策や間違いを指摘する’,’「そうなんだ」で終わる’,‘一通りは聞く’,‘気持ちに寄り添う’,‘相手の立場で深く考える’]},
+{id:8,cat:‘コミュ力’,txt:‘周りから言われることが多い印象はどれに近い？’,
+opts:[‘何を考えているか分からない’,‘少し気を使う’,‘普通’,‘落ち着く’,‘一緒にいると安心する’]},
+{id:9,cat:‘コミュ力’,txt:‘誰かと長時間一緒に過ごしたあとの自分の感覚は？’,
+opts:[‘早く一人になりたい’,‘かなり疲れる’,‘普通’,‘そこまで疲れない’,‘むしろ心地いい’]},
+{id:10,cat:‘性格’,txt:‘小さな約束（時間・連絡など）への向き合い方で近いのは？’,
+opts:[‘状況次第で変わる’,‘忘れることもある’,‘特に意識していない’,‘守るようにしている’,‘自然と守っている’]},
+{id:11,cat:‘性格’,txt:‘誰かが困っていそうな場面での自分の動きに近いのは？’,
+opts:[‘基本的に自分のことを優先する’,‘余裕があれば気にする’,‘状況によっては対応する’,‘声をかけたり行動することが多い’,‘自然と手助けしている’]},
+{id:12,cat:‘性格’,txt:‘予想外のトラブルが起きたときの反応に近いのは？’,
+opts:[‘感情的になりやすい’,‘動揺しやすい’,‘一度落ち着こうとする’,‘冷静に対処できる’,‘ほとんど動じない’]},
+{id:13,cat:‘性格’,txt:‘自分がミスをしたときの対応に近いのは？’,
+opts:[‘できれば避けたい’,‘状況次第で対応’,‘必要なら対応する’,‘自分で責任を持つ’,‘先回りしてリカバーする’]},
+{id:14,cat:‘価値観’,txt:‘買い物や出費の判断に一番近いのは？’,
+opts:[‘欲しいと思ったらすぐ使う’,‘あまり深く考えない’,‘その時々で判断する’,‘バランスを考えて使う’,‘将来を考えて管理する’]},
+{id:15,cat:‘価値観’,txt:‘将来の家庭像についての考えに近いのは？’,
+opts:[‘あまり具体的に考えていない’,‘人によって違うと思う’,‘なんとなくイメージはある’,‘自分なりの形がある’,‘はっきりした理想がある’]},
+{id:16,cat:‘価値観’,txt:‘仕事とプライベートのバランス感覚として近いのは？’,
+opts:[‘状況で大きく変わる’,‘偏りがある’,‘普通’,‘バランスを意識している’,‘将来も見据えて選んでいる’]},
+{id:17,cat:‘価値観’,txt:‘生活リズムや過ごし方について近いのは？’,
+opts:[‘人と合わせるのが難しい’,‘ズレることが多い’,‘調整はできる’,‘比較的合わせやすい’,‘自然と馴染む’]},
+{id:18,cat:‘生活力’,txt:‘料理・掃除・洗濯などの家事を日常的にやっていますか？’,
+opts:[‘ほとんどやらない’,‘必要な時だけ’,‘一通りはできる’,‘普段からやっている’,‘自分から積極的にやる’]},
+{id:19,cat:‘生活力’,txt:‘お金の管理の仕方に近いのは？’,
+opts:[‘あまり把握していない’,‘なんとなく管理’,‘特に問題はない’,‘計画的に管理’,‘将来を見据えて運用’]},
+{id:20,cat:‘生活力’,txt:‘自分の力で日常生活を自立してこなせていますか？’,
+opts:[‘周りに頼ることが多い’,‘一部頼っている’,‘普通’,‘基本自分で回せる’,‘余裕をもって自立している’]},
+{id:21,cat:‘生活力’,txt:‘将来について考えるタイミングとして近いのは？’,
+opts:[‘ほとんど考えない’,‘気が向いたときだけ’,‘必要に応じて考える’,‘現実的に考えている’,‘具体的に計画・行動している’]},
+{id:22,cat:‘清潔感’,txt:‘外出前の身だしなみとして一番近いのは？’,
+opts:[‘特に気にせず出る’,‘軽く整える程度’,‘一応チェックする’,‘清潔感は意識して整える’,‘全体の印象まで意識して整える’]},
+{id:23,cat:‘清潔感’,txt:‘顔まわりのケアに対する意識は？’,
+opts:[‘特に何もしていない’,‘気になった時だけ’,‘最低限は整える’,‘定期的に整えている’,‘日常的にしっかりケア’]},
+{id:24,cat:‘清潔感’,txt:‘人と会う日の服選びに近いのは？’,
+opts:[‘深く考えず選ぶ’,‘とりあえず無難’,‘普通’,‘清潔感を意識’,‘相手や場に合わせる’]},
+{id:25,cat:‘清潔感’,txt:‘ふと足元や持ち物を見られたときの状態は？’,
+opts:[‘気にしたことがない’,‘多少気になる’,‘普通’,‘清潔に保っている’,‘細部まで整えている’]},
+{id:26,cat:‘清潔感’,txt:‘自分の体型や姿勢への向き合い方は？’,
+opts:[‘特に意識していない’,‘気にはしている’,‘普通’,‘ある程度意識している’,‘しっかり管理している’]},
+{id:27,cat:‘清潔感’,txt:‘匂い（体臭・口臭など）への意識として近いのは？’,
+opts:[‘特に気にしていない’,‘気になる時だけ’,‘普通’,‘日常的に気をつけている’,‘常に強く意識している’]},
+{id:28,cat:‘適応力’,txt:‘家族との関わり方として近いのは？’,
+opts:[‘生活の多くを共有している’,‘頻繁に関わる’,‘適度な距離’,‘必要な時だけ’,‘かなり独立している’]},
+{id:29,cat:‘適応力’,txt:‘今の価値観として近いのは？（仕事と家庭の優先度）’,
+opts:[‘家庭が最優先’,‘やや家庭寄り’,‘バランス’,‘仕事寄り’,‘自己実現・仕事重視’]},
+{id:30,cat:‘適応力’,txt:‘結婚についての感覚に近いのは？’,
+opts:[‘できるだけ早くしたい’,‘ある程度の期限は考えている’,‘流れに任せたい’,‘恋愛を重視したい’,‘特にこだわりはない’]},
+{id:31,cat:‘関係価値観’,txt:‘パートナーとの関係に対する向き合い方として近いのは？’,
+opts:[‘状況が変われば関係も変わると思う’,‘無理のない範囲で続けたい’,‘相手次第で変わる’,‘基本的には長く続けたい’,‘覚悟を持って関係を築きたい’]},
+{id:32,cat:‘関係価値観’,txt:‘一緒に生活する場合の食事スタイルとして近いのは？’,
+opts:[‘完全に合わせたい’,‘できるだけ一緒にしたい’,‘柔軟に対応’,‘基本は別でもOK’,‘それぞれ自由でいい’]},
+{id:33,cat:‘関係価値観’,txt:‘休日の過ごし方として理想に近いのは？’,
+opts:[‘常に一緒に過ごしたい’,‘基本一緒がいい’,‘半々くらい’,‘別々でもいい’,‘お互い自由がいい’]},
+{id:34,cat:‘関係価値観’,txt:‘生活時間や習慣の合わせ方として近いのは？’,
+opts:[‘完全に合わせたい’,‘できるだけ合わせたい’,‘調整しながら’,‘無理に合わせなくていい’,‘それぞれ自由でいい’]},
+{id:35,cat:‘関係価値観’,txt:‘パートナーと自分の親との関係について近いのは？’,
+opts:[‘深く関わってほしい’,‘ある程度関わる’,‘状況に応じて’,‘必要最低限’,‘あまり関わらせたくない’]},
+{id:36,cat:‘関係価値観’,txt:‘問題が起きたときのスタンスに近いのは？’,
+opts:[‘すべて共有して一緒に考えたい’,‘基本は相談したい’,‘内容によって変える’,‘自分で処理したい’,‘あまり共有したくない’]},
+{id:37,cat:‘恋愛スタイル’,txt:‘恋人との連絡や関わり方として近いのは？’,
+opts:[‘常に繋がっていたい’,‘こまめに連絡したい’,‘適度でいい’,‘必要な時だけ’,‘あまり連絡しない’]},
+{id:38,cat:‘恋愛スタイル’,txt:‘愛情の伝え方として近いのは？’,
+opts:[‘言葉や行動でかなり表現する’,‘行動で示すことが多い’,‘バランスよく’,‘控えめ’,‘あまり表現しない’]},
+{id:39,cat:‘恋愛スタイル’,txt:‘意見がぶつかったときの対応として近いのは？’,
+opts:[‘その場で解決したい’,‘話し合って決めたい’,‘一度時間を置く’,‘できれば避けたい’,‘放置することが多い’]},
+{id:40,cat:‘恋愛スタイル’,txt:‘結婚後の関係性として理想に近いのは？’,
+opts:[‘常に一緒に行動’,‘協力しながら生活’,‘対等な関係’,‘ある程度別々’,‘それぞれ独立’]},
+{id:41,cat:‘恋愛スタイル’,txt:‘結婚後のお金の管理として近いのは？’,
+opts:[‘完全に一つにまとめたい’,‘共同で管理’,‘分担’,‘基本別’,‘完全に別’]},
+{id:42,cat:‘恋愛スタイル’,txt:‘大きな問題が起きたときの考え方に近いのは？’,
+opts:[‘必ず一緒に解決したい’,‘話し合って決めたい’,‘分担して対応’,‘それぞれ対応’,‘干渉しない’]},
+{id:43,cat:‘恋愛心理’,txt:‘連絡の返信が遅いときの自分の反応に近いのは？’,
+opts:[‘かなり不安になる’,‘少し気になる’,‘状況による’,‘あまり気にしない’,‘全く気にしない’]},
+{id:44,cat:‘恋愛心理’,txt:‘恋人の行動や予定についての考えに近いのは？’,
+opts:[‘常に把握していたい’,‘ある程度知りたい’,‘普通’,‘あまり気にしない’,‘基本気にしない’]},
+{id:45,cat:‘恋愛心理’,txt:‘恋人からの愛情を感じる瞬間として近いのは？’,
+opts:[‘頻繁な連絡や言葉’,‘一緒にいる時間’,‘バランスよく’,‘行動でのサポート’,‘放っておいてくれる’]},
+{id:46,cat:‘恋愛心理’,txt:‘恋人がいる状態での一人の時間について近いのは？’,
+opts:[‘ほぼいらない’,‘少しでいい’,‘普通’,‘ある程度必要’,‘かなり重要’]},
+{id:47,cat:‘恋愛心理’,txt:‘恋人とケンカした後の自分の感情に近いのは？’,
+opts:[‘すぐ不安になる’,‘引きずる’,‘普通’,‘切り替える’,‘あまり気にしない’]},
+{id:48,cat:‘恋愛心理’,txt:‘生活の中で恋人をどのくらい優先しますか？’,
+opts:[‘最優先’,‘かなり高い’,‘バランス’,‘やや低め’,‘自分優先’]},
+{id:49,cat:‘恋愛心理’,txt:‘恋人が異性と親しくしているときの反応に近いのは？’,
+opts:[‘強く嫉妬して制限したくなる’,‘嫉妬するが表には出さない’,‘少し気になる程度’,‘あまり気にならない’,‘全く気にならない’]},
+{id:50,cat:‘恋愛心理’,txt:‘恋愛関係の進み方として理想に近いのは？’,
+opts:[‘すぐに深い関係になりたい’,‘比較的早く距離を縮めたい’,‘自然な流れで進めたい’,‘ゆっくり関係を築きたい’,‘慎重に時間をかけたい’]},
 ];
 
-/* ============================
-   TYPE DATA
-   ============================ */
+// 他者評価モード用Q1-30（第三者目線）
+const QS_OTHER = [
+{id:1,cat:‘スペック’,txt:‘この人の年収はどのくらいだと思いますか？’,
+opts:[’〜399万円’,‘400〜499万円’,‘500〜599万円’,‘600〜799万円’,‘800万円〜’]},
+{id:2,cat:‘スペック’,txt:‘この人の年齢は婚活・恋愛市場において有利だと思いますか？’,
+opts:[‘かなり不利’,‘やや不利’,‘どちらとも言えない’,‘やや有利’,‘かなり有利’]},
+{id:3,cat:‘スペック’,txt:‘この人の学歴は出会いの選択肢を広げていると思いますか？’,
+opts:[‘あまりそう思わない’,‘ややそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:4,cat:‘スペック’,txt:‘この人の職業・雇用形態は安定していると思いますか？’,
+opts:[‘不安定’,‘やや不安定’,‘普通’,‘やや安定’,‘とても安定’]},
+{id:5,cat:‘スペック’,txt:‘この人の外見・体格は恋愛において有利だと思いますか？’,
+opts:[‘あまり有利でない’,‘やや有利でない’,‘普通’,‘やや有利’,‘とても有利’]},
+{id:6,cat:‘コミュ力’,txt:‘この人は初対面の人とも自然に会話を広げられていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:7,cat:‘コミュ力’,txt:‘この人は相手の気持ちや感情を察して共感できていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:8,cat:‘コミュ力’,txt:‘この人と一緒にいると安心感がありますか？’,
+opts:[‘全くない’,‘あまりない’,‘どちらとも言えない’,‘ある程度ある’,‘とてもある’]},
+{id:9,cat:‘コミュ力’,txt:‘この人といると居心地が良いと感じますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:10,cat:‘性格’,txt:‘この人は約束や時間をきちんと守ると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:11,cat:‘性格’,txt:‘この人は周囲への思いやりを行動で示せていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:12,cat:‘性格’,txt:‘この人は感情的になりすぎず、冷静に物事を判断できると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:13,cat:‘性格’,txt:‘この人はやると決めたことに責任を持って取り組めていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:14,cat:‘価値観’,txt:‘この人はお金の使い方について、パートナーと合わせやすいと思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:15,cat:‘価値観’,txt:‘この人は将来の家庭像について具体的なビジョンを持っていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:16,cat:‘価値観’,txt:‘この人は仕事とプライベートのバランスをうまく取れていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:17,cat:‘価値観’,txt:‘この人は相手の生活スタイルに柔軟に合わせられると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:18,cat:‘生活力’,txt:‘この人は料理・掃除・洗濯などの家事を日常的にこなせていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:19,cat:‘生活力’,txt:‘この人は計画的な貯金や家計管理ができていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:20,cat:‘生活力’,txt:‘この人は自分の力で日常生活を自立してこなせていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:21,cat:‘生活力’,txt:‘この人は将来設計について具体的に考え行動していると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:22,cat:‘清潔感’,txt:‘この人は初対面で好印象を与えられていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:23,cat:‘清潔感’,txt:‘この人は肌・髪など顔まわりの清潔感を意識してケアしていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:24,cat:‘清潔感’,txt:‘この人は場の雰囲気に合った服装を選べていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:25,cat:‘清潔感’,txt:‘この人は爪・靴・鞄など細部の清潔感・手入れができていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:26,cat:‘清潔感’,txt:‘この人は体型管理や健康維持に気を配っていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:27,cat:‘清潔感’,txt:‘この人は体臭・口臭など匂いのケアをしっかりしていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:28,cat:‘適応力’,txt:‘この人は家族との関係において適切な距離感を保てていると思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:29,cat:‘適応力’,txt:‘この人の仕事と家庭の優先度のバランスは、パートナーに合わせやすいと思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+{id:30,cat:‘適応力’,txt:‘この人の結婚に対する考え方や温度感は、相手と合わせやすいと思いますか？’,
+opts:[‘全くそう思わない’,‘あまりそう思わない’,‘どちらとも言えない’,‘ややそう思う’,‘強くそう思う’]},
+];
+
 const TYPE_DATA = {
-  '依存型': {
-    id:1, sub:'ラブ没入型', catch:'愛されていないと不安になる感情全振りタイプ',
-    desc:'恋愛において相手との繋がりや愛情を強く求めるタイプです。関係に深く入り込むことで安心を得る一方で、相手の反応に影響されやすい傾向があります。感情豊かで愛情表現は豊富ですが、相手への依存が強くなりすぎると重く見られることも。',
-    strengths:['愛情表現が豊か','相手を大切にできる','関係に全力で向き合う'],
-    weaknesses:['不安になりやすい','相手に依存しやすい','重く見られることがある'],
-  },
-  '安定型': {
-    id:2, sub:'バランスマスター', catch:'一緒にいて安心できる王道タイプ',
-    desc:'恋愛においてバランス感覚に優れ、安定した関係を築けるタイプです。極端な偏りがなく長く続く関係に強い一方で、刺激が弱くなることもあります。多くの人から信頼されやすく、長期的なパートナーシップに向いています。',
-    strengths:['安心感がある','長期関係に強い','バランスが良い'],
-    weaknesses:['刺激が弱い','印象に残りにくい','無難になりがち'],
-  },
-  '自立型': {
-    id:3, sub:'ソロマスター', catch:'一人でも成立する完成型タイプ',
-    desc:'恋愛に依存せず、自分の人生を軸に行動するタイプです。距離感を保ちながら関係を築けますが、相手からは冷たく見られることもあります。自分のペースを大切にしながら、相手への配慮も必要です。',
-    strengths:['自立している','冷静に判断できる','距離感が適切'],
-    weaknesses:['愛情が伝わりにくい','距離を取りすぎる','冷たく見られる'],
-  },
-  '回避型': {
-    id:4, sub:'ガード鉄壁型', catch:'傷つかないことを最優先する防御タイプ',
-    desc:'恋愛において深い関係になることに慎重で、距離を保とうとするタイプです。感情的な衝突を避ける傾向があり、関係が深まりにくいことがあります。自分を守ることを優先するあまり、相手との壁ができやすいです。',
-    strengths:['冷静','トラブルを避ける','自分を守れる'],
-    weaknesses:['距離が縮まらない','感情表現が少ない','本音を出しにくい'],
-  },
-  '情熱型': {
-    id:5, sub:'ラブドライブ型', catch:'感情で一気に距離を詰める加速タイプ',
-    desc:'恋愛において感情を原動力に動き、短期間で距離を縮めるタイプです。強い魅力がありますが、スピード感の違いでズレが生じやすいです。エネルギッシュで行動力がある分、相手が追いつけないこともあります。',
-    strengths:['情熱的','行動力がある','愛情表現が豊か'],
-    weaknesses:['突っ走りやすい','温度差が生まれる','冷めやすい'],
-  },
-  '慎重型': {
-    id:6, sub:'リスク回避型', catch:'確実性を重視する堅実タイプ',
-    desc:'恋愛において相手を見極めながらゆっくり関係を築くタイプです。安定した関係を作りやすい反面、進展が遅くなる傾向があります。慎重さが信頼感につながる一方で、チャンスを逃すこともあります。',
-    strengths:['冷静','判断力がある','長期的に安定'],
-    weaknesses:['慎重すぎる','チャンスを逃す','距離が縮まるのが遅い'],
-  },
+‘依存型’: {
+id:1, sub:‘ラブ没入型’, catch:‘愛されていないと不安になる感情全振りタイプ’,
+desc:‘恋愛において相手との繋がりや愛情を強く求めるタイプです。関係に深く入り込むことで安心を得る一方で、相手の反応に影響されやすい傾向があります。感情豊かで愛情表現は豊富ですが、相手への依存が強くなりすぎると重く見られることも。’,
+strengths:[‘愛情表現が豊か’,‘相手を大切にできる’,‘関係に全力で向き合う’],
+weaknesses:[‘不安になりやすい’,‘相手に依存しやすい’,‘重く見られることがある’],
+},
+‘安定型’: {
+id:2, sub:‘バランスマスター’, catch:‘一緒にいて安心できる王道タイプ’,
+desc:‘恋愛においてバランス感覚に優れ、安定した関係を築けるタイプです。極端な偏りがなく長く続く関係に強い一方で、刺激が弱くなることもあります。多くの人から信頼されやすく、長期的なパートナーシップに向いています。’,
+strengths:[‘安心感がある’,‘長期関係に強い’,‘バランスが良い’],
+weaknesses:[‘刺激が弱い’,‘印象に残りにくい’,‘無難になりがち’],
+},
+‘自立型’: {
+id:3, sub:‘ソロマスター’, catch:‘一人でも成立する完成型タイプ’,
+desc:‘恋愛に依存せず、自分の人生を軸に行動するタイプです。距離感を保ちながら関係を築けますが、相手からは冷たく見られることもあります。自分のペースを大切にしながら、相手への配慮も必要です。’,
+strengths:[‘自立している’,‘冷静に判断できる’,‘距離感が適切’],
+weaknesses:[‘愛情が伝わりにくい’,‘距離を取りすぎる’,‘冷たく見られる’],
+},
+‘回避型’: {
+id:4, sub:‘ガード鉄壁型’, catch:‘傷つかないことを最優先する防御タイプ’,
+desc:‘恋愛において深い関係になることに慎重で、距離を保とうとするタイプです。感情的な衝突を避ける傾向があり、関係が深まりにくいことがあります。自分を守ることを優先するあまり、相手との壁ができやすいです。’,
+strengths:[‘冷静’,‘トラブルを避ける’,‘自分を守れる’],
+weaknesses:[‘距離が縮まらない’,‘感情表現が少ない’,‘本音を出しにくい’],
+},
+‘情熱型’: {
+id:5, sub:‘ラブドライブ型’, catch:‘感情で一気に距離を詰める加速タイプ’,
+desc:‘恋愛において感情を原動力に動き、短期間で距離を縮めるタイプです。強い魅力がありますが、スピード感の違いでズレが生じやすいです。エネルギッシュで行動力がある分、相手が追いつけないこともあります。’,
+strengths:[‘情熱的’,‘行動力がある’,‘愛情表現が豊か’],
+weaknesses:[‘突っ走りやすい’,‘温度差が生まれる’,‘冷めやすい’],
+},
+‘慎重型’: {
+id:6, sub:‘リスク回避型’, catch:‘確実性を重視する堅実タイプ’,
+desc:‘恋愛において相手を見極めながらゆっくり関係を築くタイプです。安定した関係を作りやすい反面、進展が遅くなる傾向があります。慎重さが信頼感につながる一方で、チャンスを逃すこともあります。’,
+strengths:[‘冷静’,‘判断力がある’,‘長期的に安定’],
+weaknesses:[‘慎重すぎる’,‘チャンスを逃す’,‘距離が縮まるのが遅い’],
+},
 };
 
 /* ============================
-   COMPAT MATRIX
-   ============================ */
+COMPAT MATRIX
+============================ */
 const COMPAT = {
-  '依存型': {'依存型':'△','安定型':'◎','自立型':'×','回避型':'×','情熱型':'○','慎重型':'△'},
-  '安定型': {'依存型':'◎','安定型':'○','自立型':'○','回避型':'△','情熱型':'◎','慎重型':'○'},
-  '自立型': {'依存型':'×','安定型':'○','自立型':'○','回避型':'○','情熱型':'△','慎重型':'○'},
-  '回避型': {'依存型':'×','安定型':'△','自立型':'○','回避型':'△','情熱型':'×','慎重型':'○'},
-  '情熱型': {'依存型':'○','安定型':'◎','自立型':'△','回避型':'×','情熱型':'△','慎重型':'×'},
-  '慎重型': {'依存型':'△','安定型':'○','自立型':'○','回避型':'○','情熱型':'×','慎重型':'○'},
+‘依存型’: {‘依存型’:‘△’,‘安定型’:‘◎’,‘自立型’:‘×’,‘回避型’:‘×’,‘情熱型’:‘○’,‘慎重型’:‘△’},
+‘安定型’: {‘依存型’:‘◎’,‘安定型’:‘○’,‘自立型’:‘○’,‘回避型’:‘△’,‘情熱型’:‘◎’,‘慎重型’:‘○’},
+‘自立型’: {‘依存型’:‘×’,‘安定型’:‘○’,‘自立型’:‘○’,‘回避型’:‘○’,‘情熱型’:‘△’,‘慎重型’:‘○’},
+‘回避型’: {‘依存型’:‘×’,‘安定型’:‘△’,‘自立型’:‘○’,‘回避型’:‘△’,‘情熱型’:‘×’,‘慎重型’:‘○’},
+‘情熱型’: {‘依存型’:‘○’,‘安定型’:‘◎’,‘自立型’:‘△’,‘回避型’:‘×’,‘情熱型’:‘△’,‘慎重型’:‘×’},
+‘慎重型’: {‘依存型’:‘△’,‘安定型’:‘○’,‘自立型’:‘○’,‘回避型’:‘○’,‘情熱型’:‘×’,‘慎重型’:‘○’},
 };
 const COMPAT_DESC = {
-  '依存型':'愛情豊かで密着した関係を好む。安心感を大切にしたい人向き。',
-  '安定型':'長期的に安定した関係を築ける。安心感があり信頼関係が深まる。',
-  '自立型':'適切な距離感でお互いを尊重できる。自由を大切にしたい人向き。',
-  '回避型':'深入りせず程よい距離感を保てる。プレッシャーが少ない関係。',
-  '情熱型':'情熱的に関係を盛り上げ、刺激を与え合える。ドラマチックな恋愛。',
-  '慎重型':'慎重に関係を深め、信頼を積み上げていける。安定した長期関係向き。',
+‘依存型’:‘愛情豊かで密着した関係を好む。安心感を大切にしたい人向き。’,
+‘安定型’:‘長期的に安定した関係を築ける。安心感があり信頼関係が深まる。’,
+‘自立型’:‘適切な距離感でお互いを尊重できる。自由を大切にしたい人向き。’,
+‘回避型’:‘深入りせず程よい距離感を保てる。プレッシャーが少ない関係。’,
+‘情熱型’:‘情熱的に関係を盛り上げ、刺激を与え合える。ドラマチックな恋愛。’,
+‘慎重型’:‘慎重に関係を深め、信頼を積み上げていける。安定した長期関係向き。’,
 };
 
 /* ============================
-   AXES & ADVICE TEMPLATES
-   ============================ */
+AXES & ADVICE TEMPLATES
+============================ */
 const AXES = [
-  {name:'コミュニケーション', label:'コミュ力', qs:[6,7,8,9]},
-  {name:'性格',               label:'性格',    qs:[10,11,12,13]},
-  {name:'価値観',             label:'価値観',  qs:[14,15,16,17]},
-  {name:'生活力',             label:'生活力',  qs:[18,19,20,21]},
-  {name:'外見・清潔感',       label:'清潔感',  qs:[22,23,24,25,26,27]},
-  {name:'価値観ズレ耐性',     label:'適応力',  qs:[28,29,30]},
+{name:‘コミュニケーション’, label:‘コミュ力’, qs:[6,7,8,9]},
+{name:‘性格’,               label:‘性格’,    qs:[10,11,12,13]},
+{name:‘価値観’,             label:‘価値観’,  qs:[14,15,16,17]},
+{name:‘生活力’,             label:‘生活力’,  qs:[18,19,20,21]},
+{name:‘清潔感’,       label:‘清潔感’,  qs:[22,23,24,25,26,27]},
+{name:‘適応力’,     label:‘適応力’,  qs:[28,29,30]},
 ];
 
 // Advice templates per axis (from uploaded files)
 const AXIS_ADVICE = {
-  'コミュニケーション':{
-    title:'対人スキル（コミュニケーション）',
-    weakness:'会話の中でリアクションや掘り下げを少し増やすと、さらに自然な関係が築けそうです。',
-    advice:'相手の話に「それいいね」「どう思った？」と一言添えてみるだけで会話がぐっと広がります。まずは1回、相手の言葉に反応することから試してみましょう。',
-    points:['リアクションを増やす','質問を1つ足す','感想を伝える'],
-  },
-  '性格':{
-    title:'人格信頼性（性格）',
-    weakness:'誠実さは十分にありそうですが、日々の小さな行動でさらに相手に伝わりやすくなります。',
-    advice:'時間を守る・連絡をこまめにするなど、小さな積み重ねが信頼につながります。言ったことを実行する習慣を少しずつ取り入れると、相手の安心感がぐっと高まっていきます。',
-    points:['約束を守る','行動を一貫させる','小さな積み重ね'],
-  },
-  '価値観':{
-    title:'価値観の共有',
-    weakness:'価値観のズレが積み重なるとすれ違いになることも。早めの対話が関係をスムーズにします。',
-    advice:'「自分はこう思うんだけど、どう思う？」と軽く話してみるだけで大丈夫です。違いを知ること自体が関係を深めるきっかけになりますよ。',
-    points:['価値観を共有する','違いを受け入れる','早めにすり合わせ'],
-  },
-  '生活力':{
-    title:'生活基盤（生活力）',
-    weakness:'生活面での自信をもう一段階高めると、パートナーに安心感を与えやすくなります。',
-    advice:'家事・貯金・生活リズムなど、まずは得意なことから磨いてみましょう。一つひとつ整えていくと「頼りになる人」という印象が自然と伝わっていきます。',
-    points:['生活リズムを整える','金銭管理を見直す','安定感を出す'],
-  },
-  '外見・清潔感':{
-    title:'外見印象（清潔感）',
-    weakness:'清潔感をもう少し意識するだけで、第一印象がグッとアップします。',
-    advice:'髪・服・匂いの3点を整えてみるだけで印象はかなり変わります。まずは毎日の小さな習慣から少しずつ取り入れてみましょう。シンプルにまとめるのが一番手軽で効果的ですよ。',
-    points:['清潔感を整える','サイズ感を合わせる','シンプルにする'],
-  },
-  '価値観ズレ耐性':{
-    title:'価値観の柔軟性（適応力）',
-    weakness:'相手との考え方の違いをうまく活かせると、より豊かな関係になりそうです。',
-    advice:'「ひとこと確認する」を習慣にするだけでズレが防げます。家族観・仕事観について「あなたはどう思う？」と聞いてみることが、お互いを知る第一歩です。',
-    points:['価値観を早めに共有','違いを受け入れる','対話を増やす'],
-  },
+‘コミュニケーション’:{
+title:‘対人スキル（コミュニケーション）’,
+weakness:‘会話の中でリアクションや掘り下げを少し増やすと、さらに自然な関係が築けそうです。’,
+advice:‘相手の話に「それいいね」「どう思った？」と一言添えてみるだけで会話がぐっと広がります。まずは1回、相手の言葉に反応することから試してみましょう。’,
+points:[‘リアクションを増やす’,‘質問を1つ足す’,‘感想を伝える’],
+},
+‘性格’:{
+title:‘人格信頼性（性格）’,
+weakness:‘誠実さは十分にありそうですが、日々の小さな行動でさらに相手に伝わりやすくなります。’,
+advice:‘時間を守る・連絡をこまめにするなど、小さな積み重ねが信頼につながります。言ったことを実行する習慣を少しずつ取り入れると、相手の安心感がぐっと高まっていきます。’,
+points:[‘約束を守る’,‘行動を一貫させる’,‘小さな積み重ね’],
+},
+‘価値観’:{
+title:‘価値観の共有’,
+weakness:‘価値観のズレが積み重なるとすれ違いになることも。早めの対話が関係をスムーズにします。’,
+advice:’「自分はこう思うんだけど、どう思う？」と軽く話してみるだけで大丈夫です。違いを知ること自体が関係を深めるきっかけになりますよ。’,
+points:[‘価値観を共有する’,‘違いを受け入れる’,‘早めにすり合わせ’],
+},
+‘生活力’:{
+title:‘生活基盤（生活力）’,
+weakness:‘生活面での自信をもう一段階高めると、パートナーに安心感を与えやすくなります。’,
+advice:‘家事・貯金・生活リズムなど、まずは得意なことから磨いてみましょう。一つひとつ整えていくと「頼りになる人」という印象が自然と伝わっていきます。’,
+points:[‘生活リズムを整える’,‘金銭管理を見直す’,‘安定感を出す’],
+},
+‘清潔感’:{
+title:‘外見印象（清潔感）’,
+weakness:‘清潔感をもう少し意識するだけで、第一印象がグッとアップします。’,
+advice:‘髪・服・匂いの3点を整えてみるだけで印象はかなり変わります。まずは毎日の小さな習慣から少しずつ取り入れてみましょう。シンプルにまとめるのが一番手軽で効果的ですよ。’,
+points:[‘清潔感を整える’,‘サイズ感を合わせる’,‘シンプルにする’],
+},
+‘適応力’:{
+title:‘価値観の柔軟性（適応力）’,
+weakness:‘相手との考え方の違いをうまく活かせると、より豊かな関係になりそうです。’,
+advice:’「ひとこと確認する」を習慣にするだけでズレが防げます。家族観・仕事観について「あなたはどう思う？」と聞いてみることが、お互いを知る第一歩です。’,
+points:[‘価値観を早めに共有’,‘違いを受け入れる’,‘対話を増やす’],
+},
 };
 
 // Type-specific 3rd advice
 const TYPE_ADVICE = {
-  '依存型':{title:'距離感（依存・自立）',
-    weakness:'相手とのつながりを大切にするあまり、少しだけ距離が近くなりすぎることがありそうです。',
-    advice:'「今日は自分の時間も楽しんでみよう」という意識が、かえって二人の関係を心地よくしてくれます。相手のペースに少し合わせてみると、関係がより安定していきますよ。',
-    points:['相手のペースを確認','自分の時間も大切に','バランスを取る']},
-  '安定型':{title:'印象の差別化',
-    weakness:'全体的にバランスが良いので、もう一歩自分らしさを出すとさらに印象的になりそうです。',
-    advice:'安定感はそのままに、得意なことや好きなことを積極的に話してみましょう。自分の「らしさ」を少し前に出すだけで、相手の記憶に残りやすくなります。',
-    points:['自分らしさを出す','積極的にアピール','安定さを武器にする']},
-  '自立型':{title:'愛情スタイル（愛情表現）',
-    weakness:'想いはしっかりあるのに、それが相手に伝わりきっていない場面があるかもしれません。',
-    advice:'「ありがとう」「楽しかった」など短い一言から始めてみましょう。行動に気持ちを少し添えるだけで、相手にしっかり届く愛情表現になります。',
-    points:['言葉と行動の両立','タイミングを意識','小さな一言から']},
-  '回避型':{title:'感情反応（開示）',
-    weakness:'慎重さゆえに、本音が相手に届くまで時間がかかることがあるかもしれません。',
-    advice:'感情を整理してから話す習慣はとても素敵です。「実は最近こう感じてて」という言葉から、少しずつ自分の気持ちを共有してみましょう。',
-    points:['一度整理する','言葉を選ぶ','少しずつ開示する']},
-  '情熱型':{title:'衝突対応（問題解決）',
-    weakness:'エネルギッシュに動けるのが魅力ですが、相手のペースも意識するとさらに関係が深まります。',
-    advice:'その熱量はとても魅力的です。問題があるときは「私はこう感じた」という伝え方にするだけで、相手もぐっと受け取りやすくなりますよ。',
-    points:['「私は〜」で伝える','冷静に話す','解決志向を持つ']},
-  '慎重型':{title:'関係進行（スピード）',
-    weakness:'じっくりと関係を深めていくスタイルが強みですが、少しだけテンポを上げる場面も効果的です。',
-    advice:'相手のことをきちんと見てから動くのは信頼感につながります。「一緒に○○してみませんか」と小さな提案から始めてみると、関係がスムーズに進みやすくなりますよ。',
-    points:['相手のペースを見る','段階的に進める','小さな提案から']},
+‘依存型’:{title:‘距離感（依存・自立）’,
+weakness:‘相手とのつながりを大切にするあまり、少しだけ距離が近くなりすぎることがありそうです。’,
+advice:’「今日は自分の時間も楽しんでみよう」という意識が、かえって二人の関係を心地よくしてくれます。相手のペースに少し合わせてみると、関係がより安定していきますよ。’,
+points:[‘相手のペースを確認’,‘自分の時間も大切に’,‘バランスを取る’]},
+‘安定型’:{title:‘印象の差別化’,
+weakness:‘全体的にバランスが良いので、もう一歩自分らしさを出すとさらに印象的になりそうです。’,
+advice:‘安定感はそのままに、得意なことや好きなことを積極的に話してみましょう。自分の「らしさ」を少し前に出すだけで、相手の記憶に残りやすくなります。’,
+points:[‘自分らしさを出す’,‘積極的にアピール’,‘安定さを武器にする’]},
+‘自立型’:{title:‘愛情スタイル（愛情表現）’,
+weakness:‘想いはしっかりあるのに、それが相手に伝わりきっていない場面があるかもしれません。’,
+advice:’「ありがとう」「楽しかった」など短い一言から始めてみましょう。行動に気持ちを少し添えるだけで、相手にしっかり届く愛情表現になります。’,
+points:[‘言葉と行動の両立’,‘タイミングを意識’,‘小さな一言から’]},
+‘回避型’:{title:‘感情反応（開示）’,
+weakness:‘慎重さゆえに、本音が相手に届くまで時間がかかることがあるかもしれません。’,
+advice:‘感情を整理してから話す習慣はとても素敵です。「実は最近こう感じてて」という言葉から、少しずつ自分の気持ちを共有してみましょう。’,
+points:[‘一度整理する’,‘言葉を選ぶ’,‘少しずつ開示する’]},
+‘情熱型’:{title:‘衝突対応（問題解決）’,
+weakness:‘エネルギッシュに動けるのが魅力ですが、相手のペースも意識するとさらに関係が深まります。’,
+advice:‘その熱量はとても魅力的です。問題があるときは「私はこう感じた」という伝え方にするだけで、相手もぐっと受け取りやすくなりますよ。’,
+points:[’「私は〜」で伝える’,‘冷静に話す’,‘解決志向を持つ’]},
+‘慎重型’:{title:‘関係進行（スピード）’,
+weakness:‘じっくりと関係を深めていくスタイルが強みですが、少しだけテンポを上げる場面も効果的です。’,
+advice:‘相手のことをきちんと見てから動くのは信頼感につながります。「一緒に○○してみませんか」と小さな提案から始めてみると、関係がスムーズに進みやすくなりますよ。’,
+points:[‘相手のペースを見る’,‘段階的に進める’,‘小さな提案から’]},
 };
 
 /* ============================
-   STATE
-   ============================ */
+STATE
+============================ */
 let cur = 0, ans = new Array(50).fill(null), advTimer = null;
-let userName = '', subjectName = '', evalMode = 'self';
+let userName = ‘’, subjectName = ‘’, evalMode = ‘self’;
 
 /* ============================
-   SCREENS
-   ============================ */
+SCREENS
+============================ */
 function show(id) {
-  document.querySelectorAll('.screen').forEach(s=>{s.classList.remove('on');s.style.animation='none'});
-  const el = document.getElementById('scr-'+id);
-  el.offsetHeight; el.style.animation=''; el.classList.add('on'); window.scrollTo(0,0);
+document.querySelectorAll(’.screen’).forEach(s=>{s.classList.remove(‘on’);s.style.animation=‘none’});
+const el = document.getElementById(‘scr-’+id);
+el.offsetHeight; el.style.animation=’’; el.classList.add(‘on’); window.scrollTo(0,0);
 }
 
 /* ============================
-   START SCREEN
-   ============================ */
+START SCREEN
+============================ */
 async function initStart() {
-  try {
-    const r = await stor.get('userlist', true);
-    if (!r) return;
-    const users = JSON.parse(r.value);
-    if (!users.length) return;
-    document.getElementById('existing-row').style.display = '';
-    const selUser = document.getElementById('sel-user');
-    const selTarget = document.getElementById('sel-target');
-    selUser.innerHTML = '<option value="">── 選択してください ──</option>';
-    selTarget.innerHTML = '<option value="">── 選択してください ──</option>';
-    users.forEach(u => {
-      selUser.innerHTML += `<option value="${u}">${u}</option>`;
-      selTarget.innerHTML += `<option value="${u}">${u}</option>`;
-    });
-  } catch(e) {}
+try {
+const r = await stor.get(‘userlist’);
+if (!r) return;
+const users = JSON.parse(r.value);
+if (!users.length) return;
+document.getElementById(‘existing-row’).style.display = ‘’;
+const selUser = document.getElementById(‘sel-user’);
+const selTarget = document.getElementById(‘sel-target’);
+selUser.innerHTML = ‘<option value="">── 選択してください ──</option>’;
+selTarget.innerHTML = ‘<option value="">── 選択してください ──</option>’;
+users.forEach(u => {
+selUser.innerHTML += `<option value="${u}">${u}</option>`;
+selTarget.innerHTML += `<option value="${u}">${u}</option>`;
+});
+} catch(e) {}
 }
 
 function onNameInput() {
-  userName = document.getElementById('inp-name').value.trim();
-  document.getElementById('sel-user').value = '';
+userName = document.getElementById(‘inp-name’).value.trim();
+document.getElementById(‘sel-user’).value = ‘’;
 }
 function onUserSelect() {
-  const v = document.getElementById('sel-user').value;
-  if (v) { document.getElementById('inp-name').value = v; userName = v; }
+const v = document.getElementById(‘sel-user’).value;
+if (v) { document.getElementById(‘inp-name’).value = v; userName = v; }
 }
 function onModeChange() {
-  const mode = document.querySelector('input[name="mode"]:checked').value;
-  evalMode = mode;
-  document.getElementById('eval-target-row').style.display = mode === 'other' ? '' : 'none';
+const mode = document.querySelector(‘input[name=“mode”]:checked’).value;
+evalMode = mode;
+document.getElementById(‘eval-target-row’).style.display = mode === ‘other’ ? ‘’ : ‘none’;
 }
 
 async function handleStart() {
-  userName = document.getElementById('inp-name').value.trim() ||
-    (document.getElementById('sel-user').value) || '';
-  if (!userName) { alert('名前を入力または選択してください'); return; }
-  evalMode = document.querySelector('input[name="mode"]:checked').value;
-  if (evalMode === 'self') {
-    subjectName = userName;
-  } else {
-    subjectName = document.getElementById('sel-target').value;
-    if (!subjectName) { alert('評価する相手を選択してください'); return; }
-  }
-  cur = 0; ans = new Array(50).fill(null);
-  show('quiz'); renderQ();
+userName = document.getElementById(‘inp-name’).value.trim() ||
+(document.getElementById(‘sel-user’).value) || ‘’;
+if (!userName) { alert(‘名前を入力または選択してください’); return; }
+evalMode = document.querySelector(‘input[name=“mode”]:checked’).value;
+if (evalMode === ‘self’) {
+subjectName = userName;
+} else {
+subjectName = document.getElementById(‘sel-target’).value;
+if (!subjectName) { alert(‘評価する相手を選択してください’); return; }
+}
+const totalQ = evalMode === ‘other’ ? 30 : 50;
+cur = 0; ans = new Array(totalQ).fill(null);
+show(‘quiz’); renderQ();
 }
 
 /* ============================
-   QUIZ
-   ============================ */
+QUIZ
+============================ */
+function currentQList() {
+return evalMode === ‘other’ ? QS_OTHER : QS;
+}
+function totalQ() {
+return evalMode === ‘other’ ? 30 : 50;
+}
+
 function renderQ() {
-  const q = QS[cur];
-  document.getElementById('prog-fill').style.width = ((cur+1)/50*100)+'%';
-  document.getElementById('prog-cur').textContent = cur+1;
-  document.getElementById('cat-pill').textContent = q.cat;
-  document.getElementById('q-num').textContent = 'Q'+q.id;
-  document.getElementById('q-text').textContent = q.txt;
-  document.getElementById('btn-prev').style.display = cur===0?'none':'';
-  document.getElementById('btn-next').textContent = cur===49?'結果を見る →':'次の質問 →';
-  const card = document.getElementById('q-card');
-  card.classList.remove('shake'); card.style.animation='none'; card.offsetHeight; card.style.animation='';
-  const sel = ans[cur];
-  document.getElementById('q-opts').innerHTML = q.opts.map((o,i)=>{
-    const s=i+1;
-    return `<button class="opt${sel===s?' sel':''}" data-score="${s}">
-      <span class="opt-n">${s}</span><span>${o}</span></button>`;
-  }).join('');
+const qList = currentQList();
+const total = totalQ();
+const q = qList[cur];
+document.getElementById(‘prog-fill’).style.width = ((cur+1)/total*100)+’%’;
+document.getElementById(‘prog-cur’).textContent = cur+1;
+document.getElementById(‘cat-pill’).textContent = q.cat;
+document.getElementById(‘q-num’).textContent = ‘Q’+q.id;
+document.getElementById(‘q-text’).textContent = q.txt;
+document.getElementById(‘btn-prev’).style.display = cur===0?‘none’:’’;
+document.getElementById(‘btn-next’).textContent = cur===total-1?‘結果を見る →’:‘次の質問 →’;
+const card = document.getElementById(‘q-card’);
+card.classList.remove(‘shake’); card.style.animation=‘none’; card.offsetHeight; card.style.animation=’’;
+const sel = ans[cur];
+document.getElementById(‘q-opts’).innerHTML = q.opts.map((o,i)=>{
+const s=i+1;
+return `<button class="opt${sel===s?' sel':''}" data-score="${s}"> <span class="opt-n">${s}</span><span>${o}</span></button>`;
+}).join(’’);
 }
 
 function selectOpt(s) {
-  ans[cur] = s;
-  document.querySelectorAll('.opt').forEach((btn,i)=>{
-    const sc=i+1,isSel=sc===s;
-    btn.classList.toggle('sel',isSel);
-    const n=btn.querySelector('.opt-n');
-    if(n){n.style.background=isSel?'var(--pink)':'rgba(236,72,153,.1)';n.style.color=isSel?'#fff':'var(--mu)'}
-  });
-  if(advTimer)clearTimeout(advTimer);
-  if(cur<49)advTimer=setTimeout(()=>goNext(),520);
+ans[cur] = s;
+document.querySelectorAll(’.opt’).forEach((btn,i)=>{
+const sc=i+1,isSel=sc===s;
+btn.classList.toggle(‘sel’,isSel);
+const n=btn.querySelector(’.opt-n’);
+if(n){n.style.background=isSel?‘var(–pink)’:‘rgba(236,72,153,.1)’;n.style.color=isSel?’#fff’:‘var(–mu)’}
+});
+if(advTimer)clearTimeout(advTimer);
+if(cur<49)advTimer=setTimeout(()=>goNext(),520);
 }
 
 function goNext() {
-  if(advTimer)clearTimeout(advTimer);
-  if(ans[cur]===null){
-    const c=document.getElementById('q-card');c.classList.add('shake');setTimeout(()=>c.classList.remove('shake'),400);return;
-  }
-  if(cur<49){cur++;renderQ();}else runDiagnosis();
+if(advTimer)clearTimeout(advTimer);
+if(ans[cur]===null){
+const c=document.getElementById(‘q-card’);c.classList.add(‘shake’);setTimeout(()=>c.classList.remove(‘shake’),400);return;
 }
-function goPrev(){if(advTimer)clearTimeout(advTimer);if(cur>0){cur--;renderQ();}}
+if(cur<totalQ()-1){cur++;renderQ();}else runDiagnosis();
+}
+function goPrev(){if(advTimer)clearTimeout(advTimer);if(cur>0){cur–;renderQ();}}
 
 /* ============================
-   SCORING
-   ============================ */
+SCORING
+============================ */
 function qAvg(qNums){
-  const vs=qNums.map(q=>ans[q-1]).filter(v=>v!=null);
-  return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:3;
+const vs=qNums.map(q=>ans[q-1]).filter(v=>v!=null);
+return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:3;
 }
 function calcAxes(){
-  const r={};
-  AXES.forEach(ax=>{r[ax.name]=qAvg(ax.qs)});
-  r['スペック']=qAvg([1,2,3,4,5]);
-  return r;
+const r={};
+AXES.forEach(ax=>{r[ax.name]=qAvg(ax.qs)});
+r[‘スペック’]=qAvg([1,2,3,4,5]);
+return r;
 }
 function calcOverall(axisScores){
-  const all=AXES.map(ax=>axisScores[ax.name]);
-  [31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50].forEach(q=>all.push(ans[q-1]||3));
-  return all.reduce((a,b)=>a+b,0)/all.length;
+const all=AXES.map(ax=>axisScores[ax.name]);
+if(evalMode===‘self’){
+[31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50].forEach(q=>all.push(ans[q-1]||3));
 }
-function calcRank(s){return s>=4.5?'S':s>=3.8?'A':s>=3.0?'B':s>=2.0?'C':'F'}
+return all.reduce((a,b)=>a+b,0)/all.length;
+}
+function calcRank(s){return s>=4.5?‘S’:s>=3.8?‘A’:s>=3.0?‘B’:s>=2.0?‘C’:‘F’}
 
 /* ===== TYPE (Q37-Q50 point system) ===== */
 function calcType(){
-  const sc={依存型:0,安定型:0,自立型:0,回避型:0,情熱型:0,慎重型:0};
-  const q=id=>ans[id-1]||3, add=(t,n)=>sc[t]+=n;
-  if(q(37)<=2){add('依存型',2);add('情熱型',1);}else if(q(37)===3)add('安定型',1);else if(q(37)===4){add('自立型',1);add('回避型',1);}else{add('自立型',2);add('回避型',2);}
-  if(q(38)===1)add('情熱型',2);else if(q(38)===2)add('情熱型',1);else if(q(38)===3)add('安定型',1);else if(q(38)===4)add('回避型',1);else add('回避型',2);
-  if(q(39)===1)add('情熱型',2);else if(q(39)===2)add('安定型',2);else if(q(39)===3)add('慎重型',1);else add('回避型',2);
-  if(q(42)===1)add('安定型',2);else if(q(42)===2)add('安定型',1);else if(q(42)===3)add('慎重型',1);else add('回避型',2);
-  if(q(43)<=2)add('依存型',2);else if(q(43)===3)add('慎重型',1);else if(q(43)===4)add('自立型',1);else add('自立型',2);
-  if(q(44)===1)add('依存型',2);else if(q(44)===2)add('依存型',1);else if(q(44)===3)add('安定型',1);else if(q(44)===4)add('自立型',1);else add('自立型',2);
-  if(q(45)===1){add('情熱型',2);add('依存型',1);}else if(q(45)===2)add('情熱型',1);else if(q(45)===3)add('安定型',1);else if(q(45)===4)add('自立型',1);else add('自立型',2);
-  if(q(46)===1)add('依存型',2);else if(q(46)===2)add('依存型',1);else if(q(46)===3)add('安定型',1);else add('自立型',2);
-  if(q(47)===1)add('依存型',2);else if(q(47)===2)add('依存型',1);else if(q(47)===3)add('安定型',1);else if(q(47)===4)add('安定型',2);else add('自立型',1);
-  if(q(48)===1){add('依存型',2);add('情熱型',1);}else if(q(48)===2)add('依存型',2);else if(q(48)===3)add('安定型',1);else if(q(48)===4)add('自立型',1);else add('自立型',2);
-  if(q(49)===1)add('依存型',2);else if(q(49)===2)add('依存型',1);else if(q(49)===3)add('安定型',1);else if(q(49)===4)add('自立型',1);else add('自立型',2);
-  if(q(50)===1)add('情熱型',2);else if(q(50)===2)add('情熱型',1);else if(q(50)===3)add('安定型',1);else add('慎重型',2);
-  const pri=['自立型','安定型','情熱型','依存型','慎重型','回避型'];
-  const sorted=Object.entries(sc).sort((a,b)=>b[1]!==a[1]?b[1]-a[1]:pri.indexOf(a[0])-pri.indexOf(b[0]));
-  const top=sorted[0],sec=sorted[1];
-  if(top[1]<=8&&top[1]-sec[1]<=2)return'安定型';
-  return top[0];
+const sc={依存型:0,安定型:0,自立型:0,回避型:0,情熱型:0,慎重型:0};
+const q=id=>ans[id-1]||3, add=(t,n)=>sc[t]+=n;
+if(q(37)<=2){add(‘依存型’,2);add(‘情熱型’,1);}else if(q(37)===3)add(‘安定型’,1);else if(q(37)===4){add(‘自立型’,1);add(‘回避型’,1);}else{add(‘自立型’,2);add(‘回避型’,2);}
+if(q(38)===1)add(‘情熱型’,2);else if(q(38)===2)add(‘情熱型’,1);else if(q(38)===3)add(‘安定型’,1);else if(q(38)===4)add(‘回避型’,1);else add(‘回避型’,2);
+if(q(39)===1)add(‘情熱型’,2);else if(q(39)===2)add(‘安定型’,2);else if(q(39)===3)add(‘慎重型’,1);else add(‘回避型’,2);
+if(q(42)===1)add(‘安定型’,2);else if(q(42)===2)add(‘安定型’,1);else if(q(42)===3)add(‘慎重型’,1);else add(‘回避型’,2);
+if(q(43)<=2)add(‘依存型’,2);else if(q(43)===3)add(‘慎重型’,1);else if(q(43)===4)add(‘自立型’,1);else add(‘自立型’,2);
+if(q(44)===1)add(‘依存型’,2);else if(q(44)===2)add(‘依存型’,1);else if(q(44)===3)add(‘安定型’,1);else if(q(44)===4)add(‘自立型’,1);else add(‘自立型’,2);
+if(q(45)===1){add(‘情熱型’,2);add(‘依存型’,1);}else if(q(45)===2)add(‘情熱型’,1);else if(q(45)===3)add(‘安定型’,1);else if(q(45)===4)add(‘自立型’,1);else add(‘自立型’,2);
+if(q(46)===1)add(‘依存型’,2);else if(q(46)===2)add(‘依存型’,1);else if(q(46)===3)add(‘安定型’,1);else add(‘自立型’,2);
+if(q(47)===1)add(‘依存型’,2);else if(q(47)===2)add(‘依存型’,1);else if(q(47)===3)add(‘安定型’,1);else if(q(47)===4)add(‘安定型’,2);else add(‘自立型’,1);
+if(q(48)===1){add(‘依存型’,2);add(‘情熱型’,1);}else if(q(48)===2)add(‘依存型’,2);else if(q(48)===3)add(‘安定型’,1);else if(q(48)===4)add(‘自立型’,1);else add(‘自立型’,2);
+if(q(49)===1)add(‘依存型’,2);else if(q(49)===2)add(‘依存型’,1);else if(q(49)===3)add(‘安定型’,1);else if(q(49)===4)add(‘自立型’,1);else add(‘自立型’,2);
+if(q(50)===1)add(‘情熱型’,2);else if(q(50)===2)add(‘情熱型’,1);else if(q(50)===3)add(‘安定型’,1);else add(‘慎重型’,2);
+const pri=[‘自立型’,‘安定型’,‘情熱型’,‘依存型’,‘慎重型’,‘回避型’];
+const sorted=Object.entries(sc).sort((a,b)=>b[1]!==a[1]?b[1]-a[1]:pri.indexOf(a[0])-pri.indexOf(b[0]));
+const top=sorted[0],sec=sorted[1];
+if(top[1]<=8&&top[1]-sec[1]<=2)return’安定型’;
+return top[0];
 }
 
 /* ===== WEAKNESS EXTRACTION ===== */
 function extractWeaknesses(axisScores){
-  const pri=['コミュニケーション','外見・清潔感','性格','価値観ズレ耐性','生活力','価値観'];
-  const sorted=[...AXES].sort((a,b)=>{
-    const d=axisScores[a.name]-axisScores[b.name];
-    if(Math.abs(d)<0.01)return pri.indexOf(a.name)-pri.indexOf(b.name);
-    return d;
-  });
-  return sorted.slice(0,2);
+const pri=[‘コミュニケーション’,‘清潔感’,‘性格’,‘適応力’,‘生活力’,‘価値観’];
+const sorted=[…AXES].sort((a,b)=>{
+const d=axisScores[a.name]-axisScores[b.name];
+if(Math.abs(d)<0.01)return pri.indexOf(a.name)-pri.indexOf(b.name);
+return d;
+});
+return sorted.slice(0,2);
 }
 function extractStrengths(axisScores){
-  return [...AXES].sort((a,b)=>axisScores[b.name]-axisScores[a.name]).slice(0,2);
+return […AXES].sort((a,b)=>axisScores[b.name]-axisScores[a.name]).slice(0,2);
 }
 
 /* ============================
-   RADAR CHART SVG
-   ============================ */
+RADAR CHART SVG
+============================ */
 function makeRadarSVG(axisScores, compareScores){
-  const W=280,H=280,cx=140,cy=140,R=90;
-  const n=AXES.length;
-  const angles=AXES.map((_,i)=>-Math.PI/2+i*2*Math.PI/n);
-  const px=(r,i)=>(cx+r*Math.cos(angles[i])).toFixed(2);
-  const py=(r,i)=>(cy+r*Math.sin(angles[i])).toFixed(2);
-  // Grid
-  let g='';
-  [.2,.4,.6,.8,1].forEach(f=>{
-    const pts=angles.map((_,i)=>`${px(R*f,i)},${py(R*f,i)}`).join(' ');
-    g+=`<polygon points="${pts}" fill="none" stroke="#f9a8d4" stroke-width="${f===1?1.5:.7}"/>`;
-  });
-  // Axis lines + labels
-  let al='';
-  AXES.forEach((ax,i)=>{
-    const lR=R+22,cos=Math.cos(angles[i]),sin=Math.sin(angles[i]);
-    const anchor=cos>0.3?'start':cos<-0.3?'end':'middle';
-    const baseline=sin<-0.3?'auto':sin>0.3?'hanging':'middle';
-    al+=`<line x1="${cx}" y1="${cy}" x2="${px(R,i)}" y2="${py(R,i)}" stroke="#f9a8d4" stroke-width="1"/>`;
-    al+=`<text x="${(cx+lR*cos).toFixed(1)}" y="${(cy+lR*sin).toFixed(1)}" text-anchor="${anchor}" dominant-baseline="${baseline}" font-size="11" fill="#9c6878" font-family="'Noto Sans JP',sans-serif">${ax.label}</text>`;
-  });
-  // Compare polygon
-  let cmp='';
-  if(compareScores){
-    const cpts=AXES.map((ax,i)=>`${px(R*(compareScores[ax.name]||3)/5,i)},${py(R*(compareScores[ax.name]||3)/5,i)}`).join(' ');
-    cmp=`<polygon points="${cpts}" fill="rgba(100,100,240,.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="4 3"/>`;
-  }
-  // Main polygon
-  const mpts=AXES.map((ax,i)=>`${px(R*(axisScores[ax.name]||3)/5,i)},${py(R*(axisScores[ax.name]||3)/5,i)}`).join(' ');
-  const mp=`<polygon points="${mpts}" fill="rgba(236,72,153,.18)" stroke="#ec4899" stroke-width="2.5"/>`;
-  // Dots
-  const dots=AXES.map((ax,i)=>{
-    const r=R*(axisScores[ax.name]||3)/5;
-    return `<circle cx="${px(r,i)}" cy="${py(r,i)}" r="4.5" fill="#ec4899" stroke="white" stroke-width="1.5"/>`;
-  }).join('');
-  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px">${g}${al}${cmp}${mp}${dots}</svg>`;
+const W=280,H=280,cx=140,cy=140,R=90;
+const n=AXES.length;
+const angles=AXES.map((_,i)=>-Math.PI/2+i*2*Math.PI/n);
+const px=(r,i)=>(cx+r*Math.cos(angles[i])).toFixed(2);
+const py=(r,i)=>(cy+r*Math.sin(angles[i])).toFixed(2);
+// Grid
+let g=’’;
+[.2,.4,.6,.8,1].forEach(f=>{
+const pts=angles.map((_,i)=>`${px(R*f,i)},${py(R*f,i)}`).join(’ ‘);
+g+=`<polygon points="${pts}" fill="none" stroke="#f9a8d4" stroke-width="${f===1?1.5:.7}"/>`;
+});
+// Axis lines + labels
+let al=’’;
+AXES.forEach((ax,i)=>{
+const lR=R+22,cos=Math.cos(angles[i]),sin=Math.sin(angles[i]);
+const anchor=cos>0.3?‘start’:cos<-0.3?‘end’:‘middle’;
+const baseline=sin<-0.3?‘auto’:sin>0.3?‘hanging’:‘middle’;
+al+=`<line x1="${cx}" y1="${cy}" x2="${px(R,i)}" y2="${py(R,i)}" stroke="#f9a8d4" stroke-width="1"/>`;
+al+=`<text x="${(cx+lR*cos).toFixed(1)}" y="${(cy+lR*sin).toFixed(1)}" text-anchor="${anchor}" dominant-baseline="${baseline}" font-size="11" fill="#9c6878" font-family="'Noto Sans JP',sans-serif">${ax.label}</text>`;
+});
+// Compare polygon
+let cmp=’’;
+if(compareScores){
+const cpts=AXES.map((ax,i)=>`${px(R*(compareScores[ax.name]||3)/5,i)},${py(R*(compareScores[ax.name]||3)/5,i)}`).join(’ ‘);
+cmp=`<polygon points="${cpts}" fill="rgba(100,100,240,.12)" stroke="#a855f7" stroke-width="2" stroke-dasharray="4 3"/>`;
+}
+// Main polygon
+const mpts=AXES.map((ax,i)=>`${px(R*(axisScores[ax.name]||3)/5,i)},${py(R*(axisScores[ax.name]||3)/5,i)}`).join(’ ’);
+const mp=`<polygon points="${mpts}" fill="rgba(236,72,153,.18)" stroke="#ec4899" stroke-width="2.5"/>`;
+// Dots
+const dots=AXES.map((ax,i)=>{
+const r=R*(axisScores[ax.name]||3)/5;
+return `<circle cx="${px(r,i)}" cy="${py(r,i)}" r="4.5" fill="#ec4899" stroke="white" stroke-width="1.5"/>`;
+}).join(’’);
+return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px">${g}${al}${cmp}${mp}${dots}</svg>`;
 }
 
 /* ============================
-   DIAGNOSIS
-   ============================ */
+DIAGNOSIS
+============================ */
 async function runDiagnosis(){
-  show('load');
-  const msgs=['回答を集計しています...','恋愛タイプを判定中...','弱みを分析しています...','診断レポートを生成中...'];
-  let mi=0; const ml=document.getElementById('load-msg');
-  const lp=setInterval(()=>{mi=(mi+1)%msgs.length;ml.textContent=msgs[mi];},1800);
-  // Calculate
-  await new Promise(r=>setTimeout(r,100));
-  const axisScores=calcAxes();
-  const overall=calcOverall(axisScores);
-  const rank=calcRank(overall);
-  const type=calcType();
-  const weakAxes=extractWeaknesses(axisScores);
-  const strAxes=extractStrengths(axisScores);
-  // Save to storage
-  try {
-    const resultData={subject:subjectName,evaluator:userName,type,rank,overall:overall.toFixed(2),axisScores,timestamp:new Date().toISOString()};
-    await stor.set(`eval:${subjectName}:${userName}`,JSON.stringify(resultData),true);
-    const ur=await stor.get('userlist',true).catch(()=>null);
-    const users=ur?JSON.parse(ur.value):[];
-    [subjectName,userName].forEach(u=>{if(u&&!users.includes(u))users.push(u);});
-    await stor.set('userlist',JSON.stringify(users),true);
-  } catch(e){console.log('Storage:',e);}
-  clearInterval(lp);
-  renderResult({axisScores,overall,rank,type,weakAxes,strAxes});
+show(‘load’);
+const msgs=[‘回答を集計しています…’,‘恋愛タイプを判定中…’,‘弱みを分析しています…’,‘診断レポートを生成中…’];
+let mi=0; const ml=document.getElementById(‘load-msg’);
+const lp=setInterval(()=>{mi=(mi+1)%msgs.length;ml.textContent=msgs[mi];},1800);
+// Calculate
+await new Promise(r=>setTimeout(r,100));
+const axisScores=calcAxes();
+const overall=calcOverall(axisScores);
+const rank=calcRank(overall);
+const type=calcType();
+const weakAxes=extractWeaknesses(axisScores);
+const strAxes=extractStrengths(axisScores);
+// Save to storage
+try {
+const resultData={subject:subjectName,evaluator:userName,type,rank,overall:overall.toFixed(2),axisScores,timestamp:new Date().toISOString()};
+await stor.set(`eval-${subjectName}-${userName}`,JSON.stringify(resultData));
+const ur=await stor.get(‘userlist’).catch(()=>null);
+const users=ur?JSON.parse(ur.value):[];
+[subjectName,userName].forEach(u=>{if(u&&!users.includes(u))users.push(u);});
+await stor.set(‘userlist’,JSON.stringify(users));
+} catch(e){console.log(‘Storage:’,e);}
+clearInterval(lp);
+renderResult({axisScores,overall,rank,type,weakAxes,strAxes});
 }
 
 /* ============================
-   RENDER RESULT
-   ============================ */
+RENDER RESULT
+============================ */
 function renderResult({axisScores,overall,rank,type,weakAxes,strAxes}){
-  const td=TYPE_DATA[type]||TYPE_DATA['安定型'];
-  // Header
-  const rankColors={S:'score-s',A:'score-a',B:'score-b',C:'score-c',F:'score-f'};
-  const rb=document.getElementById('r-rank-badge');
-  rb.textContent=rank; rb.className='score-badge '+(rankColors[rank]||'score-a');
-  document.getElementById('r-score-num').textContent=`スコア：${overall.toFixed(2)} / 5.0`;
-  document.getElementById('r-type-name').textContent=type;
-  document.getElementById('r-type-sub').textContent=td.sub;
-  document.getElementById('r-type-catch').textContent=td.catch;
-  // Summary
-  const evalTxt=subjectName!==userName?`${subjectName}さんへの評価結果：`:'';
-  document.getElementById('r-summary').textContent=
-    evalTxt+`あなた（${subjectName}）は「${type}（${td.sub}）」です。${td.catch.replace('タイプ','タイプであり')}、総合スコアは${overall.toFixed(1)}/5.0（ランク${rank}）でした。`;
-  // Radar
-  document.getElementById('r-radar').innerHTML=makeRadarSVG(axisScores);
-  // Features (type traits + top axes)
-  const features=[td.sub, `総合スコア ${overall.toFixed(1)}`, strAxes[0].name+'が強み'];
-  document.getElementById('r-features').innerHTML=features.map(f=>`<span class="tag tag-n">${f}</span>`).join('');
-  // Strengths
-  const strItems=[...strAxes.map(s=>`${s.label}が高い（${axisScores[s.name].toFixed(1)}点）`),...td.strengths];
-  document.getElementById('r-strengths').innerHTML=strItems.slice(0,4).map(s=>`<span class="tag tag-g">✓ ${s}</span>`).join('');
-  // Weaknesses
-  const wkItems=[...weakAxes.map(w=>`${w.label}がやや低め（${axisScores[w.name].toFixed(1)}点）`),...td.weaknesses];
-  document.getElementById('r-weaknesses').innerHTML=wkItems.slice(0,4).map(w=>`<span class="tag tag-b">△ ${w}</span>`).join('');
-  // Advice (3 items: 2 axis templates + 1 type template)
-  const advItems=[
-    AXIS_ADVICE[weakAxes[0]?.name]||AXIS_ADVICE['コミュニケーション'],
-    AXIS_ADVICE[weakAxes[1]?.name]||AXIS_ADVICE['外見・清潔感'],
-    TYPE_ADVICE[type]||TYPE_ADVICE['安定型'],
-  ];
-  document.getElementById('r-advice').innerHTML=advItems.map((a,i)=>`
-    <div class="adv-item">
-      <div class="adv-header"><span class="adv-num">${i+1}</span><span class="adv-title">${a.title}</span></div>
-      <p class="adv-weak">「${a.weakness}」</p>
-      <p class="adv-body">${a.advice}</p>
-      <div class="adv-points">${a.points.map(p=>`<span class="adv-point">${p}</span>`).join('')}</div>
-    </div>`).join('');
-  // Type detail
-  document.getElementById('r-type-detail-title').textContent=`タイプ詳細：${type}（${td.sub}）`;
-  document.getElementById('r-type-desc').textContent=td.desc;
-  document.getElementById('r-type-strengths').innerHTML=td.strengths.map(s=>`<div class="type-trait-item">${s}</div>`).join('');
-  document.getElementById('r-type-weaknesses').innerHTML=td.weaknesses.map(w=>`<div class="type-trait-item">${w}</div>`).join('');
-  // Compat good/bad
-  const mat=COMPAT[type]||{};
-  const good=Object.entries(mat).filter(([,v])=>v==='◎'||v==='○').map(([k])=>k);
-  const bad=Object.entries(mat).filter(([,v])=>v==='×').map(([k])=>k);
-  document.getElementById('r-good').innerHTML=good.map(t=>`
-    <div class="match-item"><span class="match-badge g">${mat[t]}</span>
-      <div><div class="match-name">${t}</div><div class="match-desc">${COMPAT_DESC[t]||''}</div></div>
-    </div>`).join('')||'<p style="color:var(--mu);font-size:.85rem">特になし</p>';
-  document.getElementById('r-bad').innerHTML=bad.map(t=>`
-    <div class="match-item"><span class="match-badge b">${mat[t]}</span>
-      <div><div class="match-name">${t}</div><div class="match-desc">${COMPAT_DESC[t]||''}</div></div>
-    </div>`).join('')||'<p style="color:var(--mu);font-size:.85rem">特になし</p>';
-  // Compat table
-  const types=Object.keys(COMPAT);
-  const cellClass={'◎':'c-maru2','○':'c-maru','△':'c-sank','×':'c-batu'};
-  let table=`<table class="compat-table"><thead><tr><th></th>${types.map(t=>`<th>${t}</th>`).join('')}</tr></thead><tbody>`;
-  types.forEach(row=>{
-    const isMe=row===type;
-    table+=`<tr${isMe?' class="highlight"':''}>`;
-    table+=`<td style="background:${isMe?'var(--pink3)':'var(--pink4)'};color:${isMe?'var(--pink)':'var(--text2)'};font-weight:${isMe?700:500}">${row}${isMe?' ★':''}</td>`;
-    types.forEach(col=>{
-      const sym=COMPAT[row]?.[col]||'-';
-      const cls=cellClass[sym]||'';
-      table+=`<td class="${cls}${isMe?' me':''}">${sym}</td>`;
-    });
-    table+='</tr>';
-  });
-  table+='</tbody></table>';
-  document.getElementById('r-compat-table').innerHTML=table;
-  show('result');
+const td=TYPE_DATA[type]||TYPE_DATA[‘安定型’];
+// Header
+const rankColors={S:‘score-s’,A:‘score-a’,B:‘score-b’,C:‘score-c’,F:‘score-f’};
+const rb=document.getElementById(‘r-rank-badge’);
+rb.textContent=rank; rb.className=‘score-badge ‘+(rankColors[rank]||‘score-a’);
+document.getElementById(‘r-score-num’).textContent=`スコア：${overall.toFixed(2)} / 5.0`;
+document.getElementById(‘r-type-name’).textContent=type;
+document.getElementById(‘r-type-sub’).textContent=td.sub;
+document.getElementById(‘r-type-catch’).textContent=td.catch;
+// Summary
+const evalTxt=subjectName!==userName?`${subjectName}さんへの評価結果：`:’’;
+document.getElementById(‘r-summary’).textContent=
+evalTxt+`あなた（${subjectName}）は「${type}（${td.sub}）」です。${td.catch.replace('タイプ','タイプであり')}、総合スコアは${overall.toFixed(1)}/5.0（ランク${rank}）でした。`;
+// Radar
+document.getElementById(‘r-radar’).innerHTML=makeRadarSVG(axisScores);
+// Features (type traits + top axes)
+const features=[td.sub, `総合スコア ${overall.toFixed(1)}`, strAxes[0].name+‘が強み’];
+document.getElementById(‘r-features’).innerHTML=features.map(f=>`<span class="tag tag-n">${f}</span>`).join(’’);
+// Strengths
+const strItems=[…strAxes.map(s=>`${s.label}が高い（${axisScores[s.name].toFixed(1)}点）`),…td.strengths];
+document.getElementById(‘r-strengths’).innerHTML=strItems.slice(0,4).map(s=>`<span class="tag tag-g">✓ ${s}</span>`).join(’’);
+// Weaknesses
+const wkItems=[…weakAxes.map(w=>`${w.label}がやや低め（${axisScores[w.name].toFixed(1)}点）`),…td.weaknesses];
+document.getElementById(‘r-weaknesses’).innerHTML=wkItems.slice(0,4).map(w=>`<span class="tag tag-b">△ ${w}</span>`).join(’’);
+// Advice (3 items: 2 axis templates + 1 type template)
+const advItems=[
+AXIS_ADVICE[weakAxes[0]?.name]||AXIS_ADVICE[‘コミュニケーション’],
+AXIS_ADVICE[weakAxes[1]?.name]||AXIS_ADVICE[‘清潔感’],
+TYPE_ADVICE[type]||TYPE_ADVICE[‘安定型’],
+];
+document.getElementById(‘r-advice’).innerHTML=advItems.map((a,i)=>` <div class="adv-item"> <div class="adv-header"><span class="adv-num">${i+1}</span><span class="adv-title">${a.title}</span></div> <p class="adv-weak">「${a.weakness}」</p> <p class="adv-body">${a.advice}</p> <div class="adv-points">${a.points.map(p=>`<span class="adv-point">${p}</span>`).join('')}</div> </div>`).join(’’);
+// Type detail
+document.getElementById(‘r-type-detail-title’).textContent=`タイプ詳細：${type}（${td.sub}）`;
+document.getElementById(‘r-type-desc’).textContent=td.desc;
+document.getElementById(‘r-type-strengths’).innerHTML=td.strengths.map(s=>`<div class="type-trait-item">${s}</div>`).join(’’);
+document.getElementById(‘r-type-weaknesses’).innerHTML=td.weaknesses.map(w=>`<div class="type-trait-item">${w}</div>`).join(’’);
+// Compat good/bad
+const mat=COMPAT[type]||{};
+const good=Object.entries(mat).filter(([,v])=>v===‘◎’||v===‘○’).map(([k])=>k);
+const bad=Object.entries(mat).filter(([,v])=>v===‘×’).map(([k])=>k);
+document.getElementById(‘r-good’).innerHTML=good.map(t=>` <div class="match-item"><span class="match-badge g">${mat[t]}</span> <div><div class="match-name">${t}</div><div class="match-desc">${COMPAT_DESC[t]||''}</div></div> </div>`).join(’’)||’<p style="color:var(--mu);font-size:.85rem">特になし</p>’;
+document.getElementById(‘r-bad’).innerHTML=bad.map(t=>` <div class="match-item"><span class="match-badge b">${mat[t]}</span> <div><div class="match-name">${t}</div><div class="match-desc">${COMPAT_DESC[t]||''}</div></div> </div>`).join(’’)||’<p style="color:var(--mu);font-size:.85rem">特になし</p>’;
+// Compat table
+const types=Object.keys(COMPAT);
+const cellClass={‘◎’:‘c-maru2’,‘○’:‘c-maru’,‘△’:‘c-sank’,‘×’:‘c-batu’};
+let table=`<table class="compat-table"><thead><tr><th></th>${types.map(t=>`<th>${t}</th>`).join('')}</tr></thead><tbody>`;
+types.forEach(row=>{
+const isMe=row===type;
+table+=`<tr${isMe?' class="highlight"':''}>`;
+table+=`<td style="background:${isMe?'var(--pink3)':'var(--pink4)'};color:${isMe?'var(--pink)':'var(--text2)'};font-weight:${isMe?700:500}">${row}${isMe?' ★':''}</td>`;
+types.forEach(col=>{
+const sym=COMPAT[row]?.[col]||’-’;
+const cls=cellClass[sym]||’’;
+table+=`<td class="${cls}${isMe?' me':''}">${sym}</td>`;
+});
+table+=’</tr>’;
+});
+table+=’</tbody></table>’;
+document.getElementById(‘r-compat-table’).innerHTML=table;
+show(‘result’);
+document.getElementById(‘btn-open-gap’).style.display = ‘’;
 }
 
 /* ============================
-   COPY & RESTART
-   ============================ */
+COPY & RESTART
+============================ */
 function copyResult(){
-  const rank=document.getElementById('r-rank-badge').textContent;
-  const type=document.getElementById('r-type-name').textContent;
-  const summary=document.getElementById('r-summary').textContent;
-  navigator.clipboard.writeText(`🌸 恋愛・婚活総合診断\n婚活・恋活スコア：${rank}\n恋愛タイプ：${type}\n\n${summary}`)
-    .then(()=>{const b=document.getElementById('btn-copy');const o=b.textContent;b.textContent='✓ コピーしました';setTimeout(()=>b.textContent=o,2200);})
-    .catch(()=>alert('コピーに失敗しました'));
+const rank=document.getElementById(‘r-rank-badge’).textContent;
+const type=document.getElementById(‘r-type-name’).textContent;
+const summary=document.getElementById(‘r-summary’).textContent;
+navigator.clipboard.writeText(`🌸 恋愛・婚活総合診断\n婚活・恋活スコア：${rank}\n恋愛タイプ：${type}\n\n${summary}`)
+.then(()=>{const b=document.getElementById(‘btn-copy’);const o=b.textContent;b.textContent=‘✓ コピーしました’;setTimeout(()=>b.textContent=o,2200);})
+.catch(()=>alert(‘コピーに失敗しました’));
 }
-function restartQuiz(){show('start');}
+function restartQuiz(){show(‘start’); document.getElementById(‘btn-open-gap’).style.display=‘none’;}
 
 /* ============================
-   EVENT LISTENERS (no inline handlers)
-   ============================ */
+GAP MESSAGES (6 axes × 2 sizes × 2 directions = 24)
+============================ */
+const GAP_MSGS = {
+‘コミュニケーション’:{
+small_plus:‘あなたの会話力は、自分が思っている以上に相手にちゃんと届いています。「うまく話せていないかも」と感じる場面でも、聞き上手さや温かみはしっかり伝わっています。その自然なスタイルに、もう少し自信を乗せてみましょう。’,
+large_plus:‘コミュニケーション力について、自分の評価と周囲の評価にかなり大きなズレがあります。「自分はうまく話せない」という思い込みが強くなっているかもしれません。実際には相手はあなたの言葉をずっとポジティブに受け取っています。その思い込みを少しずつ手放すと、さらに自然体で関われるようになりますよ。’,
+small_minus:’「伝わっている」と感じていても、相手はもう少し深みや反応を求めていることがあるかもしれません。相手の表情や言葉のトーンを、もう一段階丁寧に観察してみると新しい気づきが生まれそうです。’,
+large_minus:‘会話力についての自己認識と他者の印象にかなりのズレがあります。「伝えた」と感じていることが、相手には届ききっていない場合があるかもしれません。「相手はどう受け取ったかな」と振り返る習慣を少し取り入れてみましょう。’,
+},
+‘性格’:{
+small_plus:’「ちゃんとできているかな」と不安になることがあっても、あなたの誠実さや思いやりは相手にきちんと届いています。その姿勢は自分が思っている以上にちゃんと評価されていますよ。’,
+large_plus:‘性格面で、あなたが「普通にやっているだけ」と思っていることが、周りには誠実さや責任感として映っています。謙虚さは大切ですが、自分のその素直な姿勢をもう少し認めてあげてください。’,
+small_minus:‘自分ではしっかりできているつもりでも、相手が「もう少し…」と感じている場面があるかもしれません。身近な人の反応を、少し丁寧に観察してみると新しい気づきがありそうです。’,
+large_minus:‘良かれと思ってしていることが、相手には少し違った印象として伝わっていることがあるかもしれません。「相手がどう感じているか」をもう少し意識して行動してみると、関係がさらに深まっていくはずです。’,
+},
+‘価値観’:{
+small_plus:’「うまく合わせられているかな」と思っていても、相手にはしっかり共通点が見えています。自然体でいることが、むしろ相手にとって心地よかったりします。そのままで大丈夫ですよ。’,
+large_plus:’「ズレがあるかも」と感じていても、周囲はあなたの考え方に共鳴していることが多いようです。自分の価値観や見方に、もう少し自信を持っていいですよ。’,
+small_minus:’「わかり合えている」と感じていても、相手の中にはまだ少し違和感が残っていることがあるかもしれません。「相手はどう考えているんだろう」と聞いてみる機会を意識的につくってみましょう。’,
+large_minus:’「当然こうだよね」と思っている場面で、相手は実は違う受け取り方をしていることがあるかもしれません。ひとこと確認する習慣を取り入れてみると、すれ違いが減っていきそうです。’,
+},
+‘生活力’:{
+small_plus:’「できているかどうか不安」と感じることがあっても、日常の姿勢や行動はちゃんと相手に映っています。その積み重ねをもう少し自分で認めてあげましょう。’,
+large_plus:’「まだまだだな」と思っているかもしれませんが、周囲にはあなたのことをかなり頼りになる存在として見ています。謙虚さの裏側に、しっかりした基盤が育っていますよ。’,
+small_minus:’「ちゃんとやれている」と感じていても、相手から見ると「もう少し…」という部分があるかもしれません。日常のちょっとしたことを、少し丁寧に振り返ってみると良さそうです。’,
+large_minus:‘自分では整っていると感じていても、周囲にはまだ改善の余地があると映っているかもしれません。「客観的に見たらどうかな」と視点を変えて、日常の基盤を見直すチャンスにしてみましょう。’,
+},
+‘清潔感’:{
+small_plus:’「気にしすぎかな」と思うくらいの丁寧さが、相手にはしっかり好印象として伝わっています。あなたの清潔感はちゃんと評価されていますよ。’,
+large_plus:’「自分なりに頑張っているけど…」と思っている以上に、あなたの見た目の印象は周囲にとってポジティブに映っています。毎日の積み重ねが相手にしっかり届いていますよ。’,
+small_minus:‘自分では「整っている」と感じていても、相手はもう一歩の丁寧さを期待しているかもしれません。細かい部分（爪・靴・匂いなど）に改めて目を向けてみましょう。’,
+large_minus:’「十分に整えている」という認識が、周囲の印象とズレている可能性があります。鏡の前だけでなく、「相手の目にはどう映っているか」という視点を少し取り入れてみると、印象が変わるきっかけになりそうです。’,
+},
+‘適応力’:{
+small_plus:’「ちゃんと合わせられているかな」と感じることがあっても、周りにはあなたの柔軟さがちゃんと評価されています。その素直さが関係の安定につながっていますよ。’,
+large_plus:’「うまく対応できていない」と思っている場面でも、相手からするとあなたの受容力は十分に感じられています。「もっとうまくやらなければ」という焦りより、今のあなたのペースを信じてみましょう。’,
+small_minus:’「相手のことを理解できている」と思っていても、相手にはまだ少し違和感が残っていることがあるかもしれません。「相手の立場ならどう感じるかな」と一度想像してみましょう。’,
+large_minus:‘自分では柔軟に対応できていると感じていますが、周囲にはまだ「自分の考え方に寄っている」と映っている場面があるかもしれません。価値観の違う人と話すとき、まず「そういう考え方もあるんだね」と受け取ることから始めてみましょう。’,
+},
+};
+
+/* ============================
+GAP SCREEN LOGIC
+============================ */
+function makeGapRadar(selfScores, othersScores) {
+const W=260,H=260,cx=130,cy=130,R=85;
+const axes=AXES;
+const n=axes.length;
+const angles=axes.map((_,i)=>-Math.PI/2+i*2*Math.PI/n);
+const px=(r,i)=>(cx+r*Math.cos(angles[i])).toFixed(1);
+const py=(r,i)=>(cy+r*Math.sin(angles[i])).toFixed(1);
+let g=’’;
+[.25,.5,.75,1].forEach(f=>{
+const pts=angles.map((_,i)=>`${px(R*f,i)},${py(R*f,i)}`).join(’ ‘);
+g+=`<polygon points="${pts}" fill="none" stroke="#f9a8d4" stroke-width="${f===1?1.2:.6}"/>`;
+});
+let al=’’;
+axes.forEach((ax,i)=>{
+const lR=R+18,cos=Math.cos(angles[i]),sin=Math.sin(angles[i]);
+const anchor=cos>0.25?‘start’:cos<-0.25?‘end’:‘middle’;
+al+=`<line x1="${cx}" y1="${cy}" x2="${px(R,i)}" y2="${py(R,i)}" stroke="#f9a8d4" stroke-width=".8"/>`;
+al+=`<text x="${(cx+lR*cos).toFixed(1)}" y="${(cy+lR*sin).toFixed(1)}" text-anchor="${anchor}" dominant-baseline="middle" font-size="10" fill="#b08090" font-family="'Noto Sans JP',sans-serif">${ax.label}</text>`;
+});
+let poly2=’’;
+if(othersScores){
+const pts=axes.map((ax,i)=>`${px(R*(othersScores[ax.name]||3)/5,i)},${py(R*(othersScores[ax.name]||3)/5,i)}`).join(’ ’);
+poly2=`<polygon points="${pts}" fill="rgba(168,85,247,.1)" stroke="#a855f7" stroke-width="2" stroke-dasharray="5 3"/>`;
+axes.forEach((ax,i)=>{const r=R*(othersScores[ax.name]||3)/5;poly2+=`<circle cx="${px(r,i)}" cy="${py(r,i)}" r="3.5" fill="#a855f7" stroke="white" stroke-width="1.2"/>`;});
+}
+const pts1=axes.map((ax,i)=>`${px(R*(selfScores[ax.name]||3)/5,i)},${py(R*(selfScores[ax.name]||3)/5,i)}`).join(’ ‘);
+const poly1=`<polygon points="${pts1}" fill="rgba(236,72,153,.15)" stroke="#ec4899" stroke-width="2.2"/>`;
+const dots1=axes.map((ax,i)=>{const r=R*(selfScores[ax.name]||3)/5;return`<circle cx="${px(r,i)}" cy="${py(r,i)}" r="3.5" fill="#ec4899" stroke="white" stroke-width="1.2"/>`;}).join(’’);
+return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px">${g}${al}${poly2}${poly1}${dots1}</svg>`;
+}
+
+async function openGapScreen() {
+show(‘gap’);
+// Load users
+try {
+const ur = await stor.get(‘userlist’);
+if (!ur) return;
+const users = JSON.parse(ur.value);
+const sel = document.getElementById(‘gap-sel-user’);
+sel.innerHTML = ‘<option value="">── 選択してください ──</option>’;
+users.forEach(u => sel.innerHTML += `<option value="${u}">${u}</option>`);
+} catch(e){}
+}
+
+async function loadGapResult() {
+const subject = document.getElementById(‘gap-sel-user’).value;
+if (!subject) { alert(‘ユーザーを選択してください’); return; }
+
+// Load self eval
+let selfData = null;
+try {
+const sr = await stor.get(`eval-${subject}-${subject}`);
+if (sr) selfData = JSON.parse(sr.value);
+} catch(e){}
+
+// Load others
+const others = [];
+try {
+const ur2 = await stor.get(‘userlist’);
+const users = ur2 ? JSON.parse(ur2.value) : [];
+for (const u of users) {
+if (u === subject) continue;
+try {
+const or = await stor.get(`eval-${subject}-${u}`);
+if (or) others.push(JSON.parse(or.value));
+} catch(e){}
+}
+} catch(e){}
+
+if (!selfData && !others.length) {
+alert(‘このユーザーのデータが見つかりません’);
+return;
+}
+
+document.getElementById(‘gap-subject-name’).textContent = subject;
+document.getElementById(‘gap-eval-count’).textContent = `他者評価：${others.length}件`;
+document.getElementById(‘gap-result-area’).style.display = ‘’;
+
+// Compute others avg axis scores
+const othersAvg = {};
+if (others.length) {
+AXES.forEach(ax => {
+const vs = others.map(o => parseFloat(o.axisScores?.[ax.name])||0).filter(v=>v>0);
+othersAvg[ax.name] = vs.length ? vs.reduce((a,b)=>a+b,0)/vs.length : null;
+});
+}
+
+// Radar
+document.getElementById(‘gap-radar’).innerHTML = selfData
+? makeGapRadar(selfData.axisScores, others.length ? othersAvg : null)
+: ‘<p style="color:var(--mu);font-size:.85rem">自己評価データがありません</p>’;
+
+// Table
+let tableHtml = `<div class="gap-table-wrap"><table class="gtable"> <thead><tr> <th>評価軸</th> <th class="r">自己評価</th> ${others.length?`<th class="r">他者平均</th><th class="r">乖離</th>`:''} </tr></thead><tbody>`;
+AXES.forEach(ax => {
+const sv = selfData ? parseFloat(selfData.axisScores?.[ax.name])||0 : null;
+const ov = othersAvg[ax.name];
+const gap = sv !== null && ov !== null ? ov - sv : null;
+const gCls = gap===null?‘gap-neu’:gap>0.1?‘gap-pos’:gap<-0.1?‘gap-neg’:‘gap-neu’;
+tableHtml += `<tr> <td class="name-col">${ax.name}</td> <td class="r">${sv!==null?sv.toFixed(1):'—'}</td> ${others.length?`<td class="r">${ov!==null?ov.toFixed(1):’—’}</td><td class="r ${gCls}">${gap!==null?(gap>0?’+’:’’)+gap.toFixed(1):’—’}</td>`:''} </tr>`;
+});
+tableHtml += ‘</tbody></table></div>’;
+if (others.length) tableHtml += `<p style="font-size:.73rem;color:var(--mu);margin-top:6px">乖離＝他者平均−自己評価 ｜ <span class="gap-pos">＋他者が高く評価</span> ／ <span class="gap-neg">−自己評価が高め</span></p>`;
+document.getElementById(‘gap-table’).innerHTML = tableHtml;
+
+// Gap messages
+if (!selfData || !others.length) {
+document.getElementById(‘gap-messages’).innerHTML = `<div class="card"><p style="color:var(--mu);font-size:.85rem;text-align:center">自己評価と他者評価の両方がそろうと、乖離メッセージが表示されます。</p></div>`;
+return;
+}
+
+let msgsHtml = `<div class="card"><div class="sec-title">乖離分析メッセージ</div>`;
+let count = 0;
+AXES.forEach(ax => {
+const sv = parseFloat(selfData.axisScores?.[ax.name])||3;
+const ov = othersAvg[ax.name];
+if (ov === null) return;
+const gap = ov - sv; // positive = others rate higher (self under-evaluating)
+const absGap = Math.abs(gap);
+if (absGap < 0.3) return; // 乖離が小さすぎる場合はスキップ
+
+```
+const msgs = GAP_MSGS[ax.name];
+if (!msgs) return;
+
+const isLarge = absGap >= 1.5;
+const isPlus = gap > 0; // others > self → 過小評価
+const key = (isLarge ? 'large' : 'small') + '_' + (isPlus ? 'plus' : 'minus');
+const msg = msgs[key];
+const dirLabel = isPlus ? '過小評価の可能性' : '過大評価の可能性';
+const dirCls = isPlus ? 'badge-pos' : 'badge-neg';
+const sizeCls = isLarge ? 'badge-lg' : '';
+
+msgsHtml += `<div class="gap-msg-card">
+  <div class="gap-msg-header">
+    <span class="gap-msg-axis">${ax.name}</span>
+    <span class="gap-msg-badge ${dirCls}">${isPlus?'＋':'−'}${absGap.toFixed(1)} ${dirLabel}</span>
+    ${isLarge?`<span class="gap-msg-badge ${sizeCls}">大きなズレ</span>`:''}
+  </div>
+  <p class="gap-msg-body">${msg}</p>
+</div>`;
+count++;
+```
+
+});
+if (count === 0) msgsHtml += `<p style="color:var(--mu);font-size:.85rem;text-align:center;padding:8px 0">各軸の乖離が0.3未満のため、特筆すべきズレは見られませんでした。</p>`;
+msgsHtml += ‘</div>’;
+document.getElementById(‘gap-messages’).innerHTML = msgsHtml;
+}
+
+/* ============================
+EVENT LISTENERS (no inline handlers)
+============================ */
 function setupListeners() {
-  // Start screen
-  document.getElementById('inp-name').addEventListener('input', onNameInput);
-  document.getElementById('sel-user').addEventListener('change', onUserSelect);
-  document.querySelectorAll('input[name="mode"]').forEach(r => r.addEventListener('change', onModeChange));
-  document.getElementById('btn-start').addEventListener('click', handleStart);
-  // Quiz nav
-  document.getElementById('btn-prev').addEventListener('click', goPrev);
-  document.getElementById('btn-next').addEventListener('click', goNext);
-  // Option delegation
-  document.getElementById('scr-quiz').addEventListener('click', function(e) {
-    const btn = e.target.closest('.opt');
-    if (btn) { const s = parseInt(btn.dataset.score, 10); if (s) selectOpt(s); }
-  });
-  // Result actions
-  document.getElementById('btn-copy').addEventListener('click', copyResult);
-  document.getElementById('btn-restart').addEventListener('click', restartQuiz);
+// Start screen
+document.getElementById(‘inp-name’).addEventListener(‘input’, onNameInput);
+document.getElementById(‘sel-user’).addEventListener(‘change’, onUserSelect);
+document.querySelectorAll(‘input[name=“mode”]’).forEach(r => r.addEventListener(‘change’, onModeChange));
+document.getElementById(‘btn-start’).addEventListener(‘click’, handleStart);
+// Quiz nav
+document.getElementById(‘btn-prev’).addEventListener(‘click’, goPrev);
+document.getElementById(‘btn-next’).addEventListener(‘click’, goNext);
+// Option delegation
+document.getElementById(‘scr-quiz’).addEventListener(‘click’, function(e) {
+const btn = e.target.closest(’.opt’);
+if (btn) { const s = parseInt(btn.dataset.score, 10); if (s) selectOpt(s); }
+});
+// Result actions
+document.getElementById(‘btn-copy’).addEventListener(‘click’, copyResult);
+document.getElementById(‘btn-restart’).addEventListener(‘click’, restartQuiz);
+// Gap screen
+document.getElementById(‘btn-open-gap’).addEventListener(‘click’, openGapScreen);
+document.getElementById(‘btn-gap-back’).addEventListener(‘click’, ()=>{ show(‘result’); document.getElementById(‘btn-open-gap’).style.display=’’; });
+document.getElementById(‘btn-gap-load’).addEventListener(‘click’, loadGapResult);
 }
 
 /* ============================
-   INIT
-   ============================ */
+INIT
+============================ */
 function boot() {
-  try { setupListeners(); } catch(e) { console.error('setupListeners error:', e); }
-  try { initStart(); } catch(e) { console.error('initStart error:', e); }
+try { setupListeners(); } catch(e) { console.error(‘setupListeners error:’, e); }
+try { initStart(); } catch(e) { console.error(‘initStart error:’, e); }
 }
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', boot);
+if (document.readyState === ‘loading’) {
+document.addEventListener(‘DOMContentLoaded’, boot);
 } else {
-  boot();
+boot();
 }
 </script>
+
 </body>
 </html>
